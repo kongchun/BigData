@@ -60,6 +60,7 @@ class Article extends React.Component {
 						        <h1 className="post-title">{article.title}</h1>
 						        <section className="post-meta">
 						            <span className="url">来源：<a href={article.url} >{article.url}</a></span>
+									<span className="url">阅读次数：{article.hits}</span>
 						        </section>
 						    </header>
 						    <section className="post-content" dangerouslySetInnerHTML={createMarkup()}>

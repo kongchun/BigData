@@ -72,8 +72,13 @@ app.get('/api/article/:id', function(req, res) {
 			"id": id
 		});
 	}).then(function(data) {
-		db.close();
-		res.send(data);
+		let hits = parseInt(data.hits) + 1;
+		let id = parseInt(data.id);
+		data.hits = hits;
+		db.collection.updateOne({'id':id},{'$set':{'hits':hits}}).then(function() {
+			db.close();
+			res.send(data);
+		})
 	}).catch(function() {
 		res.send([]);
 		db.close();
