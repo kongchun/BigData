@@ -57,21 +57,24 @@ class ArticleList extends React.Component {
     render() {
 
         function subContent(str) {
-            return str.substr(0, 200) + "...";
+            return str.substr(0, 200);
         }
 
         let articles = this.state.data.data;
         let artclelist = articles.map((article) => (
             <article key={article.id} id={article.id} className='post animated fadeIn'>
-             <div className="post-head">
-                  <h1 className="post-title"><Link to={'/article/' + article.id}>{article.title}</Link></h1>
-            </div>
+
             {this.getThumbnail(article)}
+            <div className="intro">
+            <div className="post-head">
+                  <h3 className="post-title"><Link to={'/article/' + article.id}>{article.title}</Link></h3>
+            </div>
              <div className="post-content">
                 <p>{subContent(article.content)}</p>
             </div>
             <div className="post-permalink">
                <Link to={'/article/' + article.id} className="btn btn-default">阅读全文</Link>
+            </div>
             </div>
             </article>
 
@@ -80,7 +83,7 @@ class ArticleList extends React.Component {
             <section className="content-wrap">
             <div className="container">
                 <div className="row">
-                    <main className="col-md-12 main-content">
+                    <main className="col-md-12 main-content list">
                         {artclelist}
                         <Pages page={this.state.data.page} limit={this.limit} count={this.state.data.count} url="#/page/"/>
                     </main>
