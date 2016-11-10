@@ -20524,16 +20524,24 @@ var Article = function (_React$Component) {
 												{ href: article.url },
 												article.url
 											)
-										),
+										)
+									)
+								),
+								_react2.default.createElement('section', { className: 'post-content', dangerouslySetInnerHTML: createMarkup() }),
+								_react2.default.createElement(
+									'footer',
+									{ className: 'post-footer clearfix' },
+									_react2.default.createElement(
+										'div',
+										{ className: 'pull-left tag-list' },
 										_react2.default.createElement(
-											'span',
-											{ className: 'url' },
+											'i',
+											{ className: 'fa fa-folder-open-o' },
 											'\u9605\u8BFB\u6B21\u6570\uFF1A',
 											article.hits
 										)
 									)
-								),
-								_react2.default.createElement('section', { className: 'post-content', dangerouslySetInnerHTML: createMarkup() })
+								)
 							)
 						),
 						_react2.default.createElement(
@@ -20722,8 +20730,10 @@ var ArticleList = function (_React$Component) {
                             { className: 'post-permalink' },
                             _react2.default.createElement(
                                 _reactRouter.Link,
-                                { to: '/article/' + article.id, className: 'btn btn-default' },
-                                '\u9605\u8BFB\u5168\u6587'
+                                { to: '/article/' + article.id, className: 'info' },
+                                '\u9605\u8BFB ',
+                                article.hits,
+                                ' \u6B21'
                             )
                         )
                     )
@@ -20737,10 +20747,10 @@ var ArticleList = function (_React$Component) {
                     { className: 'container' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
+                        { className: 'row list' },
                         _react2.default.createElement(
                             'main',
-                            { className: 'col-md-12 main-content list' },
+                            { className: 'col-md-12 main-content ' },
                             artclelist,
                             _react2.default.createElement(_Pages2.default, { page: this.state.data.page, limit: this.limit, count: this.state.data.count, url: '#/page/' })
                         )

@@ -19,6 +19,7 @@ body {
   background: #ebebeb;
   position: relative;
   font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
 }
 h1,
 h2,
@@ -922,4 +923,55 @@ pre {
 }
 .list .post .post-head .post-title a {
   color: #f4645f;
+}
+@media (max-width: 620px) {
+  .navbar {
+    margin-bottom: 15px;
+  }
+  .post .post-head .post-title {
+    margin: 0;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .post-content {
+    font-size: 16px;
+  }
+  .list {
+    background: white;
+    margin-top: -15px;
+  }
+  .list .post {
+    padding: 15px 0px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #eee;
+  }
+  .list .post .featured-media {
+    width: 8.5em;
+    height: 5.2em;
+  }
+  .intro {
+    margin-left: 9.5em;
+  }
+  .list .post-content {
+    display: none;
+  }
+  .list .post .post-head .post-title a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    min-height: 3.2rem;
+    margin-bottom: .6rem;
+    font-weight: 400;
+  }
+  .list a.info {
+    color: #828a92;
+    font-size: 12px;
+  }
+  .pagination {
+    margin-top: 15px;
+  }
 }

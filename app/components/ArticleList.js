@@ -73,7 +73,7 @@ class ArticleList extends React.Component {
                 <p>{subContent(article.content)}</p>
             </div>
             <div className="post-permalink">
-               <Link to={'/article/' + article.id} className="btn btn-default">阅读全文</Link>
+               <Link to={'/article/' + article.id} className="info">阅读 {article.hits} 次</Link>
             </div>
             </div>
             </article>
@@ -82,8 +82,8 @@ class ArticleList extends React.Component {
         return (
             <section className="content-wrap">
             <div className="container">
-                <div className="row">
-                    <main className="col-md-12 main-content list">
+        <div className="row list">
+                    <main className="col-md-12 main-content ">
                         {artclelist}
                         <Pages page={this.state.data.page} limit={this.limit} count={this.state.data.count} url="#/page/"/>
                     </main>
