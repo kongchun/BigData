@@ -1,5 +1,5 @@
 body{
-	font-family:"微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family:"Lucida Family",Helvetica,Arial,"微软雅黑",sans-serif;
 
 }
 
@@ -361,8 +361,8 @@ pre {
   main post content
 ====================================================*/
 .post-content {
-  font: 400 18px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
-  color: #444443;
+
+  color: #333;
 }
 .post-content h1,
 .post-content h2,
@@ -963,12 +963,24 @@ pre {
 
   .post .post-head .post-title {
     margin: 0;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 28px;
+    line-height: 36px;
+    text-align:left;
+  }
+
+  .post .post-head{
+    text-align:left;
+  }
+
+  .post .post-head .post-meta span{
+    margin:0
   }
 
   .post-content{
-    font-size:16px;
+    font-size:18px;
+    line-height: 28px;
+     text-align:justify;
+     text-align-last:justify;
   }
 
   .list{
@@ -976,20 +988,39 @@ pre {
     margin-top:-15px;
   }
 
+
+
+  .article{
+     margin-top:-15px;
+     padding:0px;
+
+
+  }
+
+  .article .main-content,.sidebar{
+    padding:0px;
+  }
+
+
+
+   .article .post,.article .sidebar .widget{
+      padding:20px;
+  }
+
   .list .post{
-    padding:15px 0px;
+    padding:20px 0px;
     margin-bottom:0px;
     border-bottom:1px solid #eee;
   }
 
 
   .list .post .featured-media {
-    width:8.5em;
-    height:5.2em
+    width:130px;
+    height:80px;
   }
 
   .intro{
-    margin-left:9.5em;
+    margin-left:140px;
   }
 
   .list .post-content{
@@ -1001,10 +1032,11 @@ pre {
       -webkit-box-orient: vertical;
       display: -webkit-box;
     -webkit-line-clamp: 2;
-    font-size:1.2rem;
-    line-height:1.6rem;
-    min-height:3.2rem;
-    margin-bottom:.6rem;
+    font-size:18px;
+    color:#222;
+    line-height:24px;
+    min-height:30px;
+    margin-bottom:10px;
     font-weight:400;
   }
 

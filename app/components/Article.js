@@ -51,9 +51,9 @@ class Article extends React.Component {
 		}
 
 		return (
-			<section className="content-wrap">
+			<section className="content-wrap ">
 	        	<div className="container">
-		        	<div className="row">
+		        	<div className="row article">
 			        	<main className="col-md-8 main-content">
 			        		<article className="post">
 						    <header className="post-head">

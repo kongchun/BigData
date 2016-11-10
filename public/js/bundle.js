@@ -20504,13 +20504,13 @@ var Article = function (_React$Component) {
 
 			return _react2.default.createElement(
 				'section',
-				{ className: 'content-wrap' },
+				{ className: 'content-wrap ' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'container' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: 'row article' },
 						_react2.default.createElement(
 							'main',
 							{ className: 'col-md-8 main-content' },
