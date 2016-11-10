@@ -20353,6 +20353,19 @@ var App = function (_React$Component) {
 	}
 
 	_createClass(App, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			$("#back-to-top").headroom({
+				tolerance: 2,
+				offset: 50,
+				classes: {
+					initial: "animated",
+					pinned: "fadeIn",
+					unpinned: "fadeOut"
+				}
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -20802,11 +20815,24 @@ var Header = function (_React$Component) {
 	}
 
 	_createClass(Header, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			$(".navbar").headroom({
+				tolerance: 2,
+				offset: 50,
+				classes: {
+					initial: "animated",
+					pinned: "slideInDown",
+					unpinned: "slideOutUp"
+				}
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'navbar navbar-inverse navbar-static-top' },
+				{ className: 'navbar navbar-inverse navbar-fixed-top' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'container' },

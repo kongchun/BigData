@@ -3,6 +3,18 @@ import Header from './Header';
 
 
 class App extends React.Component {
+
+	componentDidMount() {
+		$("#back-to-top").headroom({
+			tolerance: 2,
+			offset: 50,
+			classes: {
+				initial: "animated",
+				pinned: "fadeIn",
+				unpinned: "fadeOut"
+			}
+		});
+	}
 	render() {
 		return (
 			<div>

@@ -14,7 +14,9 @@ gulp.task('vendor-css', function() {
 	gulp.src('node_modules/bootstrap/dist/fonts/*.*')
 		.pipe(gulp.dest('public/fonts'));
 
-	return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+	return gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css',
+			'node_modules/animate.css/animate.css'
+		])
 		.pipe(concat('vendor.css'))
 		.pipe(gulp.dest('public/css'));
 
@@ -29,7 +31,9 @@ gulp.task('vendor-css', function() {
 gulp.task('vendor', ['vendor-css'], function() {
 	return gulp.src([
 			'node_modules/jquery/dist/jquery.js',
-			'node_modules/bootstrap/dist/js/bootstrap.js'
+			'node_modules/bootstrap/dist/js/bootstrap.js',
+			'node_modules/headroom.js/dist/headroom.js',
+			'node_modules/headroom.js/dist/jQuery.headroom.js'
 		]).pipe(concat('vendor.js'))
 		//.pipe(gulpif(production, uglify({mangle: false})))
 		.pipe(gulp.dest('public/js'));

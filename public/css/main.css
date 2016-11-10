@@ -270,6 +270,9 @@ pre {
 /*====================================================
 	main post area
 ====================================================*/
+.content-wrap {
+  margin-top: 65px;
+}
 .post {
   padding: 35px;
   background: #ffffff;
@@ -925,9 +928,6 @@ pre {
   color: #f4645f;
 }
 @media (max-width: 620px) {
-  .navbar {
-    margin-bottom: 15px;
-  }
   .post .post-head .post-title {
     margin: 0;
     font-size: 18px;
@@ -974,4 +974,8 @@ pre {
   .pagination {
     margin-top: 15px;
   }
+}
+#back-to-top.animated {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
 }
