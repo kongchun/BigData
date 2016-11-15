@@ -98,9 +98,11 @@ gulp.task('watch', ['build'], function() {
 
 
 gulp.task('server', ['watch'], function() {
-	// Start the server at the beginning of the task 
-	server.run(['server.js']);
+	process.env.NODE_ENV = 'development';
+	process.env.debug = 'bigdata-web:*';
+	// Start the server at the beginning of the task
+	server.run(['./bin/www']);
 	gulp.watch('public/**/bundle.js', server.notify);
 	gulp.watch('public/**/*.css', server.notify);
-	gulp.watch(['server.js'], [server.run])
+	gulp.watch(['app.js', 'routes/**/*.js'], server.run);
 })

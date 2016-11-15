@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node server.js",
-    "watch": "nodemon --exec babel-node -- server.js"
+    "start": "babel-node ./bin/www",
+    "watch": "nodemon --exec babel-node -- ./bin/www"
   },
   "author": "",
   "license": "ISC",
