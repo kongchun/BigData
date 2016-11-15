@@ -16,11 +16,13 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "browserify": "^13.1.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "headroom.js": "^0.9.3",
     "jquery": "^3.1.1",
     "react": "^15.3.2",
-    "react-router": "^2.8.1"
+    "react-router": "^2.8.1",
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
