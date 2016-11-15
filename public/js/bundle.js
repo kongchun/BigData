@@ -20294,6 +20294,8 @@ var ArticleObjActions = function () {
 
 			_ArticleSource2.default.getArticlesByIds(ids).then(function (data) {
 				return _this.onSuccess(data);
+			}).catch(function () {
+				return _this.onSuccess([]);
 			});
 		}
 	}]);
@@ -21095,10 +21097,6 @@ var Similar = function (_React$Component) {
 		value: function componentWillReceiveProps(nextProps) {
 			_ArticleObjActions2.default.getArticlesByIds(nextProps.ids);
 		}
-		//load(ids){
-		//	ArticleObjActions.getArticlesByIds(ids)
-		//}
-
 	}, {
 		key: 'render',
 		value: function render() {
@@ -21231,8 +21229,12 @@ var ArticleSource = {
 	},
 	getArticlesByIds: function getArticlesByIds(ids) {
 		return new Promise(function (resolve, reject) {
-			var url = "/api/articles/" + ids;
-			$.get(url, {}).done(resolve).fail(reject);
+			if (ids == "") {
+				resolve([]);
+			} else {
+				var url = "/api/articles/ids/" + ids;
+				$.get(url, {}).done(resolve).fail(reject);
+			}
 		});
 	}
 };

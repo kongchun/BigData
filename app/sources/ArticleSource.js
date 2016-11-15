@@ -20,8 +20,12 @@ var ArticleSource = {
 	},
 	getArticlesByIds: function(ids) {
 		return new Promise(function(resolve, reject) {
-			var url = "/api/articles/" + ids;
-			$.get(url, {}).done(resolve).fail(reject);
+			if (ids == "") {
+				resolve([]);
+			} else {
+				var url = "/api/articles/ids/" + ids;
+				$.get(url, {}).done(resolve).fail(reject);
+			}
 		})
 	}
 }

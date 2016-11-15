@@ -390,6 +390,8 @@ pre {
 .post-content p {
   margin-top: 0;
   margin-bottom: 1.46em;
+  font-size: 18px;
+  line-height: 30px;
 }
 .post-content a {
   word-wrap: break-word;
@@ -911,7 +913,7 @@ pre {
   font-size: 2rem;
 }
 .list .post-content {
-  font-size: 1.6rem;
+  font-size: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
@@ -924,7 +926,7 @@ pre {
   margin-top: 1rem;
 }
 .list .post .post-head .post-title a {
-  color: #f4645f;
+  color: #222;
 }
 @media (max-width: 620px) {
   .post .post-head .post-title {
@@ -943,8 +945,6 @@ pre {
     font-size: 18px;
     line-height: 28px;
     text-align: justify;
-    -moz-text-align-last: justify;
-         text-align-last: justify;
   }
   .list {
     background: white;

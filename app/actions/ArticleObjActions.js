@@ -10,7 +10,7 @@ class ArticleObjActions {
 		);
 	}
 	getArticlesByIds(ids) {
-		ArticleSource.getArticlesByIds(ids).then((data) => this.onSuccess(data));
+		ArticleSource.getArticlesByIds(ids).then((data) => this.onSuccess(data)).catch(() => this.onSuccess([]));
 	}
 }
 

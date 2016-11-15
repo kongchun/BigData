@@ -24,11 +24,9 @@ class Similar extends React.Component {
 		this.setState(state);
 	}
 	componentWillReceiveProps(nextProps) {
-			ArticleObjActions.getArticlesByIds(nextProps.ids);
-		}
-		//load(ids){
-		//	ArticleObjActions.getArticlesByIds(ids)
-		//}
+		ArticleObjActions.getArticlesByIds(nextProps.ids);
+	}
+
 	render() {
 		var articles = (this.state.data);
 

@@ -2,14 +2,10 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var db = require('./db.js');
-
+var read = require('./server/read.js');
 var swig = require('swig');
 
 var app = express();
-
-//you won't need 'connect-livereload' if you have livereload plugin for your browser 
-//app.use(require('connect-livereload')());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -17,12 +13,6 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-/*
-app.get('/', function(req, res) {
-	res.send('Hello World!');
-});
-*/
 
 
 app.get('/', function(req, res) {
@@ -35,71 +25,30 @@ app.get('/', function(req, res) {
 app.get('/api/articles', function(req, res) {
 	var page = parseInt(req.query.page);
 	var limit = parseInt(req.query.limit);
-	var start = (page - 1) * limit;
-	console.log(start, "start");
-	var data = [];
 
-	db.open("articles").then(function(collection) {
-		return collection.find({
-			"delete": null
-		}).sort({
-			id: -1
-		}).skip(start).limit(limit).toArray();
-	}).then(function(data) {
-		//console.log(data.length, "data");
-		db.collection.find().count().then(function(count) {
-			db.close();
-			res.send({
-				limit,
-				count,
-				page,
-				data
-			});
-		})
-
-
+	read.articlesByPage(page, limit).then(function(data) {
+		res.send(data);
 	}).catch(function() {
-		db.close();
+		res.send([]);
 	})
 });
 
 
 app.get('/api/article/:id', function(req, res) {
 	var id = parseInt(req.params.id);
-
-	db.open("articles").then(function(collection) {
-		return collection.findOne({
-			"id": id
-		});
-	}).then(function(data) {
-		let hits = parseInt(data.hits) + 1;
-		let id = parseInt(data.id);
-		data.hits = hits;
-		db.collection.updateOne({'id':id},{'$set':{'hits':hits}}).then(function() {
-			db.close();
-			res.send(data);
-		})
-	}).catch(function() {
-		res.send([]);
-		db.close();
-	})
-});
-
-app.get('/api/articles/:ids', function(req, res) {
-	var ids = req.params.ids.split(",");
-	var arr = ids.map((i) => parseInt(i))
-	db.open("articles").then(function(collection) {
-		return collection.find({
-			"id": {
-				"$in": arr
-			}
-		}).toArray();
-	}).then(function(data) {
-		db.close();
+	read.articleWithHits(id).then(function(data) {
 		res.send(data);
 	}).catch(function() {
 		res.send([]);
-		db.close();
+	})
+});
+
+app.get('/api/articles/ids/:ids', function(req, res) {
+	var ids = req.params.ids.split(",");
+	read.articlesByIds(ids).then(function(data) {
+		res.send(data);
+	}).catch(function() {
+		res.send([]);
 	})
 });
 
