@@ -24,7 +24,7 @@ class Header extends React.Component {
 			<div className="navbar navbar-inverse navbar-fixed-top">
 				<div className="container">
 	       			<div className="navbar-header">
-						<a href="/#/home" className="navbar-brand hidden-sm">大数据头条</a>
+						<a href="/#/home" className="navbar-brand hidden-sm">七只狸猫</a>
 	        		</div>
       			</div>
     		</div>

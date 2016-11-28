@@ -106,3 +106,9 @@ gulp.task('server', ['watch'], function() {
 	gulp.watch('public/**/*.css', server.notify);
 	gulp.watch(['app.js', 'routes/**/*.js'], server.run);
 })
+
+
+gulp.task('run', ['watch'], function() {
+	// Start the server at the beginning of the task
+	server.run(['./bin/www']);
+})

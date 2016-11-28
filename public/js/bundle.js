@@ -20844,7 +20844,7 @@ var Header = function (_React$Component) {
 						_react2.default.createElement(
 							'a',
 							{ href: '/#/home', className: 'navbar-brand hidden-sm' },
-							'\u5927\u6570\u636E\u5934\u6761'
+							'\u4E03\u53EA\u72F8\u732B'
 						)
 					)
 				)
