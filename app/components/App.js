@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-
+import Copyright from './Copyright';
 
 class App extends React.Component {
 
@@ -20,6 +20,7 @@ class App extends React.Component {
 			<div>
 				<Header />
         		{this.props.children}
+        		<Copyright />
         		<BackTop />
      		</div>
 		);

@@ -862,7 +862,7 @@ pre {
   background: #111;
   font-size: 13px;
   text-align: center;
-  color: #555555;
+  color: #999;
   padding-top: 28px;
   padding-bottom: 28px;
   border-top: 1px solid #303030;
@@ -871,7 +871,7 @@ pre {
   margin: 0 .5em;
 }
 .copyright a {
-  color: #555555;
+  color: #999;
 }
 #back-to-top {
   position: fixed;
