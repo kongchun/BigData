@@ -751,7 +751,6 @@ pre {
 .widget .tag-cloud a {
   border: 1px solid #ebebeb;
   padding: 2px 7px;
-  color: #959595;
   line-height: 1.5em;
   display: inline-block;
   margin: 0 7px 7px 0;
@@ -759,12 +758,14 @@ pre {
        -o-transition: all 0.2s ease;
           transition: all 0.2s ease;
 }
-.widget .tag-cloud a:hover {
+.widget .tag-cloud a:hover{
   color: #ffffff;
   background: #f4645f;
   border: 1px solid #f4645f;
   text-decoration: none;
+  cursor: pointer;
 }
+
 .widget .social {
   padding: 0;
   margin: 0;
@@ -802,6 +803,29 @@ pre {
 }
 .widget .ad img {
   max-width: 100%;
+}
+.samilarItem{
+  position: relative;
+  overflow: hidden;
+}
+.item-icon{
+  float: left;
+  width: 10px;
+  height:10px;
+  background: #f4645f;
+  margin-top: 7px;
+}
+.item{
+  margin-left:20px;
+}
+.tagItem{
+  color: #959595;
+}
+.tagActive{
+  color: #ffffff;
+  background: #f4645f;
+  border: 1px solid #f4645f;
+  text-decoration: none;
 }
 /* cover*/
 /*====================================================

@@ -1,7 +1,7 @@
 var mongodb = require("mongodb");
 
 var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://127.0.0.1:27017/dataunion';
+var url = 'mongodb://10.82.0.1:27017/bigdata';
 class DB {
 	constructor() {
 		this.db = null;

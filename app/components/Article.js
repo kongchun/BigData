@@ -6,7 +6,7 @@ import {
 import ArticleStore from '../stores/ArticleStore';
 import ArticleActions from '../actions/ArticleActions';
 import Similar from './Similar';
-
+import Tag from './Tag';
 
 class Article extends React.Component {
 	constructor(props) {
@@ -15,7 +15,7 @@ class Article extends React.Component {
 		this.onChange = this.onChange.bind(this);
 	}
 	componentDidMount() {
-		const id = this.props.params.id
+		const id = this.props.params.id;
 		ArticleStore.listen(this.onChange);
 		ArticleActions.getArticleById(id);
 	}
@@ -29,27 +29,16 @@ class Article extends React.Component {
 			ArticleActions.getArticleById(this.props.params.id);
 		}
 	}
-
 	onChange(state) {
 		this.setState(state);
 	}
-
 	render() {
 		var article = (this.state.data);
-
 		function createMarkup() {
 			return {
 				__html: article.html
 			};
-		};
-
-		function tagList() {
-			var tags = article.abstract;
-			var arr = new String(tags).split(",") //tags.split(",");
-			var tagHtml = arr.map((i) => (<a>{i}</a>))
-			return tagHtml;
 		}
-
 		return (
 			<section className="content-wrap ">
 	        	<div className="container">
@@ -70,20 +59,14 @@ class Article extends React.Component {
 					        <div className="pull-left tag-list">
 					            <i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
 					        </div>
-
-					  
 					    </footer>
 
-
-
-						    </article>
+						</article>
 						</main>
 						<aside className="col-md-4 sidebar">
 							<div className="widget">
 								<h4 className="title">关键字</h4>
-								<div className="content tag-cloud">
-									 {tagList()}
-								</div>
+								<Tag id={article.id}/>
 							</div>
 
 							<div className="widget">
@@ -97,6 +80,5 @@ class Article extends React.Component {
 		);
 	}
 }
-
 
 export default Article;

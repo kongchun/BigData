@@ -84,3 +84,55 @@ exports.articlesByIds = function(ids) {
 		throw error;
 	})
 }
+
+exports.setArticleKeyCounts = function(id,arr) {
+	db.close();
+	return db.open("word_relation").then(function(collection) {
+		return collection.findOne({
+			"id": id
+		});
+	}).then(function(data) {
+		//返回的数据做逻辑判断并加1
+		var keyWord = data.keyword;
+		if(arr!=null && arr!=undefined){
+		  for(var key in arr){
+			  if(arr[key]>0){
+				  var kwCount = keyWord[key];
+				  kwCount = kwCount + 1;
+				  keyWord[key] = kwCount;
+			  }
+		  }
+		}
+		//update数据
+		return db.collection.update({
+			"id":id
+		},{
+			$set:{
+			"keyword":keyWord
+		}
+		}).then(function() {
+			db.close();
+			return;
+		})
+	}).catch(function() {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+//获取关键字权重
+exports.getKeyWordsCountJson = function(id) {
+	db.close();
+	return db.open("word_relation").then(function(collection) {
+		return collection.findOne({
+			"id": id
+		});
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(error) {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
