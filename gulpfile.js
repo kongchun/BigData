@@ -50,7 +50,6 @@ var dependencies = [
  | Compile third-party dependencies separately for faster performance.
  |--------------------------------------------------------------------------
  */
-
 gulp.task('browserify-vendor', function() {
 	return browserify()
 		.require(dependencies)
@@ -78,6 +77,17 @@ gulp.task('browserify', ['browserify-vendor'], function() {
 		.pipe(gulp.dest('public/js'));
 });
 
+gulp.task('browserify', ['browserify-vendor'], function() {
+	return browserify('app/m_main.js')
+		.external(dependencies)
+		.transform(babelify, {
+			presets: ['es2015', 'react', 'stage-0']
+		})
+		.bundle()
+		.pipe(source('m_bundle.js'))
+		//.pipe(gulpif(production, streamify(uglify({mangle: false}))))
+		.pipe(gulp.dest('public/js'));
+});
 
 gulp.task('styles', function() {
 	return gulp.src('app/stylesheets/main.less')
