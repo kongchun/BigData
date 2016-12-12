@@ -77,7 +77,7 @@ gulp.task('browserify', ['browserify-vendor'], function() {
 		.pipe(gulp.dest('public/js'));
 });
 
-gulp.task('browserify', ['browserify-vendor'], function() {
+gulp.task('m_browserify', ['browserify-vendor'], function() {
 	return browserify('app/m_main.js')
 		.external(dependencies)
 		.transform(babelify, {
