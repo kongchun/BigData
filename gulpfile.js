@@ -99,7 +99,7 @@ gulp.task('styles', function() {
 });
 
 
-gulp.task('build', ['styles', 'vendor', 'browserify']);
+gulp.task('build', ['styles', 'vendor', 'browserify','m_browserify']);
 
 
 gulp.task('watch', ['build'], function() {
@@ -113,6 +113,7 @@ gulp.task('server', ['watch'], function() {
 	// Start the server at the beginning of the task
 	server.run(['./bin/www']);
 	gulp.watch('public/**/bundle.js', server.notify);
+	gulp.watch('public/**/m_bundle.js', server.notify);
 	gulp.watch('public/**/*.css', server.notify);
 	gulp.watch(['app.js', 'routes/**/*.js'], server.run);
 })
