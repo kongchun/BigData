@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Copyright from './Copyright';
+import Footer from './Footer'
 
 class App extends React.Component {
 
@@ -14,14 +15,16 @@ class App extends React.Component {
 				unpinned: "fadeOut"
 			}
 		});
+
 	}
 	render() {
+
 		return (
 			<div>
 				<Header />
         		{this.props.children}
-        		<Copyright />
         		<BackTop />
+				<Footer />
      		</div>
 		);
 	}

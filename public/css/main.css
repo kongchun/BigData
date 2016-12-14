@@ -1025,3 +1025,38 @@ pre {
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
 }
+.nav-tab {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.tab-item {
+  width: 25%;
+  text-align: center;
+}
+.tab-item {
+  color: #333333;
+}
+.tab-item-active {
+  text-decoration: none;
+  color: #f4645f;
+}
+a:link,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+.glyphicon {
+  top: 4px;
+}
+.content-wrap {
+  margin-top: 100px;
+}
+.pagination {
+  margin-bottom: 70px;
+}

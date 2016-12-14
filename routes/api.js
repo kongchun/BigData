@@ -51,5 +51,12 @@ router.get('/articles/getKeyWordsCountJson',function(req,res){
 		res.send([]);
 	})
 });
+/*
+router.get('/hotdot', function(req, res) {
+	var page = swig.renderFile('views/index.html', {
+		html: ""
+	});
+	res.send(page);
+});*/
 
 module.exports = router;

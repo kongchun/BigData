@@ -69,6 +69,7 @@ exports.articleWithHits = function(id) {
 
 
 exports.articlesByIds = function(ids) {
+	db.close();
 	var arr = ids.map((i) => parseInt(i))
 	return db.open("articles").then(function(collection) {
 		return collection.find({
@@ -77,6 +78,7 @@ exports.articlesByIds = function(ids) {
 			}
 		}).toArray();
 	}).then(function(data) {
+		db.close();
 		return (data);
 	}).catch(function() {
 		db.close();

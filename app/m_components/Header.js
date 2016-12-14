@@ -8,7 +8,7 @@ import Home from './Home';
 class Header extends React.Component {
 
 	componentDidMount() {
-		$(".navbar").headroom({
+		$(".header-nav .navbar").headroom({
 			tolerance: 2,
 			offset: 50,
 			classes: {
@@ -20,7 +20,7 @@ class Header extends React.Component {
 	}
 	render() {
 		return (
-
+          <div className="header-nav">
 			<div className="navbar navbar-inverse navbar-fixed-top">
 				<div className="container">
 	       			<div className="navbar-header">
@@ -28,7 +28,7 @@ class Header extends React.Component {
 	        		</div>
       			</div>
     		</div>
-
+		  </div>
 		);
 	}
 }
