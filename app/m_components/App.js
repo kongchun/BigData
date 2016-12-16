@@ -15,7 +15,18 @@ class App extends React.Component {
 				unpinned: "fadeOut"
 			}
 		});
-
+		if(isWeiXin()){
+			$(".header-nav").hide();
+			$(".content-wrap,.content-container").css("marginTop",0);
+		}
+		function isWeiXin(){
+			var ua = window.navigator.userAgent.toLowerCase();
+			if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 	render() {
 

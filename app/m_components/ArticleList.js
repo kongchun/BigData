@@ -22,6 +22,8 @@ class ArticleList extends React.Component {
 
         const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
         ArticleListActions.getArticles(page, this.limit);
+
+
     }
 
     componentWillUnmount() {
@@ -49,13 +51,15 @@ class ArticleList extends React.Component {
         var thumbnail = article.thumbnail;
         if (thumbnail != "") {
             return (<div className="featured-media">
-                <Link to={'/article/' + article.id}><img src={thumbnail} alt={article.title} /></Link>
+                <Link to={'/article/' + article.id}><img src={'../images/loading.gif'} alt={article.title} data-echo={thumbnail}/></Link>
              </div>)
         }
         return "";
     }
     render() {
-
+        echo.init({
+            offset: 0,
+        });
         function subContent(str) {
             return str.substr(0, 200);
         }

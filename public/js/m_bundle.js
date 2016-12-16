@@ -257,6 +257,18 @@ var App = function (_React$Component) {
 					unpinned: "fadeOut"
 				}
 			});
+			if (isWeiXin()) {
+				$(".header-nav").hide();
+				$(".content-wrap,.content-container").css("marginTop", 0);
+			}
+			function isWeiXin() {
+				var ua = window.navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+					return true;
+				} else {
+					return false;
+				}
+			}
 		}
 	}, {
 		key: 'render',
@@ -572,7 +584,7 @@ var ArticleList = function (_React$Component) {
                     _react2.default.createElement(
                         _reactRouter.Link,
                         { to: '/article/' + article.id },
-                        _react2.default.createElement('img', { src: thumbnail, alt: article.title })
+                        _react2.default.createElement('img', { src: '../images/loading.gif', alt: article.title, 'data-echo': thumbnail })
                     )
                 );
             }
@@ -583,6 +595,9 @@ var ArticleList = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
+            echo.init({
+                offset: 0
+            });
             function subContent(str) {
                 return str.substr(0, 200);
             }
@@ -880,6 +895,10 @@ var Header = function (_React$Component) {
 					unpinned: "slideOutUp"
 				}
 			});
+			$(".return-btn").on("touchend", function () {
+				/*location.href = "/#/home";*/
+				history.go(-1);
+			});
 		}
 	}, {
 		key: 'render',
@@ -896,6 +915,7 @@ var Header = function (_React$Component) {
 						_react2.default.createElement(
 							'div',
 							{ className: 'navbar-header' },
+							_react2.default.createElement('span', { className: 'return-btn glyphicon glyphicon-chevron-left' }),
 							_react2.default.createElement(
 								'a',
 								{ href: '/#/home', className: 'navbar-brand hidden-sm' },
@@ -994,13 +1014,328 @@ var Hotdot = function (_React$Component) {
     }
 
     _createClass(Hotdot, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $(".month-search").hide();
+            $(".navbar-hotdot").on("touchend", function () {
+                var index = $(this).index();
+                /*$(".navbar-hotdot").removeClass("navbar-hotdot-active");
+                $(this).addClass("navbar-hotdot-active");*/
+                if (index == 0) {
+                    //本周
+                    $(".month-search").hide();
+                    $(".week-search").show();
+                } else {
+                    //本月
+                    $(".month-search").show();
+                    $(".week-search").hide();
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-
             return _react2.default.createElement(
                 'div',
-                { className: 'content-wrap' },
-                '\u672C\u5468\u5173\u952E\u5B57/\u672C\u6708\u5173\u952E\u5B57'
+                { className: 'content-container' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'week-search' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'panel panel-back' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'panel-heading' },
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'panel-title' },
+                                '\u672C\u5468\u5173\u952E\u5B57\u6392\u884C\u699C'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'navbar-key-container' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'navbar-hotdot navbar-week navbar-hotdot-active' },
+                                    '\u672C\u5468'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'navbar-hotdot navbar-month' },
+                                    '\u672C\u6708'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'panel-body' },
+                            _react2.default.createElement(
+                                'ul',
+                                { className: 'list-group' },
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '4356'
+                                    ),
+                                    '\u4EBA\u5DE5\u667A\u80FD'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '2345'
+                                    ),
+                                    '\u673A\u5668\u5B66\u4E60'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '1667'
+                                    ),
+                                    '\u5434\u6069\u8FBE'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '899'
+                                    ),
+                                    '\u5341\u5927\u7B97\u6CD5'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '600'
+                                    ),
+                                    'KNN\u7B97\u6CD5'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '47788'
+                                    ),
+                                    '\u4EBA\u8138\u8BC6\u522B'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '22365'
+                                    ),
+                                    '\u81EA\u52A8\u9A7E\u9A76'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '8967'
+                                    ),
+                                    'Google'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '4322'
+                                    ),
+                                    '\u6DF1\u5EA6\u5B66\u4E60'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '3456'
+                                    ),
+                                    '\u795E\u7ECF\u7F51\u7EDC'
+                                )
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'month-search' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'panel panel-back' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'panel-heading' },
+                            _react2.default.createElement(
+                                'span',
+                                { className: 'panel-title' },
+                                '\u672C\u6708\u5173\u952E\u5B57\u6392\u884C\u699C'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'navbar-key-container' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'navbar-hotdot navbar-week' },
+                                    '\u672C\u5468'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'navbar-hotdot navbar-month navbar-hotdot-active' },
+                                    '\u672C\u6708'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'panel-body' },
+                            _react2.default.createElement(
+                                'ul',
+                                { className: 'list-group' },
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '47788'
+                                    ),
+                                    '\u4EBA\u8138\u8BC6\u522B'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '22365'
+                                    ),
+                                    '\u81EA\u52A8\u9A7E\u9A76'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '8967'
+                                    ),
+                                    'Google'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '4322'
+                                    ),
+                                    '\u6DF1\u5EA6\u5B66\u4E60'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '3456'
+                                    ),
+                                    '\u795E\u7ECF\u7F51\u7EDC'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '47788'
+                                    ),
+                                    '\u4EBA\u8138\u8BC6\u522B'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '22365'
+                                    ),
+                                    '\u81EA\u52A8\u9A7E\u9A76'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '8967'
+                                    ),
+                                    'Google'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-down' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '4322'
+                                    ),
+                                    '\u6DF1\u5EA6\u5B66\u4E60'
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'list-group-item' },
+                                    _react2.default.createElement('span', { className: 'glyphicon-trend glyphicon glyphicon-arrow-up' }),
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'badge' },
+                                        '3456'
+                                    ),
+                                    '\u795E\u7ECF\u7F51\u7EDC'
+                                )
+                            )
+                        )
+                    )
+                )
             );
         }
     }]);

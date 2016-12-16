@@ -165,6 +165,12 @@ pre {
   background-position: center 20%;
   background-size: cover;
 }
+.return-btn {
+  float: left;
+  padding: 15px;
+  padding-right: 5px;
+  color: #9d9d9d;
+}
 /* main-navigation */
 .main-navigation {
   text-align: center;
@@ -899,7 +905,7 @@ pre {
 #back-to-top {
   position: fixed;
   right: 10px;
-  bottom: 10px;
+  bottom: 56px;
   background: rgba(244, 100, 95, 0.6);
   color: #ffffff;
   text-align: center;
@@ -1054,9 +1060,67 @@ a:visited {
 .glyphicon {
   top: 4px;
 }
-.content-wrap {
-  margin-top: 100px;
-}
 .pagination {
   margin-bottom: 70px;
+}
+.panel-back > .panel-heading {
+  color: #f4645f;
+  background: none;
+  border: none;
+}
+.list-group-item {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #ddd;
+}
+.list-group-item:first-child,
+.list-group-item:last-child {
+  border-radius: 0;
+}
+.glyphicon-trend {
+  float: right;
+  color: #f4645f;
+}
+.badge {
+  background-color: #f4645f;
+  margin-top: 3px;
+}
+.navbar-key-container {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  float: right;
+}
+.navbar-week,
+.navbar-month {
+  display: inline-block;
+  width: 50%;
+  border: 1px solid #f4645f;
+}
+.navbar-week {
+  border-right: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.navbar-month {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.content-container {
+  background: #fff;
+  margin-top: 50px;
+}
+.paragrpha {
+  height: 6px;
+}
+.navbar-hotdot-active {
+  background: #f4645f;
+  color: #ffffff;
+}
+.navbar-panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  color: #f4645f;
 }

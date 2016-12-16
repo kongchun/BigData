@@ -17,6 +17,10 @@ class Header extends React.Component {
 				unpinned: "slideOutUp"
 			}
 		});
+		$(".return-btn").on("touchend",function(){
+			/*location.href = "/#/home";*/
+            history.go(-1);
+		});
 	}
 	render() {
 		return (
@@ -24,6 +28,7 @@ class Header extends React.Component {
 			<div className="navbar navbar-inverse navbar-fixed-top">
 				<div className="container">
 	       			<div className="navbar-header">
+						<span className="return-btn glyphicon glyphicon-chevron-left"></span>
 						<a href="/#/home" className="navbar-brand hidden-sm">七只狸猫</a>
 	        		</div>
       			</div>
