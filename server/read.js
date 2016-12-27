@@ -138,3 +138,19 @@ exports.getKeyWordsCountJson = function(id) {
 		throw error;
 	})
 }
+exports.getHotdotsData = function() {
+	db.close();
+	return db.open("keyword_sort").then(function(collection) {
+		return collection.find({}).sort({
+			"id":-1
+		}).limit(8).toArray();
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(error) {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+
