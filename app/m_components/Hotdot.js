@@ -17,11 +17,11 @@ class Hotdot extends React.Component {
         $(".navbar-hotdot").on("touchend",function(){
             var index = $(this).index();
             if(index==0){
-                //±¾ÖÜ
+                //æœ¬å‘¨
                 $(".month-search").hide();
                 $(".week-search").show();
             }else{
-                //±¾ÔÂ
+                //æœ¬æœˆ
                 $(".month-search").show();
                 $(".week-search").hide();
             }
@@ -71,6 +71,10 @@ class Hotdot extends React.Component {
                     {weekItem.word}
                 </li>
             ));
+            if(weekList.length==0){
+                weekList = <div className = "noData">æ•°æ®è¿˜æ²¡æœ‰å‡†å¤‡å¥½,è¦ä¸å»å…¶ä»–é¡µé¢ç…ç…ï¼Ÿ</div>
+            }
+
             var monthList = firstHotData.month.map((monthItem,i)=>(
                 <li className="list-group-item" key={i}>
                     {this.getUpOrDown(monthItem,preHotData,false)}
@@ -78,9 +82,12 @@ class Hotdot extends React.Component {
                     {monthItem.word}
                 </li>
             ));
+            if(monthList.length==0){
+                monthList = <div className = "noData">å“‡å‘œï¼Œè¿™ä¸ªé¡µé¢çš„æ•°æ®æ²¡æœ‰å‡†å¤‡å¥½,å»å…¶ä»–é¡µé¢ç…ç…ï¼Ÿ</div>
+            }
         }else{
-            var weekList = (<span>ÔİÊ±»¹Ã»ÓĞÅÅĞĞ°ñÄÅ,È¥ÆäËûµØ·½×ª×ª°É</span>);
-            var monthList = (<span>ÔİÊ±»¹Ã»ÓĞÅÅĞĞ°ñÄÅ,È¥ÆäËûµØ·½×ª×ª°É</span>);
+            var weekList = (<span>æ­£åœ¨æ„å»ºï¼Œæ•¬è¯·æœŸå¾…...</span>);
+            var monthList = (<span>æ­£åœ¨æ„å»ºï¼Œæ•¬è¯·æœŸå¾…...</span>);
         }
 
         return (
@@ -88,10 +95,10 @@ class Hotdot extends React.Component {
                 <div className="week-search">
                     <div className="panel panel-back">
                         <div className="panel-heading">
-                            <span className="panel-title">±¾ÖÜ¹Ø¼ü×ÖÅÅĞĞ°ñ</span>
+                            <span className="panel-title">æœ¬å‘¨å…³é”®å­—æ’è¡Œæ¦œ</span>
                             <div className="navbar-key-container">
-                                <span className="navbar-hotdot navbar-week navbar-hotdot-active">±¾ÖÜ</span>
-                                <span className="navbar-hotdot navbar-month">±¾ÔÂ</span>
+                                <span className="navbar-hotdot navbar-week navbar-hotdot-active">æœ¬å‘¨</span>
+                                <span className="navbar-hotdot navbar-month">æœ¬æœˆ</span>
                             </div>
                         </div>
                         <div className="panel-body">
@@ -104,10 +111,10 @@ class Hotdot extends React.Component {
                 <div className="month-search">
                     <div className="panel panel-back">
                         <div className="panel-heading">
-                            <span className="panel-title">±¾ÔÂ¹Ø¼ü×ÖÅÅĞĞ°ñ</span>
+                            <span className="panel-title">æœ¬æœˆå…³é”®å­—æ’è¡Œæ¦œ</span>
                             <div className="navbar-key-container">
-                                <span className="navbar-hotdot navbar-week">±¾ÖÜ</span>
-                                <span className="navbar-hotdot navbar-month navbar-hotdot-active">±¾ÔÂ</span>
+                                <span className="navbar-hotdot navbar-week">æœ¬å‘¨</span>
+                                <span className="navbar-hotdot navbar-month navbar-hotdot-active">æœ¬æœˆ</span>
                             </div>
                         </div>
                         <div className="panel-body">
