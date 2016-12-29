@@ -6,7 +6,6 @@ import {
 import ArticleListStore from '../stores/ArticleListStore';
 import ArticleListActions from '../actions/ArticleListActions';
 import Pages from './Pages';
-
 class ArticleList extends React.Component {
     constructor(props) {
         super(props);
@@ -51,16 +50,13 @@ class ArticleList extends React.Component {
         var thumbnail = article.thumbnail;
         if (thumbnail != "") {
             return (<div className="featured-media">
-                <Link to={'/article/' + article.id}><img src={'../images/loading.gif'} alt={article.title} data-echo={thumbnail}/></Link>
-             </div>)
+                <Link to={'/article/' + article.id}><img  src={thumbnail}  alt={article.title}/></Link>
+            </div>)
         }
         return "";
     }
     render() {
-        echo.init({
-            offset: 0,
-        });
-        function subContent(str) {
+     function subContent(str) {
             return str.substr(0, 200);
         }
 
@@ -86,13 +82,13 @@ class ArticleList extends React.Component {
         return (
             <section className="content-wrap">
             <div className="container">
-        <div className="row list">
+            <div className="row list">
                     <main className="col-md-12 main-content ">
                         {artclelist}
                         <Pages page={this.state.data.page} limit={this.limit} count={this.state.data.count} url="#/page/"/>
                     </main>
                 </div>
-               
+
             </div>
             </section>
         );
