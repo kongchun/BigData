@@ -4,7 +4,7 @@ import {
     } from 'react-router';
 import HotdotActions from '../actions/HotdotActions';
 import HotdotObjStore from '../stores/HotdotObjStore';
-
+import MyInfoNavbar from './MyInfoNavbar';
 class Hotdot extends React.Component {
     constructor(props) {
         super(props);
@@ -90,7 +90,8 @@ class Hotdot extends React.Component {
             var monthList = (<span>正在构建，敬请期待...</span>);
         }
 
-        return (
+        return (<div>
+            <MyInfoNavbar title="趋势" action=""/>
             <div className="content-container">
                 <div className="week-search">
                     <div className="panel panel-back">
@@ -125,7 +126,7 @@ class Hotdot extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+          </div>);
 }
 }
 

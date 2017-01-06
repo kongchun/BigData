@@ -32,7 +32,6 @@ class App extends React.Component {
 
 		return (
 			<div>
-				<Header />
         		{this.props.children}
         		<BackTop />
 				<Footer />

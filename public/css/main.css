@@ -1112,7 +1112,6 @@ a:visited {
 }
 .content-container {
   background: #fff;
-  margin-top: 50px;
 }
 .paragrpha {
   height: 6px;
@@ -1133,4 +1132,124 @@ a:visited {
   font-size: 16px;
   text-align: center;
   line-height: 400px;
+}
+/*'我的'页面信息*/
+.myInfo-header-banner {
+  height: 200px;
+  background: #505050;
+}
+.myInfo-header-image-border {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  margin-left: -40px;
+  top: 50px;
+}
+.myInfo-header-image {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: #f4645f;
+  border-radius: 30px;
+  left: 50%;
+  margin-left: -30px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid gray;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.myInfo-header-loginTip {
+  color: #fff;
+}
+.myInfo-container-list {
+  background: #fff;
+  height: 500px;
+}
+.myInfo-container-list ul {
+  list-style: none;
+}
+.myInfo-container-list ul > li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+}
+.container-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.myInfo-container-list .myInfo-label {
+  line-height: 50px;
+  vert-align: middle;
+  font-size: 14px;
+  color: #666;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  text-align: left;
+}
+.glyphicon-next {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  line-height: 40px;
+  color: #666;
+}
+/*'收藏'信息页面*/
+.collectNavbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  height: 50px;
+  background: #fff;
+}
+.collect-returnBtn,
+.collect-text,
+.collect-edit {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  vertical-align: middle;
+}
+.collect-returnBtn {
+  top: 0;
+  line-height: 47px;
+}
+.collect-text {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+.collect-list {
+  background: #fff;
+}
+.collect-list ul > li {
+  height: 60px;
+  list-style: none;
+  border-bottom: 1px solid #d6d6d6;
+}
+.collect-title {
+  font-size: 18px;
+  line-height: 30px;
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.collect-time {
+  font-size: 12px;
+  line-height: 30px;
 }
