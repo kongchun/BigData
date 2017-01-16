@@ -91,7 +91,6 @@ class Hotdot extends React.Component {
         }
 
         return (<div>
-            <MyInfoNavbar title="趋势" action=""/>
             <div className="content-container">
                 <div className="week-search">
                     <div className="panel panel-back">

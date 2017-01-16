@@ -59,4 +59,35 @@ router.get('/hotdots', function(req, res) {
 		res.send([]);
 	})
 });
+//收藏文章
+router.post('/articles/setArticleCollect', function(req, res) {
+	console.log("test");
+	var name = req.body.name;
+	var articleId = req.body.articleId;
+	read.setArticleCollect(name,articleId).then(function(data){
+	   res.send(data);
+	}).catch(function(e){
+		res.send([]);
+	})
+});
+//取消收藏
+router.post('/articles/cancelArticleCollect', function(req, res) {
+	var name = req.body.name;
+	var articleId = req.body.articleId;
+	read.cancelArticleCollect(name,articleId).then(function(data){
+		res.send(data);
+	}).catch(function(e){
+		res.send([]);
+	})
+});
+router.get('/articles/getArticleByUser', function(req, res) {
+	var name = req.query.name;
+	var articleId = req.query.articleId;
+	read.getArticleByUser(name,articleId).then(function(data){
+		res.send(data);
+	}).catch(function(e){
+		res.send([]);
+	})
+});
+
 module.exports = router;

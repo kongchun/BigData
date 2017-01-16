@@ -10,6 +10,7 @@ class MyInfoNavbar extends React.Component {
 	handleReturnClick(event){
 		history.go(-1);
     }
+
 	componentWillMount(){
 		var action = this.props.action;
 		if(!action){

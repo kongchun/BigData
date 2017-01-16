@@ -49,7 +49,46 @@ var ArticleSource = {
 				}).done(resolve).fail(reject);
 			}
 		})
+	},
+	articleCollect(param){
+		return new Promise(function(resolve,reject){
+			if(param){
+				var url = "/api/articles/setArticleCollect";
+				$.post(url,{
+					name:param.name,
+					articleId:param.articleId
+				}).done(resolve).fail(reject);
+			}else{
+				console.log("收藏文章失败.");
+				reject([]);
+			}
+		})
+	},
+	cancelArticleCollect(param){
+		return new Promise(function(resolve,reject){
+			if(param){
+				var url = "/api/articles/cancelArticleCollect";
+				$.post(url,{
+					name:param.name,
+					articleId:param.articleId
+				}).done(resolve).fail(reject);
+			}else{
+				console.log("取消收藏文章失败.");
+				reject([]);
+			}
+		})
+	},
+	getArticleByUser(param){
+		return new Promise(function(resolve,reject){
+			if(param){
+				var url = "/api/articles/getArticleByUser?name="+param.name+"&articleId="+param.articleId;
+				$.get(url).done(resolve).fail(reject);
+			}else{
+				console.log("获取用户信息失败");
+				reject([]);
+			}
+		})
 	}
 }
 
-export default ArticleSource
+export default ArticleSource;

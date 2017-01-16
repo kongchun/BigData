@@ -7,7 +7,6 @@ import Header from './Header'
 class Home extends React.Component {
 	render() {
 		return (<div>
-				<Header />
 				<ArticleList/>
 			</div>
 

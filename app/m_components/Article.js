@@ -7,6 +7,8 @@ import ArticleStore from '../stores/ArticleStore';
 import ArticleActions from '../actions/ArticleActions';
 import Similar from './Similar';
 import Tag from './Tag';
+import MyInfoNavbar from './MyInfoNavbar';
+import ArticleCollect from './ArticleCollect';
 
 class Article extends React.Component {
 	constructor(props) {
@@ -39,8 +41,8 @@ class Article extends React.Component {
 				__html: article.html
 			};
 		}
-		return (
-			<section className="content-wrap ">
+		return (<div>
+			<section className="article-content-wrap ">
 	        	<div className="container">
 		        	<div className="row article">
 			        	<main className="col-md-8 main-content">
@@ -58,6 +60,7 @@ class Article extends React.Component {
 						    <footer className="post-footer clearfix">
 					        <div className="pull-left tag-list">
 					            <i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
+								<ArticleCollect articleId={article.id}/>
 					        </div>
 					    </footer>
 
@@ -77,8 +80,72 @@ class Article extends React.Component {
 					</div>
 				</div>
 			</section>
-		);
+		</div>);
 	}
 }
-
 export default Article;
+
+/*var ArticleCollect = React.createClass({
+	getInitialState: function() {
+		return {collected: false};
+	},
+	componentDidMount:function(){
+		var _this = this;
+		var articleId =  getArticelId(window.location.href);
+		//初始化时根据名称查当前用户的信息
+		var collectMsg = {
+			name:'胡和浩的爷爷',
+			articleId:articleId
+		}
+		function getArticelId(url){
+			if(url){
+				var lIndex = url.lastIndexOf("/");
+				var dotIndex = url.lastIndexOf("?");
+				return parseInt(url.substring(lIndex+1,dotIndex));
+			}
+		}
+		ArticleActions.getArticleByUser(collectMsg).then(function(data){
+			if(data.collect.indexOf(collectMsg.articleId+"") < 0){
+				_this.setState({collected:false});
+			}else{
+				_this.setState({collected:true});
+			}
+		});
+	},
+	onHandleCollectClick:function(event){
+	  //收藏文章
+	  var currentTarget = event.currentTarget;
+	  var articleId = this.props.articleId;
+	  if($(currentTarget).hasClass('glyphicon-star-empty')){
+		  $(currentTarget).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
+		  $(".article-collect-label").text("已收藏");
+		  var collectMsg = {
+			  name:'胡和浩的爷爷',
+			  type:'1',
+			  articleId:articleId
+		  }
+          ArticleActions.articleCollect(collectMsg);
+	  }else{
+		//取消收藏
+		  $(currentTarget).removeClass("glyphicon-star").addClass("glyphicon-star-empty");
+		  $(".article-collect-label").text("收藏");
+		  var cancelCollectMsg = {
+			  name:'胡和浩的爷爷',
+			  type:'1',
+			  articleId:articleId
+		  }
+		  ArticleActions.cancelArticleCollect(cancelCollectMsg)
+	  }
+	},
+	render:function(){
+		var text = this.state.collected ? "取消收藏":'收藏';
+        var clazzName = this.state.collected ? "glyphicon glyphicon-star":"glyphicon glyphicon-star-empty";
+		return (
+			<span className="article-collect">
+				<i className="article-collect-label">{text}</i>
+				<i className={clazzName} onClick={this.onHandleCollectClick}></i>
+			</span>
+		);
+	}
+});*/
+

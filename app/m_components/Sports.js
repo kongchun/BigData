@@ -9,9 +9,14 @@ class Sports extends React.Component {
     render() {
 
         return (<div>
-            <MyInfoNavbar title="活动信息" action=""/>
-            <div className="content-wrap">
-                暂无活动
+            <div className="sports-content-wrap">
+                <div className="sports-content-top">
+                    <img src="../images/555.png" alt="七只狸猫" width="200" height="200"/>
+                </div>
+                <div className="sports-content-bottom">
+                    <h4 >Whoops!攻城狮回家过年了...</h4>
+                    <h5 className="happyNewYear">狸猫预祝大家新春愉快！鸡年吉祥！</h5>
+                </div>
             </div>
         </div>);
     }

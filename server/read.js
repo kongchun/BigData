@@ -94,7 +94,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			"id": id
 		});
 	}).then(function(data) {
-		//·µ»ØµÄÊı¾İ×öÂß¼­ÅĞ¶Ï²¢¼Ó1
+		//è¿”å›çš„æ•°æ®åšé€»è¾‘åˆ¤æ–­å¹¶åŠ 1
 		var keyWord = data.keyword;
 		if(arr!=null && arr!=undefined){
 		  for(var key in arr){
@@ -105,7 +105,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			  }
 		  }
 		}
-		//updateÊı¾İ
+		//updateæ•°æ®
 		return db.collection.update({
 			"id":id
 		},{
@@ -122,7 +122,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 		throw error;
 	})
 }
-//»ñÈ¡¹Ø¼ü×ÖÈ¨ÖØ
+//è·å–å…³é”®å­—æƒé‡
 exports.getKeyWordsCountJson = function(id) {
 	db.close();
 	return db.open("word_relation").then(function(collection) {
@@ -150,6 +150,93 @@ exports.getHotdotsData = function() {
 	}).catch(function(error) {
 		db.close();
 		console.error(error)
+		throw error;
+	})
+}
+//æ”¶è—
+exports.setArticleCollect = function(name,articleId){
+    db.close();
+	return db.open('users').then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+		if(data){
+			if(data.collect.indexOf(articleId)<0){
+				data.collect.push(articleId);
+			}
+			var newCollect = data.collect;
+			return db.collection.updateOne({
+				'name':name,
+			},{
+				$set:{
+					'collect':newCollect
+				}
+			}).then(function(data){
+				db.close();
+				return data;
+			});
+		}else{
+            return db.collection.insert({
+				"name" : name,
+				"type" : 2,
+				"collect" : [
+					articleId
+				],
+				"marking" : {}
+			}).then(function(data){
+				db.close();
+				return data;
+			})
+		}
+	}).catch(function(error){
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+//å–æ¶ˆæ”¶è—
+exports.cancelArticleCollect = function(name,articleId){
+	db.close();
+    return db.open("users").then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+		var index = data.collect.indexOf(articleId);
+		if(index > -1){
+			data.collect.splice(index,1);
+		}
+		var newCollect = data.collect;
+		return db.collection.updateOne({
+			'name':name
+		},{
+			$set:{
+				'collect':newCollect
+			}
+		}).then(function(data){
+			db.close();
+			return data;
+		}).catch(function(error){
+			db.close();
+			console.error(error);
+			throw error;
+		});
+	})
+}
+//è·å–ç”¨æˆ·æ”¶è—æ–‡ç« ä¿¡æ¯
+exports.getArticleByUser = function(name,articleId){
+	db.close();
+	return db.open("users").then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+	    db.close();
+		return data;
+	}).catch(function(error){
+		db.close();
+		console.error(error);
 		throw error;
 	})
 }

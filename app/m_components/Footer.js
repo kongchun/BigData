@@ -19,7 +19,7 @@ class Footer extends React.Component {
                             </IndexLink>
                             <IndexLink to={'/sports'} className="tab-item" activeClassName="tab-item-active">
                                 <div className="glyphicon glyphicon-globe"></div>
-                                <div>活动</div>
+                                <div>专家</div>
                             </IndexLink>
                             <IndexLink to={'/myInfo'} className="tab-item" activeClassName="tab-item-active">
                                 <div className="glyphicon glyphicon-user"></div>
