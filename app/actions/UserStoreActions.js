@@ -16,14 +16,21 @@ class UserStoreActions {
 			var values = cookies[1].split(";");
 			userinfo = JSON.parse(values[0]);
 		}
-		if(userinfo.opendid){
+		if(userinfo.openid){
 			UserSource.getUserSource(userinfo.opendid).then((data) => this.onSuccess(data));
 		}else{
 			this.onSuccess({
 				openid: "",
+				sex: 1,
+				languag: 'zh_CN',
+				city: '苏州',
+				province: '江苏',
+				country: '中国',
+				headimgurl: "",
 				nickname: "",
-				collect:[],
-				marking:[]
+				collect: [],
+				marking: {},
+				privilege: []
 			})
 		}
 	}
