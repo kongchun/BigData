@@ -69,11 +69,12 @@ router.get('/user', function(req, res) {
 });
 //收藏文章
 router.post('/articles/setArticleCollect', function(req, res) {
+	var openId = req.body.openId;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
 	var collectDate = req.body.collectDate;
 	var articleTitle = req.body.articleTitle;
-	read.setArticleCollect(name,articleId,collectDate,articleTitle).then(function(data){
+	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle).then(function(data){
 		res.send(data);
 	}).catch(function(e){
 		res.send([]);
@@ -81,17 +82,18 @@ router.post('/articles/setArticleCollect', function(req, res) {
 });
 //取消收藏
 router.post('/articles/cancelArticleCollect', function(req, res) {
+	var openId = req.body.openId;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
-	read.cancelArticleCollect(name,articleId).then(function(data){
+	read.cancelArticleCollect(openId,name,articleId).then(function(data){
 		res.send(data);
 	}).catch(function(e){
 		res.send([]);
 	})
 });
 router.get('/articles/getArticleByUser', function(req, res) {
-	var name = req.query.name;
-	read.getArticleByUser(name).then(function(data){
+	var openId = req.query.openId;
+	read.getArticleByUser(openId).then(function(data){
 		res.send(data);
 	}).catch(function(e){
 		res.send([]);

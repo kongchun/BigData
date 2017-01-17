@@ -71,6 +71,7 @@ var ArticleSource = {
 			if(param){
 				var url = "/api/articles/cancelArticleCollect";
 				$.post(url,{
+					openId:param.openId,
 					name:param.name,
 					articleId:param.articleId
 				}).done(resolve).fail(reject);
@@ -83,7 +84,7 @@ var ArticleSource = {
 	getArticleByUser(param){
 		return new Promise(function(resolve,reject){
 			if(param){
-				var url = "/api/articles/getArticleByUser?name="+param.name+"&articleId="+param.articleId;
+				var url = "/api/articles/getArticleByUser?openId="+param.openId+"&articleId="+param.articleId;
 				$.get(url).done(resolve).fail(reject);
 			}else{
 				console.log("获取用户信息失败");

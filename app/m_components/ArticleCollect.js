@@ -3,7 +3,7 @@ import {
 	Link
 } from 'react-router';
 import ArticleActions from '../actions/ArticleActions';
-
+import UserActions from '../actions/UserStoreActions';
 class ArticleCollect extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,9 +12,11 @@ class ArticleCollect extends React.Component {
 	componentDidMount(){
 		var _this = this;
 		var articleId =  getArticelId(window.location.href);
+		var currentUser = UserActions.getUserById();
 		//初始化时根据名称查当前用户的信息
 		var collectMsg = {
-			name:'胡和浩的爷爷',
+			openId:currentUser.openid,
+			name:currentUser.nickname,
 			articleId:articleId
 		}
 		function getArticelId(url){
@@ -44,12 +46,13 @@ class ArticleCollect extends React.Component {
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
 		var articleTitle = this.props.articleTitle;
+		var currentUser = UserActions.getUserById();
 		if($(currentTarget).hasClass('glyphicon-star-empty')){
 			$(currentTarget).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
 			$(".article-collect-label").text("取消收藏");
 			var collectMsg = {
-				name:'胡和浩的爷爷',
-				type:'1',
+				openId:currentUser.openid,
+				name:currentUser.nickname,
 				articleId:articleId,
 				collectDate:new Date().toLocaleString(),
 				articleTitle:articleTitle
@@ -60,8 +63,8 @@ class ArticleCollect extends React.Component {
 			$(currentTarget).removeClass("glyphicon-star").addClass("glyphicon-star-empty");
 			$(".article-collect-label").text("收藏");
 			var cancelCollectMsg = {
-				name:'胡和浩的爷爷',
-				type:'1',
+				openId:currentUser.openid,
+				name:currentUser.nickname,
 				articleId:articleId
 			}
 			ArticleActions.cancelArticleCollect(cancelCollectMsg)

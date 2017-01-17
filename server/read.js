@@ -210,12 +210,11 @@ exports.userData = function(userinfo) {
 }
 
 //收藏
-exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
-	console.log("readJS");
+exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle){
 	db.close();
 	return db.open('users').then(function(collection){
 		return collection.findOne({
-			'name':name
+			'openid':openId
 		});
 	}).then(function(data){
 		if(data){
@@ -235,7 +234,7 @@ exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
 				data.collect.push(collect);
 				var newCollect = data.collect;
 				return db.collection.updateOne({
-					'name':name,
+					'openid':openId,
 				},{
 					$set:{
 						'collect':newCollect
@@ -249,6 +248,7 @@ exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
 
 		}else{
 			return db.collection.insert({
+				"openid":openId,
 				"name" : name,
 				"type" : 0,
 				"collect" : [
@@ -271,11 +271,11 @@ exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
 	})
 }
 //取消收藏
-exports.cancelArticleCollect = function(name,articleId){
+exports.cancelArticleCollect = function(openId,name,articleId){
 	db.close();
 	return db.open("users").then(function(collection){
 		return collection.findOne({
-			'name':name
+			'openid':openId
 		});
 	}).then(function(data){
 		var hasCollect = false;
@@ -292,7 +292,7 @@ exports.cancelArticleCollect = function(name,articleId){
 		}
 		var newCollect = data.collect;
 		return db.collection.updateOne({
-			'name':name
+			'openid':openId
 		},{
 			$set:{
 				'collect':newCollect
@@ -308,11 +308,11 @@ exports.cancelArticleCollect = function(name,articleId){
 	})
 }
 //获取用户收藏文章信息
-exports.getArticleByUser = function(name){
+exports.getArticleByUser = function(openId){
 	db.close();
 	return db.open("users").then(function(collection){
 		return collection.findOne({
-			'name':name
+			'openid':openId
 		});
 	}).then(function(data){
 		db.close();

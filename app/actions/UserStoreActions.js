@@ -2,7 +2,6 @@ import alt from '../alt';
 import UserSource from '../sources/UserSource';
 class UserStoreActions {
 	constructor() {
-
 		this.generateActions(
 			'onSuccess',
 			'onFailure'
