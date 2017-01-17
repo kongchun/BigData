@@ -94,7 +94,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			"id": id
 		});
 	}).then(function(data) {
-		//·µ»ØµÄÊı¾İ×öÂß¼­ÅĞ¶Ï²¢¼Ó1
+		//ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½Ğ¶Ï²ï¿½ï¿½ï¿½1
 		var keyWord = data.keyword;
 		if(arr!=null && arr!=undefined){
 		  for(var key in arr){
@@ -105,7 +105,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			  }
 		  }
 		}
-		//updateÊı¾İ
+		//updateï¿½ï¿½ï¿½ï¿½
 		return db.collection.update({
 			"id":id
 		},{
@@ -122,7 +122,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 		throw error;
 	})
 }
-//»ñÈ¡¹Ø¼ü×ÖÈ¨ÖØ
+//ï¿½ï¿½È¡ï¿½Ø¼ï¿½ï¿½ï¿½È¨ï¿½ï¿½
 exports.getKeyWordsCountJson = function(id) {
 	db.close();
 	return db.open("word_relation").then(function(collection) {
@@ -209,3 +209,117 @@ exports.userData = function(userinfo) {
 	})
 }
 
+//æ”¶è—
+exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
+	console.log("readJS");
+	db.close();
+	return db.open('users').then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+		if(data){
+			var hasCollect = false;
+			for(var i in data.collect){
+				if(data.collect[i].articleId == articleId){
+					hasCollect = true;
+					break;
+				}
+			}
+			if(!hasCollect){
+				var collect = {
+					"articleId" : articleId,
+					"collectTime" : collectDate,
+					"articleTitle" : articleTitle
+				}
+				data.collect.push(collect);
+				var newCollect = data.collect;
+				return db.collection.updateOne({
+					'name':name,
+				},{
+					$set:{
+						'collect':newCollect
+					}
+				}).then(function(data){
+					db.close();
+					return data;
+				});
+			}
+
+
+		}else{
+			return db.collection.insert({
+				"name" : name,
+				"type" : 0,
+				"collect" : [
+					{
+						"articleId" : articleId,
+						"collectTime" : collectDate,
+						"articleTitle" : articleTitle
+					}
+				],
+				"marking" : {}
+			}).then(function(data){
+				db.close();
+				return data;
+			})
+		}
+	}).catch(function(error){
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+//å–æ¶ˆæ”¶è—
+exports.cancelArticleCollect = function(name,articleId){
+	db.close();
+	return db.open("users").then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+		var hasCollect = false;
+		var index = 0;
+		for(var i in data.collect){
+			if(data.collect[i].articleId == articleId){
+				hasCollect = true;
+				index  = i;
+				break;
+			}
+		}
+		if(hasCollect){
+			data.collect.splice(index,1);
+		}
+		var newCollect = data.collect;
+		return db.collection.updateOne({
+			'name':name
+		},{
+			$set:{
+				'collect':newCollect
+			}
+		}).then(function(data){
+			db.close();
+			return data;
+		}).catch(function(error){
+			db.close();
+			console.error(error);
+			throw error;
+		});
+	})
+}
+//è·å–ç”¨æˆ·æ”¶è—æ–‡ç« ä¿¡æ¯
+exports.getArticleByUser = function(name){
+	db.close();
+	return db.open("users").then(function(collection){
+		return collection.findOne({
+			'name':name
+		});
+	}).then(function(data){
+		db.close();
+		return data;
+	}).catch(function(error){
+		db.close();
+		console.error(error);
+		throw error;
+	})
+}
