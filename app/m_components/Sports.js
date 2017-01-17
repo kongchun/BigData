@@ -11,10 +11,10 @@ class Sports extends React.Component {
         return (<div>
             <div className="sports-content-wrap">
                 <div className="sports-content-top">
-                    <img src="../images/555.png" alt="七只狸猫" width="200" height="200"/>
+                    <img src="../images/555.png" alt="七只狸猫" width="100" height="100"/>
                 </div>
                 <div className="sports-content-bottom">
-                    <h4 >Whoops!攻城狮回家过年了...</h4>
+                    <h4 >攻城狮回家过年了...</h4>
                     <h5 className="happyNewYear">狸猫预祝大家新春愉快！鸡年吉祥！</h5>
                 </div>
             </div>
