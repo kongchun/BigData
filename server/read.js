@@ -94,7 +94,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			"id": id
 		});
 	}).then(function(data) {
-		//è¿”å›çš„æ•°æ®åšé€»è¾‘åˆ¤æ–­å¹¶åŠ 1
+		//·µ»ØµÄÊı¾İ×öÂß¼­ÅĞ¶Ï²¢¼Ó1
 		var keyWord = data.keyword;
 		if(arr!=null && arr!=undefined){
 		  for(var key in arr){
@@ -105,7 +105,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 			  }
 		  }
 		}
-		//updateæ•°æ®
+		//updateÊı¾İ
 		return db.collection.update({
 			"id":id
 		},{
@@ -122,7 +122,7 @@ exports.setArticleKeyCounts = function(id,arr) {
 		throw error;
 	})
 }
-//è·å–å…³é”®å­—æƒé‡
+//»ñÈ¡¹Ø¼ü×ÖÈ¨ÖØ
 exports.getKeyWordsCountJson = function(id) {
 	db.close();
 	return db.open("word_relation").then(function(collection) {
@@ -153,117 +153,59 @@ exports.getHotdotsData = function() {
 		throw error;
 	})
 }
-//æ”¶è—
-exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
-	console.log("readJS");
-    db.close();
-	return db.open('users').then(function(collection){
-		return collection.findOne({
-			'name':name
-		});
-	}).then(function(data){
-		if(data){
-			var hasCollect = false;
-			for(var i in data.collect){
-				if(data.collect[i].articleId == articleId){
-					hasCollect = true;
-					break;
-				}
-			}
-			if(!hasCollect){
-				var collect = {
-					"articleId" : articleId,
-					"collectTime" : collectDate,
-					"articleTitle" : articleTitle
-				}
-				data.collect.push(collect);
-				var newCollect = data.collect;
-				return db.collection.updateOne({
-					'name':name,
-				},{
-					$set:{
-						'collect':newCollect
-					}
-				}).then(function(data){
-					db.close();
-					return data;
-				});
-			}
 
-
-		}else{
-            return db.collection.insert({
-				"name" : name,
-				"type" : 0,
-				"collect" : [
-					{
-						"articleId" : articleId,
-						"collectTime" : collectDate,
-						"articleTitle" : articleTitle
-					}
-				],
-				"marking" : {}
-			}).then(function(data){
-				db.close();
-				return data;
-			})
-		}
-	}).catch(function(error){
+exports.setUserData = function(userinfo) {
+	db.close();
+	return db.open("users").then(function(collection) {
+		return collection.insert(userinfo)
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(error) {
 		db.close();
 		console.error(error)
 		throw error;
 	})
 }
-//å–æ¶ˆæ”¶è—
-exports.cancelArticleCollect = function(name,articleId){
+
+exports.getUserData = function(openid) {
 	db.close();
-    return db.open("users").then(function(collection){
-		return collection.findOne({
-			'name':name
-		});
-	}).then(function(data){
-		var hasCollect = false;
-		var index = 0;
-		for(var i in data.collect){
-			if(data.collect[i].articleId == articleId){
-				hasCollect = true;
-				index  = i;
-				break;
-			}
-		}
-		if(hasCollect){
-			data.collect.splice(index,1);
-		}
-		var newCollect = data.collect;
-		return db.collection.updateOne({
-			'name':name
-		},{
-			$set:{
-				'collect':newCollect
-			}
-		}).then(function(data){
-			db.close();
-			return data;
-		}).catch(function(error){
-			db.close();
-			console.error(error);
-			throw error;
-		});
-	})
-}
-//è·å–ç”¨æˆ·æ”¶è—æ–‡ç« ä¿¡æ¯
-exports.getArticleByUser = function(name){
-	db.close();
-	return db.open("users").then(function(collection){
-		return collection.findOne({
-			'name':name
-		});
-	}).then(function(data){
-	    db.close();
-		return data;
-	}).catch(function(error){
+	return db.open("users").then(function(collection) {
+		return collection.find({}).sort({
+			"openid":openid
+		}).toArray();
+	}).then(function(data) {
 		db.close();
-		console.error(error);
+		return data;
+	}).catch(function(error) {
+		db.close();
+		console.error(error)
 		throw error;
 	})
 }
+
+exports.userData = function(userinfo) {
+	db.close();
+	return db.open("users").then(function(collection) {
+		return collection.find({}).sort({
+			"openid":userinfo.openid
+		}).toArray();
+	}).then(function(data) {
+		if(data.length < 1){
+			userinfo['collect'] = [];
+			userinfo['marking'] = {};
+			return db.collection.insert(userinfo).then(function(){
+				db.close();
+				return;
+			});
+		}else{
+			db.close();
+			return ;
+		}
+	}).catch(function(error) {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+
