@@ -16,7 +16,7 @@ import ArticleList from './m_components/ArticleList';
 import Hotdot from './m_components/Hotdot';
 import Sports from './m_components/Sports';
 import MyInfo from './m_components/MyInfo';
-import Collection from './m_components/Collection';
+import Collection from './m_components/collect/Collection';
 import Note from './m_components/MyNote';
 import FedBack from './m_components/FedBack';
 import AboutUs from './m_components/AboutUs';

@@ -25,10 +25,17 @@ class ArticleCollect extends React.Component {
 			}
 		}
 		ArticleActions.getArticleByUser(collectMsg).then(function(data){
-			if(data.collect.indexOf(collectMsg.articleId+"") < 0){
-				_this.setState({collected:false});
-			}else{
+			var hasCollect = false;
+			for(var i in data.collect){
+				if(data.collect[i].articleId == articleId){
+					hasCollect = true;
+					break;
+				}
+			}
+			if(hasCollect){
 				_this.setState({collected:true});
+			}else{
+				_this.setState({collected:false});
 			}
 		});
     }
@@ -36,13 +43,16 @@ class ArticleCollect extends React.Component {
 		//收藏文章
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
+		var articleTitle = this.props.articleTitle;
 		if($(currentTarget).hasClass('glyphicon-star-empty')){
 			$(currentTarget).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
-			$(".article-collect-label").text("已收藏");
+			$(".article-collect-label").text("取消收藏");
 			var collectMsg = {
 				name:'胡和浩的爷爷',
 				type:'1',
-				articleId:articleId
+				articleId:articleId,
+				collectDate:new Date().toLocaleString(),
+				articleTitle:articleTitle
 			}
 			ArticleActions.articleCollect(collectMsg);
 		}else{

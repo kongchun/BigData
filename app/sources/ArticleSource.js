@@ -56,7 +56,9 @@ var ArticleSource = {
 				var url = "/api/articles/setArticleCollect";
 				$.post(url,{
 					name:param.name,
-					articleId:param.articleId
+					articleId:param.articleId,
+					collectDate:param.collectDate,
+					articleTitle:param.articleTitle
 				}).done(resolve).fail(reject);
 			}else{
 				console.log("йу╡ьндубй╖╟э.");

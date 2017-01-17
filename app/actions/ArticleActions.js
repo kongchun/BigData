@@ -2,7 +2,6 @@ import alt from '../alt';
 import ArticleSource from '../sources/ArticleSource';
 class ArticleActions {
 	constructor() {
-
 		this.generateActions(
 			'onSuccess',
 			'onFailure'

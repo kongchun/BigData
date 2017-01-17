@@ -154,7 +154,8 @@ exports.getHotdotsData = function() {
 	})
 }
 //收藏
-exports.setArticleCollect = function(name,articleId){
+exports.setArticleCollect = function(name,articleId,collectDate,articleTitle){
+	console.log("readJS");
     db.close();
 	return db.open('users').then(function(collection){
 		return collection.findOne({
@@ -162,26 +163,44 @@ exports.setArticleCollect = function(name,articleId){
 		});
 	}).then(function(data){
 		if(data){
-			if(data.collect.indexOf(articleId)<0){
-				data.collect.push(articleId);
-			}
-			var newCollect = data.collect;
-			return db.collection.updateOne({
-				'name':name,
-			},{
-				$set:{
-					'collect':newCollect
+			var hasCollect = false;
+			for(var i in data.collect){
+				if(data.collect[i].articleId == articleId){
+					hasCollect = true;
+					break;
 				}
-			}).then(function(data){
-				db.close();
-				return data;
-			});
+			}
+			if(!hasCollect){
+				var collect = {
+					"articleId" : articleId,
+					"collectTime" : collectDate,
+					"articleTitle" : articleTitle
+				}
+				data.collect.push(collect);
+				var newCollect = data.collect;
+				return db.collection.updateOne({
+					'name':name,
+				},{
+					$set:{
+						'collect':newCollect
+					}
+				}).then(function(data){
+					db.close();
+					return data;
+				});
+			}
+
+
 		}else{
             return db.collection.insert({
 				"name" : name,
-				"type" : 2,
+				"type" : 0,
 				"collect" : [
-					articleId
+					{
+						"articleId" : articleId,
+						"collectTime" : collectDate,
+						"articleTitle" : articleTitle
+					}
 				],
 				"marking" : {}
 			}).then(function(data){
@@ -203,8 +222,16 @@ exports.cancelArticleCollect = function(name,articleId){
 			'name':name
 		});
 	}).then(function(data){
-		var index = data.collect.indexOf(articleId);
-		if(index > -1){
+		var hasCollect = false;
+		var index = 0;
+		for(var i in data.collect){
+			if(data.collect[i].articleId == articleId){
+				hasCollect = true;
+				index  = i;
+				break;
+			}
+		}
+		if(hasCollect){
 			data.collect.splice(index,1);
 		}
 		var newCollect = data.collect;
@@ -225,7 +252,7 @@ exports.cancelArticleCollect = function(name,articleId){
 	})
 }
 //获取用户收藏文章信息
-exports.getArticleByUser = function(name,articleId){
+exports.getArticleByUser = function(name){
 	db.close();
 	return db.open("users").then(function(collection){
 		return collection.findOne({
@@ -240,4 +267,3 @@ exports.getArticleByUser = function(name,articleId){
 		throw error;
 	})
 }
-
