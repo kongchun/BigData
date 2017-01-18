@@ -24,7 +24,6 @@ var ArticleSource = {
 			}
 		})
 	},
-	//ÉèÖÃ¹Ø¼ü×ÖÈ¨ÖØ
 	setKeyWordsCount(articleId,countArr){
         return new Promise(function(resolve,reject){
 			if(articleId==''){
@@ -55,13 +54,14 @@ var ArticleSource = {
 			if(param){
 				var url = "/api/articles/setArticleCollect";
 				$.post(url,{
+					openId:param.openId,
 					name:param.name,
 					articleId:param.articleId,
 					collectDate:param.collectDate,
 					articleTitle:param.articleTitle
 				}).done(resolve).fail(reject);
 			}else{
-				console.log("ÊÕ²ØÎÄÕÂÊ§°Ü.");
+				console.log("æ”¶è—å¤±è´¥ï¼Œå‚æ•°ä¸ºç©º");
 				reject([]);
 			}
 		})
@@ -76,7 +76,7 @@ var ArticleSource = {
 					articleId:param.articleId
 				}).done(resolve).fail(reject);
 			}else{
-				console.log("È¡ÏûÊÕ²ØÎÄÕÂÊ§°Ü.");
+				console.log("å–æ¶ˆæ”¶è—å¤±è´¥");
 				reject([]);
 			}
 		})
@@ -87,7 +87,7 @@ var ArticleSource = {
 				var url = "/api/articles/getArticleByUser?openId="+param.openId+"&articleId="+param.articleId;
 				$.get(url).done(resolve).fail(reject);
 			}else{
-				console.log("»ñÈ¡ÓÃ»§ĞÅÏ¢Ê§°Ü");
+				console.log("è·å–ç”¨æˆ·å¤±è´¥");
 				reject([]);
 			}
 		})

@@ -16,9 +16,9 @@ class UserStoreActions {
 			userinfo = JSON.parse(unescape(values[0]));
 		}
 		if(userinfo.openid){
-			UserSource.getUserSource(userinfo.opendid).then((data) => this.onSuccess(data));
+			return UserSource.getUserSource(userinfo.openid).then(function(data){return data});
 		}else{
-			this.onSuccess({
+			return {
 				openid: "",
 				sex: 1,
 				languag: 'zh_CN',
@@ -30,7 +30,7 @@ class UserStoreActions {
 				collect: [],
 				marking: {},
 				privilege: []
-			})
+			};
 		}
 	}
 }

@@ -4,23 +4,40 @@ import {
 } from 'react-router';
 import ArticleActions from '../actions/ArticleActions';
 import UserActions from '../actions/UserStoreActions';
-import UserStore from '../stores/UserStore';
 class ArticleCollect extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {collected: false};
+		this.currentUser = null;
 	}
 	componentDidMount(){
 		var _this = this;
 		var articleId =  getArticelId(window.location.href);
-		UserActions.getUserById()
-		var currentUser = UserStore.getState();
+		UserActions.getUserById().then(function(data){
+			var currentUser = data[0];
+			_this.currentUser = currentUser
+			var collectMsg = {
+				openId:currentUser.openid,
+				name:currentUser.nickname,
+				articleId:articleId
+			}
+			ArticleActions.getArticleByUser(collectMsg).then(function(data){
+				var hasCollect = false;
+				for(var i in data.collect){
+					if(data.collect[i].articleId == articleId){
+						hasCollect = true;
+						break;
+					}
+				}
+				if(hasCollect){
+					_this.setState({collected:true});
+				}else{
+					_this.setState({collected:false});
+				}
+			});
+		})
 		//初始化时根据名称查当前用户的信息
-		var collectMsg = {
-			openId:currentUser.openid,
-			name:currentUser.nickname,
-			articleId:articleId
-		}
+
 		function getArticelId(url){
 			if(url){
 				var lIndex = url.lastIndexOf("/");
@@ -28,27 +45,13 @@ class ArticleCollect extends React.Component {
 				return parseInt(url.substring(lIndex+1,dotIndex));
 			}
 		}
-		ArticleActions.getArticleByUser(collectMsg).then(function(data){
-			var hasCollect = false;
-			for(var i in data.collect){
-				if(data.collect[i].articleId == articleId){
-					hasCollect = true;
-					break;
-				}
-			}
-			if(hasCollect){
-				_this.setState({collected:true});
-			}else{
-				_this.setState({collected:false});
-			}
-		});
     }
 	onHandleCollectClick(event){
 		//收藏文章
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
 		var articleTitle = this.props.articleTitle;
-		var currentUser = UserActions.getUserById();
+		var currentUser = this.currentUser;
 		if($(currentTarget).hasClass('glyphicon-star-empty')){
 			$(currentTarget).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
 			$(".article-collect-label").text("取消收藏");

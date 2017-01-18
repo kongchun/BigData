@@ -60,7 +60,8 @@ router.get('/hotdots', function(req, res) {
 	})
 });
 router.get('/user', function(req, res) {
-	var openid = parseInt(req.query.openid);
+	var openid = req.query.openid;
+	console.log(openid);
 	read.getUserData(openid).then(function(data){
 		res.send(data);
 	}).catch(function(){
