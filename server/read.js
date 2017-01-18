@@ -187,9 +187,8 @@ exports.getUserData = function(openid) {
 exports.userData = function(userinfo) {
 	db.close();
 	return db.open("users").then(function(collection) {
-		return collection.find({}).sort({
-			"openid":userinfo.openid
-		}).toArray();
+		console.log("user:" + userinfo.openid)
+		return collection.find({"openid":userinfo.openid}).toArray();
 	}).then(function(data) {
 		if(data.length < 1){
 			userinfo['collect'] = [];
