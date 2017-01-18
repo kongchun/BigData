@@ -20,10 +20,15 @@ class CollectList extends React.Component {
 		 * 2.根据查询到的Id去查询文章内容
 		 * */
 		CollectStores.listen(this.onChange);
-		var currentUser = {
-			name:'胡和浩的爷爷'
+		let user = document.cookie;
+		let userinfo = null;
+		let cookies = document.cookie.split("userinfo=");
+		if (cookies.length > 1) {
+			var values = cookies[1].split(";");
+			userinfo = JSON.parse(unescape(values[0]));
+			CollectActions.getCollectInfoByUser(userinfo);
 		}
-		CollectActions.getCollectInfoByUser(currentUser);
+
 	}
 
 	render(){

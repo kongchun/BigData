@@ -93,7 +93,7 @@ router.post('/articles/cancelArticleCollect', function(req, res) {
 	})
 });
 router.get('/articles/getArticleByUser', function(req, res) {
-	var openId = req.query.openId;
+	var openId = req.query.openid;
 	read.getArticleByUser(openId).then(function(data){
 		res.send(data);
 	}).catch(function(e){
