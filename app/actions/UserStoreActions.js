@@ -13,7 +13,7 @@ class UserStoreActions {
 		let cookies = document.cookie.split("userinfo=");
 		if (cookies.length > 1) {
 			var values = cookies[1].split(";");
-			userinfo = JSON.parse(values[0]);
+			userinfo = JSON.parse(unescape(values[0]));
 		}
 		if(userinfo.openid){
 			UserSource.getUserSource(userinfo.opendid).then((data) => this.onSuccess(data));
@@ -22,9 +22,9 @@ class UserStoreActions {
 				openid: "",
 				sex: 1,
 				languag: 'zh_CN',
-				city: '苏州',
-				province: '江苏',
-				country: '中国',
+				city: '鑻忓窞',
+				province: '姹熻嫃',
+				country: '涓浗',
 				headimgurl: "",
 				nickname: "",
 				collect: [],

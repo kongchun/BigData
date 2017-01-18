@@ -4,6 +4,7 @@ import {
 } from 'react-router';
 import ArticleActions from '../actions/ArticleActions';
 import UserActions from '../actions/UserStoreActions';
+import UserStore from '../stores/UserStore';
 class ArticleCollect extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,7 +13,8 @@ class ArticleCollect extends React.Component {
 	componentDidMount(){
 		var _this = this;
 		var articleId =  getArticelId(window.location.href);
-		var currentUser = UserActions.getUserById();
+		UserActions.getUserById()
+		var currentUser = UserStore.getState();
 		//初始化时根据名称查当前用户的信息
 		var collectMsg = {
 			openId:currentUser.openid,
