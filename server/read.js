@@ -171,9 +171,7 @@ exports.setUserData = function(userinfo) {
 exports.getUserData = function(openid) {
 	db.close();
 	return db.open("users").then(function(collection) {
-		return collection.find({}).sort({
-			"openid":openid
-		}).toArray();
+		return collection.find({"openid":openid}).toArray();
 	}).then(function(data) {
 		db.close();
 		return data;
