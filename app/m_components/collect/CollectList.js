@@ -38,7 +38,7 @@ class CollectList extends React.Component {
 		if(collects){
 			collectList = collects.map((collectArticle)=>(
 				<li>
-					<CollectItem title={collectArticle.articleTitle} time={collectArticle.collectTime}/>
+					<CollectItem articleid={collectArticle.articleId} title={collectArticle.articleTitle} time={collectArticle.collectTime}/>
 				</li>
 			));
 		}

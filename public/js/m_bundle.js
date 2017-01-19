@@ -2465,8 +2465,8 @@ var CollectItem = function (_React$Component) {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
-				'div',
-				{ className: 'collect-list-item' },
+				_reactRouter.Link,
+				{ to: '/article/' + this.props.articleid, className: 'collect-list-item' },
 				_react2.default.createElement(
 					'div',
 					{ className: 'collect-title' },
@@ -2567,7 +2567,7 @@ var CollectList = function (_React$Component) {
 					return _react2.default.createElement(
 						'li',
 						null,
-						_react2.default.createElement(_CollectItem2.default, { title: collectArticle.articleTitle, time: collectArticle.collectTime })
+						_react2.default.createElement(_CollectItem2.default, { articleid: collectArticle.articleId, title: collectArticle.articleTitle, time: collectArticle.collectTime })
 					);
 				});
 			}
@@ -2863,7 +2863,7 @@ var CollectSource = {
 	getCollectInfoByUser: function getCollectInfoByUser(param) {
 		return new Promise(function (resolve, reject) {
 			if (param) {
-				var url = "/api/articles/getArticleByUser?openid=" + param.openid;
+				var url = "/api/articles/getArticleByUser?openId=" + param.openid;
 				$.get(url).done(resolve).fail(reject);
 			} else {
 				console.log("获取用户信息失败");
