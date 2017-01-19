@@ -7,6 +7,32 @@ class UserStoreActions {
 			'onFailure'
 		);
 	}
+	getUser(){
+		let user = document.cookie;
+		let userinfo = null;
+		let cookies = document.cookie.split("userinfo=");
+		if (cookies.length > 1) {
+			var values = cookies[1].split(";");
+			userinfo = JSON.parse(unescape(values[0]));
+		}
+		if(userinfo.openid){
+			return UserSource.getUserSource(userinfo.openid).then((data) => this.onSuccess(data[0]));
+		}else{
+			this.onSuccess({
+				openid: "",
+				sex: 1,
+				languag: 'zh_CN',
+				city: '苏州',
+				province: '江苏',
+				country: '中国',
+				headimgurl: "",
+				nickname: "",
+				collect: [],
+				marking: {},
+				privilege: []
+			})
+		}
+	}
 	getUserById() {
 		let user = document.cookie;
 		let userinfo = null;
