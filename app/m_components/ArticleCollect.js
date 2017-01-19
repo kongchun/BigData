@@ -16,25 +16,18 @@ class ArticleCollect extends React.Component {
 		UserActions.getUserById().then(function(data){
 			var currentUser = data[0];
 			_this.currentUser = currentUser
-			var collectMsg = {
-				openId:currentUser.openid,
-				name:currentUser.nickname,
-				articleId:articleId
+			var hasCollect = false;
+			for(var i in currentUser.collect){
+				if(currentUser.collect[i].articleId == articleId){
+					hasCollect = true;
+					break;
+				}
 			}
-			ArticleActions.getArticleByUser(collectMsg).then(function(data){
-				var hasCollect = false;
-				for(var i in data.collect){
-					if(data.collect[i].articleId == articleId){
-						hasCollect = true;
-						break;
-					}
-				}
-				if(hasCollect){
-					_this.setState({collected:true});
-				}else{
-					_this.setState({collected:false});
-				}
-			});
+			if(hasCollect){
+				_this.setState({collected:true});
+			}else{
+				_this.setState({collected:false});
+			}
 		})
 		//初始化时根据名称查当前用户的信息
 

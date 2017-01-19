@@ -92,12 +92,4 @@ router.post('/articles/cancelArticleCollect', function(req, res) {
 		res.send([]);
 	})
 });
-router.get('/articles/getArticleByUser', function(req, res) {
-	var openId = req.query.openId;
-	read.getArticleByUser(openId).then(function(data){
-		res.send(data);
-	}).catch(function(e){
-		res.send([]);
-	})
-});
 module.exports = router;

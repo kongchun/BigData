@@ -304,19 +304,3 @@ exports.cancelArticleCollect = function(openId,name,articleId){
 		});
 	})
 }
-//获取用户收藏文章信息
-exports.getArticleByUser = function(openId){
-	db.close();
-	return db.open("users").then(function(collection){
-		return collection.findOne({
-			'openid':openId
-		});
-	}).then(function(data){
-		db.close();
-		return data;
-	}).catch(function(error){
-		db.close();
-		console.error(error);
-		throw error;
-	})
-}

@@ -3,12 +3,12 @@ import {
 	Link
 } from 'react-router';
 import CollectItem from './CollectItem';
-import CollectActions from '../../actions/CollectActions';
-import CollectStores from '../../stores/CollectStore';
+import UserStoreActions from '../../actions/UserStoreActions';
+import UserStore from '../../stores/UserStore';
 class CollectList extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = CollectStores.getState();
+		this.state = UserStore.getState();
 		this.onChange = this.onChange.bind(this);
 	}
 	onChange(state) {
@@ -19,16 +19,8 @@ class CollectList extends React.Component {
 		 * 1.根据名称查询当前用户的信息
 		 * 2.根据查询到的Id去查询文章内容
 		 * */
-		CollectStores.listen(this.onChange);
-		let user = document.cookie;
-		let userinfo = null;
-		let cookies = document.cookie.split("userinfo=");
-		if (cookies.length > 1) {
-			var values = cookies[1].split(";");
-			userinfo = JSON.parse(unescape(values[0]));
-			CollectActions.getCollectInfoByUser(userinfo);
-		}
-
+		UserStore.listen(this.onChange);
+		UserStoreActions.getUser();
 	}
 
 	render(){

@@ -19,11 +19,6 @@ class ArticleActions {
 	cancelArticleCollect(param){
 		ArticleSource.cancelArticleCollect(param);
 	}
-	getArticleByUser(param){
-		return ArticleSource.getArticleByUser(param).then(function(data){
-			return data;
-		});
-	}
 }
 
 export default alt.createActions(ArticleActions);

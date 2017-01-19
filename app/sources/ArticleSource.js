@@ -80,17 +80,6 @@ var ArticleSource = {
 				reject([]);
 			}
 		})
-	},
-	getArticleByUser(param){
-		return new Promise(function(resolve,reject){
-			if(param){
-				var url = "/api/articles/getArticleByUser?openId="+param.openId+"&articleId="+param.articleId;
-				$.get(url).done(resolve).fail(reject);
-			}else{
-				console.log("获取用户失败");
-				reject([]);
-			}
-		})
 	}
 }
 
