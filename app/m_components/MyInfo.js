@@ -34,7 +34,10 @@ class MyInfo extends React.Component {
                         {(!userinfo.nickname)?<div className="myInfo-header-image-border">
                             <div className="myInfo-header-image">登&nbsp;录</div>
                             <span className="myInfo-header-loginTip">登录推荐更精准</span>
-                        </div> : <div className="myInfo-header-name">{userinfo.nickname}</div>}
+                        </div> : <div className="myInfo-header-image-border">
+                                <img className="user-thumnail-size" src={userinfo.headimgurl} alt="头像"/>
+                            <div className="myInfo-header-name">{userinfo.nickname}</div>
+                        </div>}
                     </div>
                </div>
                <div className="myInfo-container-list">

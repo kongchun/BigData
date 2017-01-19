@@ -1162,8 +1162,16 @@ a:visited {
   line-height: 60px;
   font-weight: 500;
   font-size: 16px;
-  border: 1px solid gray;
   color: #fff;
+  margin-bottom: 10px;
+}
+.user-thumnail-size {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  left: 50%;
+  margin-left: -30px;
   margin-bottom: 10px;
 }
 .myInfo-header-loginTip {
@@ -1180,7 +1188,7 @@ a:visited {
   text-align: center;
   vertical-align: middle;
   height: 200px;
-  line-height: 200px;
+  /* line-height: 200px;*/
 }
 .myInfo-container-list ul {
   list-style: none;
@@ -1254,6 +1262,7 @@ a:visited {
   border-bottom: 1px solid #d6d6d6;
 }
 .collect-title {
+  color: #666;
   font-size: 18px;
   line-height: 30px;
   width: 300px;
@@ -1262,6 +1271,7 @@ a:visited {
   text-overflow: ellipsis;
 }
 .collect-time {
+  color: #666;
   font-size: 12px;
   line-height: 30px;
 }
