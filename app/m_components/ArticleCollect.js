@@ -41,13 +41,12 @@ class ArticleCollect extends React.Component {
     }
 	onHandleCollectClick(event){
 		//收藏文章
+		var isCollectedFlag = this.state.collected;
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
 		var articleTitle = this.props.articleTitle;
 		var currentUser = this.currentUser;
-		if($(currentTarget).hasClass('glyphicon-star-empty')){
-			$(currentTarget).removeClass("glyphicon-star-empty").addClass("glyphicon-star");
-			$(".article-collect-label").text("取消收藏");
+		if(!isCollectedFlag){
 			var collectMsg = {
 				openId:currentUser.openid,
 				name:currentUser.nickname,
@@ -56,16 +55,16 @@ class ArticleCollect extends React.Component {
 				articleTitle:articleTitle
 			}
 			ArticleActions.articleCollect(collectMsg);
+			this.setState({collected:true});
 		}else{
 			//取消收藏
-			$(currentTarget).removeClass("glyphicon-star").addClass("glyphicon-star-empty");
-			$(".article-collect-label").text("收藏");
 			var cancelCollectMsg = {
 				openId:currentUser.openid,
 				name:currentUser.nickname,
 				articleId:articleId
 			}
-			ArticleActions.cancelArticleCollect(cancelCollectMsg)
+			ArticleActions.cancelArticleCollect(cancelCollectMsg);
+			this.setState({collected:false});
 		}
     }
 	render(){
@@ -74,8 +73,7 @@ class ArticleCollect extends React.Component {
 		var clazzName = collect ? "glyphicon glyphicon-star":"glyphicon glyphicon-star-empty";
 		return (
 			<span className="article-collect">
-					<i className="article-collect-label">{text}</i>
-					<i className={clazzName} onClick={this.onHandleCollectClick.bind(this)}></i>
+					<span className="article-collect-label" onClick={this.onHandleCollectClick.bind(this)}>{text}</span>
 			</span>
 		);
     }

@@ -50,18 +50,21 @@ class Article extends React.Component {
 			        		<article className="post">
 						    <header className="post-head">
 						        <h1 className="post-title">{article.title}</h1>
-
-						        <section className="post-meta">
-						            <span className="url">来源：<a href={article.url} >{article.url}</a></span>
-									
-						        </section>
 						    </header>
 						    <section className="post-content" dangerouslySetInnerHTML={createMarkup()}>
 						    </section>
 						    <footer className="post-footer clearfix">
-					        <div className="pull-left tag-list">
-					            <i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
-								<ArticleCollect articleId={article.id} articleTitle={article.title}/>
+								<div className="footer-end-line">
+								  <span className="footer-end-line-wrap"><span className="end-line-left"></span><span className="end-line-font">THE END</span><span className="end-line-right"></span></span>
+								</div>
+					        <div>
+								<div className="source-article-url">原网页由七只狸猫转码以便于移动设备阅读<a href={article.url}>查看原文</a></div>
+								<div className="article-operate-all">
+									<div className="collectArticle">
+										<ArticleCollect articleId={article.id} articleTitle={article.title}/>
+									</div>
+
+								</div>
 					        </div>
 					    </footer>
 
@@ -69,12 +72,7 @@ class Article extends React.Component {
 						</main>
 						<aside className="col-md-4 sidebar">
 							<div className="widget">
-								<h4 className="title">关键字</h4>
-								<Tag id={article.id}/>
-							</div>
-
-							<div className="widget">
-								<h4 className="title">相似文章</h4>
+								<h4 className="title">相关推荐</h4>
 								<Similar ids={article.similar}/>
 							</div>
 						</aside>
