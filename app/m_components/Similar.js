@@ -24,6 +24,8 @@ class Similar extends React.Component {
 		this.setState(state);
 	}
 	componentWillReceiveProps(nextProps) {
+		console.log("id=");
+		console.log(nextProps.ids)
 		ArticleObjActions.getArticlesByIds(nextProps.ids);
 	}
 

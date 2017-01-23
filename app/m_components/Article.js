@@ -54,6 +54,10 @@ class Article extends React.Component {
 						    <section className="post-content" dangerouslySetInnerHTML={createMarkup()}>
 						    </section>
 						    <footer className="post-footer clearfix">
+								<div className="pull-left tag-list">
+									<i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
+									<ArticleCollect articleId={article.id}/>
+								</div>
 								<div className="footer-end-line">
 								  <span className="footer-end-line-wrap"><span className="end-line-left"></span><span className="end-line-font">THE END</span><span className="end-line-right"></span></span>
 								</div>

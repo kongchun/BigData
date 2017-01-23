@@ -56,7 +56,6 @@ class Sports extends React.Component {
                 </div>
                 <div className="sports-content-center">
                     <h4 >攻城狮回家过年了...</h4>
-                    <h5 className="happyNewYear">狸猫预祝大家新春愉快！鸡年吉祥！</h5>
                 </div>
                 <div className="sports-content-circle">
                     <div className="sports-content-circle-xsmall"></div>

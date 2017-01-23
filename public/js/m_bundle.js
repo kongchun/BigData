@@ -650,6 +650,17 @@ var Article = function (_React$Component) {
 										{ className: 'post-footer clearfix' },
 										_react2.default.createElement(
 											'div',
+											{ className: 'pull-left tag-list' },
+											_react2.default.createElement(
+												'i',
+												{ className: 'fa fa-folder-open-o' },
+												'\u9605\u8BFB\u6B21\u6570\uFF1A',
+												article.hits
+											),
+											_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id })
+										),
+										_react2.default.createElement(
+											'div',
 											{ className: 'footer-end-line' },
 											_react2.default.createElement(
 												'span',
@@ -2147,6 +2158,8 @@ var Similar = function (_React$Component) {
 	}, {
 		key: 'componentWillReceiveProps',
 		value: function componentWillReceiveProps(nextProps) {
+			console.log("id=");
+			console.log(nextProps.ids);
 			_ArticleObjActions2.default.getArticlesByIds(nextProps.ids);
 		}
 	}, {
@@ -2289,11 +2302,6 @@ var Sports = function (_React$Component) {
                             'h4',
                             null,
                             '\u653B\u57CE\u72EE\u56DE\u5BB6\u8FC7\u5E74\u4E86...'
-                        ),
-                        _react2.default.createElement(
-                            'h5',
-                            { className: 'happyNewYear' },
-                            '\u72F8\u732B\u9884\u795D\u5927\u5BB6\u65B0\u6625\u6109\u5FEB\uFF01\u9E21\u5E74\u5409\u7965\uFF01'
                         )
                     ),
                     _react2.default.createElement(
