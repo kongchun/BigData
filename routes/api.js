@@ -63,7 +63,31 @@ router.get('/user', function(req, res) {
 	var openid = req.query.openid;
 	console.log(openid);
 	read.getUserData(openid).then(function(data){
-		res.send(data);
+		if(data && data.length > 0){
+			res.send(data);
+		}else{
+			var timestamp = Date.parse(new Date()).toString();
+			var newUser = {
+				"openid":timestamp,
+				"nickname" : '',
+				"type" : 0,
+				"collect" : [],
+				"marking" : {},
+				"sex": 1,
+				"languag": 'zh_CN',
+				"city": '苏州',
+				"province": '江苏',
+				"country": '中国',
+				"headimgurl": "",
+				"privilege": []
+			}
+			console.log(newUser)
+			read.setUserData(newUser).then(function(data){
+				res.cookie("userinfo", JSON.stringify(newUser))
+				res.send([newUser]);
+			})
+
+		}
 	}).catch(function(){
 		res.send([]);
 	})

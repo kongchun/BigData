@@ -244,22 +244,8 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 
 
 		}else{
-			return db.collection.insert({
-				"openid":openId,
-				"name" : name,
-				"type" : 0,
-				"collect" : [
-					{
-						"articleId" : articleId,
-						"collectTime" : collectDate,
-						"articleTitle" : articleTitle
-					}
-				],
-				"marking" : {}
-			}).then(function(data){
-				db.close();
-				return data;
-			})
+			db.close();
+			return null;
 		}
 	}).catch(function(error){
 		db.close();
