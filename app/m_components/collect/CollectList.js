@@ -27,12 +27,22 @@ class CollectList extends React.Component {
 		var data = this.state.data;
 		var collectList;
 		var collects = data.collect;
-		if(collects){
+		if(collects.length > 0){
 			collectList = collects.map((collectArticle)=>(
 				<li>
 					<CollectItem articleid={collectArticle.articleId} title={collectArticle.articleTitle} time={collectArticle.collectTime}/>
 				</li>
 			));
+		}else{
+			let height = document.documentElement.clientHeight + "px"
+			let styles = {
+				backgroundColor:"#FFFFFF",
+				height:height,
+				lineHeight:height,
+				textAlign:"center",
+				fontSize:"20px"
+			}
+			collectList = <div style={styles}>暂无收藏</div>
 		}
 		return ( <div className="collect-list">
 			<ul>
