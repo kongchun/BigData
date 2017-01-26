@@ -47,26 +47,37 @@ exports.articleWithHits = function(id) {
 			"id": id
 		});
 	}).then(function(data) {
-		let hits = parseInt(data.hits) + 1;
-		let id = parseInt(data.id);
-		data.hits = hits;
-		return db.collection.updateOne({
-			'id': id
-		}, {
-			'$set': {
-				'hits': hits
-			}
-		}).then(function() {
-			db.close();
-			return (data);
-		})
+		console.log("get------------------------------"+data)
+		return data
 	}).catch(function(error) {
 		db.close();
 		console.error(error)
 		throw error;
 	})
 }
-
+exports.addArticleWithHits = function(data){
+	let hits = parseInt(data.hits) + 1;
+	let id = parseInt(data.id);
+	data.hits = hits;
+	console.log("insert----------------------------"+hits)
+	return db.open("articles").then(function(collection) {
+		return collection.update({
+			'id': id
+		}, {
+			'$set': {
+				'hits': hits
+			}
+		})
+	}).then(function(data) {
+		console.log("insert----------------------------"+data)
+		db.close();
+		return (data);
+	}).catch(function(error) {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
 
 exports.articlesByIds = function(ids) {
 	db.close();
