@@ -42,6 +42,7 @@ class Article extends React.Component {
 				__html: article.html
 			};
 		}
+		let article_collect = article.length > 0 ? <ArticleCollect articleId={article.id} articleTitle={article.title}/>:"";
 		return (<div>
 			<section className="article-content-wrap ">
 	        	<div className="container">
@@ -65,7 +66,7 @@ class Article extends React.Component {
 								<div className="source-article-url">原网页由七只狸猫转码以便于移动设备阅读<a href={article.url}>查看原文</a></div>
 								<div className="article-operate-all">
 									<div className="collectArticle">
-										<ArticleCollect articleId={article.id} articleTitle={article.title}/>
+										{article_collect}
 									</div>
 
 								</div>
