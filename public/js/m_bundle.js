@@ -858,6 +858,10 @@ var _Pages = require('./Pages');
 
 var _Pages2 = _interopRequireDefault(_Pages);
 
+var _UserStoreActions = require('../actions/UserStoreActions');
+
+var _UserStoreActions2 = _interopRequireDefault(_UserStoreActions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1003,7 +1007,7 @@ var ArticleList = function (_React$Component) {
 
 exports.default = ArticleList;
 
-},{"../actions/ArticleListActions":2,"../stores/ArticleListStore":34,"./Pages":22,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
+},{"../actions/ArticleListActions":2,"../actions/UserStoreActions":6,"../stores/ArticleListStore":34,"./Pages":22,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

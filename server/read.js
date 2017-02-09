@@ -301,3 +301,18 @@ exports.cancelArticleCollect = function(openId,name,articleId){
 		});
 	})
 }
+
+exports.recordLog = function(action){
+	return db.open("action_log").then(function(collection){
+		console.log("action" + action)
+		console.log("type" + typeof action)
+		return collection.insert(action);
+	}).then(function(data) {
+		db.close();
+		return data;
+	}).catch(function(error){
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}

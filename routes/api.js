@@ -17,6 +17,15 @@ router.get('/articles', function(req, res) {
 
 router.get('/article/:id', function(req, res) {
 	var id = parseInt(req.params.id);
+	if(req.cookies["userinfo"] && req.cookies["userinfo"] != ""){
+		let openid = JSON.parse(req.cookies["userinfo"]).openid;
+		read.recordLog({
+			"openid":openid,
+			"action":1,
+			"artid":id,
+			"time":new Date()
+		})
+	}
 	read.articleWithHits(id).then(function(data) {
 		read.addArticleWithHits(data)
 		res.send(data);
@@ -87,6 +96,11 @@ router.get('/user', function(req, res) {
 				res.cookie("userinfo", JSON.stringify(newUser))
 				res.send([newUser]);
 			})
+			read.recordLog({
+				"openid":newUser.openid,
+				"action":0,
+				'time':new Date()
+			})
 
 		}
 	}).catch(function(){
@@ -100,6 +114,13 @@ router.post('/articles/setArticleCollect', function(req, res) {
 	var articleId = req.body.articleId;
 	var collectDate = req.body.collectDate;
 	var articleTitle = req.body.articleTitle;
+	read.recordLog({
+		"openid":openId,
+		"action":2,
+		"artid":articleId,
+		"title":articleTitle,
+		"time":new Date()
+	})
 	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle).then(function(data){
 		res.send(data);
 	}).catch(function(e){
@@ -111,6 +132,12 @@ router.post('/articles/cancelArticleCollect', function(req, res) {
 	var openId = req.body.openId;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
+	read.recordLog({
+		"openid":openId,
+		"action":3,
+		"artid":articleId,
+		"time":new Date()
+	})
 	read.cancelArticleCollect(openId,name,articleId).then(function(data){
 		res.send(data);
 	}).catch(function(e){
