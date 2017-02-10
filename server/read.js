@@ -214,6 +214,7 @@ exports.userData = function(userinfo) {
 		db.close();
 		console.error(error)
 		throw error;
+		return ;
 	})
 }
 
