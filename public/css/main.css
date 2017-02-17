@@ -1199,7 +1199,6 @@ a:visited {
   text-align: center;
   vertical-align: middle;
   height: 200px;
-  /* line-height: 200px;*/
 }
 .myInfo-container-list ul {
   list-style: none;
@@ -1307,28 +1306,15 @@ a:visited {
   text-align: center;
   line-height: 40px;
 }
-.sports-content-top {
-  width: 200px;
-  height: 150px;
-  margin: 30px auto;
-}
 .sports-content-center {
-  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 92%;
   margin: 0 auto;
-  text-align: center;
-  margin-bottom: 30px;
-}
-/*.happyNewYear{
-  border-top:1px solid #d0d0d0;
-  padding-top:20px;
-}*/
-.sports-content-bottom {
-  width: 80%;
-  margin: 0 auto;
-  border: 2px dotted #666;
-  border-radius: 30px;
-  padding: 10px;
-  margin-bottom: 50px;
+  text-align: right;
+  margin-top: 10px;
+  padding-bottom: 80px;
 }
 .sports-content-liyu {
   padding-left: 5px;
@@ -1402,7 +1388,7 @@ a:visited {
 }
 .limaoTips {
   position: relative;
-  bottom: 11px;
+  bottom: -18px;
 }
 .wordTips {
   position: absolute;
@@ -1425,3 +1411,79 @@ a:visited {
   left: -14px;
 }
 /*****重点段落样式end******/
+.item .carousel-caption {
+  width: 37px;
+  background: #f4645f;
+  opacity: 0.8;
+  font-size: 18px;
+  letter-spacing: 3px;
+  left: 75%;
+  margin-bottom: 30%;
+  color: #fff;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.carousel-control {
+  width: 30px;
+  height: 30px;
+  background: #ddd;
+  font-size: 30px;
+  margin: auto 15px;
+  opacity: 0.8;
+  color: #fff;
+  line-height: 30px;
+  vertical-align: middle;
+}
+.carousel-indicators li {
+  width: 16px;
+  height: 4px;
+  margin: 0px;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  margin-left: 3px;
+}
+.carousel-indicators .active {
+  width: 16px;
+  height: 4px;
+  background-color: #ddd;
+  margin-left: 3px;
+}
+.sports-content-wrap {
+  background: #fff;
+}
+.sports-content-address {
+  /*padding:20px;*/
+  padding-top: 5px;
+  letter-spacing: 3px;
+  border-bottom: 1px solid #e1e1e1;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: #445566;
+}
+.sports-content-address .title {
+  font-size: 18px;
+}
+.sports-content-address .address {
+  font-size: 12px;
+  padding-left: 2px;
+}
+.sports-content-center-left {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.sports-content-center-right {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+  /*margin-left: 20px;*/
+  margin: auto 0;
+}
+.sports-content-bottom-wrap {
+  width: 90%;
+  margin: 0 auto;
+  /*padding:10px;*/
+  border-bottom: 1px solid #ddd;
+  text-align: justify;
+  font-size: 16px;
+}

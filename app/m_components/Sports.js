@@ -52,21 +52,74 @@ class Sports extends React.Component {
         return (<div>
             <div className="sports-content-wrap">
                 <div className="sports-content-top">
-                    <img src="../images/timg.png" alt="七只狸猫" width="200" height="150"/>
-                </div>
-                <div className="sports-content-center">
-                    <h4 >攻城狮回家过年了...</h4>
-                </div>
-                <div className="sports-content-circle">
-                    <div className="sports-content-circle-xsmall"></div>
+                    <div id="myCarousel" className="carousel slide">
+                        <ol className="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                            <li data-target="#myCarousel" data-slide-to="3"></li>
+                            <li data-target="#myCarousel" data-slide-to="4"></li>
+                            <li data-target="#myCarousel" data-slide-to="5"></li>
+                            <li data-target="#myCarousel" data-slide-to="6"></li>
+                        </ol>
+                        <div className="carousel-inner">
+                            <div className="item">
+                                <img src="../images/美仁狸.png" alt="美仁狸"/>
+                                <div className="carousel-caption">美仁狸
+                                </div>
+                            </div>
+                            <div className="item">
+                                <img src="../images/通贵狸.png" alt="通贵狸"/>
+                                <div className="carousel-caption">通贵狸
+                                </div>
+                            </div>
+                            <div className="item">
+                                <img src="../images/文星狸.png" alt="文星狸"/>
+                                <div className="carousel-caption">文星狸</div>
+                            </div>
+
+                            <div className="item">
+                                <img src="../images/彩云狸.png" alt="彩云狸"/>
+                                <div className="carousel-caption">彩云狸</div>
+                            </div>
+
+                            <div className="item">
+                                <img src="../images/小白狸.png" alt="白公狸"/>
+                                <div className="carousel-caption">白公狸</div>
+                            </div>
+
+                            <div className="item">
+                                <img src="../images/海涌狸.png" alt="海涌狸"/>
+                                <div className="carousel-caption">海涌狸</div>
+                            </div>
+
+                            <div className="item active">
+                                <img src="../images/分水狸.png" alt="分水狸"/>
+                                <div className="carousel-caption">分水狸</div>
+                            </div>
+
+                         </div>
+                        <a className="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                        <a className="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
                 </div>
                 <div className="sports-content-bottom">
-                    <h5 >狸猫语录：</h5>
-                    <div className="sports-content-liyu">{getLiyu(liyu)}</div>
+                    <p className="sports-content-bottom-wrap">
+                        <div className="sports-content-address"><span className="title">【七只狸猫】</span><div className="address"><i className='glyphicon glyphicon-map-marker'></i>中国·苏州·七里山塘</div></div>
+                        <p>相传，明朝初年刘伯温来苏州时，感到山塘河长贯卧伏在白堤前，状如巨龙，善于阴阳占卜的刘伯温预感到将与朱元璋争江山，要出真龙天子，他就施法在山塘桥至西山庙桥沿途的七座石级拱桥对直处分别设置了一只青石狸头。青石狸状如卧龙，设置七只石狸猫头在山塘街上，并分别予以名号传说七狸有千斤巨锁之功，能牢固地永久锁住龙身，朱明江山就可传至万世万万世了，并赋予美名“美仁狸”,在山塘桥畔;“通贵狸”,在通贵桥畔;“文星狸”,在星桥畔;“彩云狸”,在彩云桥畔;“海涌狸”,在青山桥畔;“分水狸”,在西山庙桥畔;“白公狸”,在普济桥畔。据说这七只狸有千斤巨锁功能，能牢固地锁住龙身，刘伯温以破坏风水，达到整治目的。当时，在这些桥堍都有一家豆腐店，据说为狸喜食豆腐而专门设置,狸至三更深夜出来觅食。</p>
+                    </p>
                 </div>
-                <div className="sports-content-footer">
-                    <div className="sports-content-address"><i className='glyphicon glyphicon-map-marker'></i>中国|苏州|七里山塘|七只狸猫</div>
+                <div className="sports-content-center">
+                    <div className="erweima sports-content-center-left">
+                        <img src="../images/limao.jpg" alt="七只狸猫" width="100" height="100"/>
+                    </div>
+                    <div className="sports-content-center-right">
+                        <div>带你静观人工智能风起云涌<div>花开花落.</div>
+                            <div>【-我是狸叔砖家】</div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>);
     }

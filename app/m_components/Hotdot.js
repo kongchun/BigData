@@ -83,13 +83,16 @@ class Hotdot extends React.Component {
                 </li>
             ));
             if(monthList.length==0){
-                monthList = <div className = "noData">哇呜，这个页面的数据没有准备好,去其他页面瞅瞅？</div>
+                monthList = <div className = "noData">Whops,这个页面的数据没有准备好,去其他页面瞅瞅？</div>
             }
         }else{
             var weekList = (<span>正在构建，敬请期待...</span>);
             var monthList = (<span>正在构建，敬请期待...</span>);
         }
-
+        //修改数字下方的颜色，跟随趋势
+        if($(".glyphicon-trend").hasClass("glyphicon-arrow-down")){
+            $(".list-group-item").find(".badge").css("backgroundColor","#4F81E3");
+        }
         return (<div>
             <div className="content-container">
                 <div className="week-search">
