@@ -64,37 +64,37 @@ class Sports extends React.Component {
                         </ol>
                         <div className="carousel-inner">
                             <div className="item">
-                                <img src="../images/美仁狸.png" alt="美仁狸"/>
+                                <img src="../images/meiren.png" alt="美仁狸"/>
                                 <div className="carousel-caption">美仁狸
                                 </div>
                             </div>
                             <div className="item">
-                                <img src="../images/通贵狸.png" alt="通贵狸"/>
+                                <img src="../images/tonggui.png" alt="通贵狸"/>
                                 <div className="carousel-caption">通贵狸
                                 </div>
                             </div>
                             <div className="item">
-                                <img src="../images/文星狸.png" alt="文星狸"/>
+                                <img src="../images/wenxing.png" alt="文星狸"/>
                                 <div className="carousel-caption">文星狸</div>
                             </div>
 
                             <div className="item">
-                                <img src="../images/彩云狸.png" alt="彩云狸"/>
+                                <img src="../images/caiyun.png" alt="彩云狸"/>
                                 <div className="carousel-caption">彩云狸</div>
                             </div>
 
                             <div className="item">
-                                <img src="../images/小白狸.png" alt="白公狸"/>
+                                <img src="../images/xiaobai.png" alt="白公狸"/>
                                 <div className="carousel-caption">白公狸</div>
                             </div>
 
                             <div className="item">
-                                <img src="../images/海涌狸.png" alt="海涌狸"/>
+                                <img src="../images/haiyong.png" alt="海涌狸"/>
                                 <div className="carousel-caption">海涌狸</div>
                             </div>
 
                             <div className="item active">
-                                <img src="../images/分水狸.png" alt="分水狸"/>
+                                <img src="../images/fenshui.png" alt="分水狸"/>
                                 <div className="carousel-caption">分水狸</div>
                             </div>
 
