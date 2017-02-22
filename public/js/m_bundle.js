@@ -2266,101 +2266,7 @@ var Sports = function (_React$Component) {
                         _react2.default.createElement(
                             'div',
                             { id: 'myCarousel', className: 'carousel slide' },
-                            _react2.default.createElement(
-                                'ol',
-                                { className: 'carousel-indicators' },
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '0', className: 'active' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '1' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '2' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '3' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '4' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '5' }),
-                                _react2.default.createElement('li', { 'data-target': '#myCarousel', 'data-slide-to': '6' })
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'carousel-inner' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/meiren.png', alt: '\u7F8E\u4EC1\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u7F8E\u4EC1\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/tonggui.png', alt: '\u901A\u8D35\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u901A\u8D35\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/wenxing.png', alt: '\u6587\u661F\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u6587\u661F\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/caiyun.png', alt: '\u5F69\u4E91\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u5F69\u4E91\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/xiaobai.png', alt: '\u767D\u516C\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u767D\u516C\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item' },
-                                    _react2.default.createElement('img', { src: '../images/haiyong.png', alt: '\u6D77\u6D8C\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u6D77\u6D8C\u72F8'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'item active' },
-                                    _react2.default.createElement('img', { src: '../images/fenshui.png', alt: '\u5206\u6C34\u72F8' }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'carousel-caption' },
-                                        '\u5206\u6C34\u72F8'
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'a',
-                                { className: 'carousel-control left', href: '#myCarousel', 'data-slide': 'prev' },
-                                '\u2039'
-                            ),
-                            _react2.default.createElement(
-                                'a',
-                                { className: 'carousel-control right', href: '#myCarousel', 'data-slide': 'next' },
-                                '\u203A'
-                            )
+                            _react2.default.createElement('img', { className: 'img-responsive', src: '../images/headImg.jpg', alt: '\u4E03\u53EA\u72F8\u732B' })
                         )
                     ),
                     _react2.default.createElement(
@@ -2375,19 +2281,23 @@ var Sports = function (_React$Component) {
                                 _react2.default.createElement(
                                     'span',
                                     { className: 'title' },
-                                    '\u3010\u4E03\u53EA\u72F8\u732B\u3011'
+                                    '\u4E03\u53EA\u72F8\u732B'
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'address' },
-                                    _react2.default.createElement('i', { className: 'glyphicon glyphicon-map-marker' }),
-                                    '\u4E2D\u56FD\xB7\u82CF\u5DDE\xB7\u4E03\u91CC\u5C71\u5858'
+                                    '\u4E2D\u56FD\u82CF\u5DDE\xB7\u4E03\u91CC\u5C71\u5858'
                                 )
                             ),
                             _react2.default.createElement(
                                 'p',
                                 null,
-                                '\u76F8\u4F20\uFF0C\u660E\u671D\u521D\u5E74\u5218\u4F2F\u6E29\u6765\u82CF\u5DDE\u65F6\uFF0C\u611F\u5230\u5C71\u5858\u6CB3\u957F\u8D2F\u5367\u4F0F\u5728\u767D\u5824\u524D\uFF0C\u72B6\u5982\u5DE8\u9F99\uFF0C\u5584\u4E8E\u9634\u9633\u5360\u535C\u7684\u5218\u4F2F\u6E29\u9884\u611F\u5230\u5C06\u4E0E\u6731\u5143\u748B\u4E89\u6C5F\u5C71\uFF0C\u8981\u51FA\u771F\u9F99\u5929\u5B50\uFF0C\u4ED6\u5C31\u65BD\u6CD5\u5728\u5C71\u5858\u6865\u81F3\u897F\u5C71\u5E99\u6865\u6CBF\u9014\u7684\u4E03\u5EA7\u77F3\u7EA7\u62F1\u6865\u5BF9\u76F4\u5904\u5206\u522B\u8BBE\u7F6E\u4E86\u4E00\u53EA\u9752\u77F3\u72F8\u5934\u3002\u9752\u77F3\u72F8\u72B6\u5982\u5367\u9F99\uFF0C\u8BBE\u7F6E\u4E03\u53EA\u77F3\u72F8\u732B\u5934\u5728\u5C71\u5858\u8857\u4E0A\uFF0C\u5E76\u5206\u522B\u4E88\u4EE5\u540D\u53F7\u4F20\u8BF4\u4E03\u72F8\u6709\u5343\u65A4\u5DE8\u9501\u4E4B\u529F\uFF0C\u80FD\u7262\u56FA\u5730\u6C38\u4E45\u9501\u4F4F\u9F99\u8EAB\uFF0C\u6731\u660E\u6C5F\u5C71\u5C31\u53EF\u4F20\u81F3\u4E07\u4E16\u4E07\u4E07\u4E16\u4E86\uFF0C\u5E76\u8D4B\u4E88\u7F8E\u540D\u201C\u7F8E\u4EC1\u72F8\u201D,\u5728\u5C71\u5858\u6865\u7554;\u201C\u901A\u8D35\u72F8\u201D,\u5728\u901A\u8D35\u6865\u7554;\u201C\u6587\u661F\u72F8\u201D,\u5728\u661F\u6865\u7554;\u201C\u5F69\u4E91\u72F8\u201D,\u5728\u5F69\u4E91\u6865\u7554;\u201C\u6D77\u6D8C\u72F8\u201D,\u5728\u9752\u5C71\u6865\u7554;\u201C\u5206\u6C34\u72F8\u201D,\u5728\u897F\u5C71\u5E99\u6865\u7554;\u201C\u767D\u516C\u72F8\u201D,\u5728\u666E\u6D4E\u6865\u7554\u3002\u636E\u8BF4\u8FD9\u4E03\u53EA\u72F8\u6709\u5343\u65A4\u5DE8\u9501\u529F\u80FD\uFF0C\u80FD\u7262\u56FA\u5730\u9501\u4F4F\u9F99\u8EAB\uFF0C\u5218\u4F2F\u6E29\u4EE5\u7834\u574F\u98CE\u6C34\uFF0C\u8FBE\u5230\u6574\u6CBB\u76EE\u7684\u3002\u5F53\u65F6\uFF0C\u5728\u8FD9\u4E9B\u6865\u580D\u90FD\u6709\u4E00\u5BB6\u8C46\u8150\u5E97\uFF0C\u636E\u8BF4\u4E3A\u72F8\u559C\u98DF\u8C46\u8150\u800C\u4E13\u95E8\u8BBE\u7F6E,\u72F8\u81F3\u4E09\u66F4\u6DF1\u591C\u51FA\u6765\u89C5\u98DF\u3002'
+                                '\u82CF\u5DDE\u5C71\u5858\u8857\u662F\u6709\u7740\u5343\u5E74\u5386\u53F2\u7684\u4E2D\u56FD\u6587\u5316\u540D\u8857\u3002'
+                            ),
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                '\u76F8\u4F20,\u660E\u671D\u521D\u5E74\u5218\u4F2F\u6E29\u6765\u82CF\u5DDE\u65F6\uFF0C\u611F\u5230\u5C71\u5858\u6CB3\u5367\u4F0F\u767D\uFF0C\u72B6\u5982\u5DE8\u9F99\uFF0C\u9884\u611F\u5230\u8981\u51FA\u771F\u9F99\u5929\u5B50\u4E0E\u6731\u5143\u748B\u4E89\u6C5F\u5C71\uFF0C\u4E8E\u662F\u65BD\u6CD5\u8BBE\u7F6E\u4E03\u53EA\u77F3\u72F8\u732B\u5934\u5728\u5C71\u5858\u8857\u4E0A\u3002\u636E\u8BF4\u8FD9\u4E03\u53EA\u72F8\u6709\u5343\u65A4\u5DE8\u9501\u529F\u80FD\uFF0C\u80FD\u7262\u56FA\u5730\u9501\u4F4F\u9F99\u8EAB\uFF0C\u4EE5\u6B64\u4FDD\u4F4F\u6731\u660E\u6C5F\u5C71\u4F20\u81F3\u4E07\u4E16\u4E07\u4E07\u4E16\u3002'
                             )
                         )
                     ),
@@ -2405,16 +2315,21 @@ var Sports = function (_React$Component) {
                             _react2.default.createElement(
                                 'div',
                                 null,
+                                '\u805A\u8D44\u8BAF|\u61C2\u63A8\u8350|\u5212\u91CD\u70B9|\u770B\u8D8B\u52BF'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                null,
                                 '\u5E26\u4F60\u9759\u89C2\u4EBA\u5DE5\u667A\u80FD\u98CE\u8D77\u4E91\u6D8C',
                                 _react2.default.createElement(
                                     'div',
                                     null,
-                                    '\u82B1\u5F00\u82B1\u843D.'
+                                    '\u82B1\u5F00\u82B1\u843D'
                                 ),
                                 _react2.default.createElement(
                                     'div',
                                     null,
-                                    '\u3010-\u6211\u662F\u72F8\u53D4\u7816\u5BB6\u3011'
+                                    '--\u72F8\u53D4\xB7\u4E03\u53EA\u72F8\u732B'
                                 )
                             )
                         )
