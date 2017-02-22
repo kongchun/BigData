@@ -90,7 +90,7 @@ gulp.task('m_browserify', ['browserify-vendor'], function() {
 });
 
 gulp.task('styles', function() {
-	return gulp.src('app/stylesheets/main.less')
+	return gulp.src(['app/stylesheets/main.less','app/stylesheets/fonts.css'])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())

@@ -31,9 +31,9 @@ class MyInfo extends React.Component {
             <div className="myInfo-content-wrap">
                <div className="myInfo-header-banner">
                     <div className="myInfo-header-loginInfo">
-                        {(!userinfo.nickname)?<div className="myInfo-header-image-border">
-                            <div className="myInfo-header-image">登&nbsp;录</div>
-                            <span className="myInfo-header-loginTip">登录推荐更精准</span>
+                        {(!userinfo.nickname)?<div>
+                            <div className="icon-lmuser-circle-o"></div>
+                            <div className="login-span">登录七只狸猫</div>
                         </div> : <div className="myInfo-header-image-border">
                                 <img className="user-thumnail-size" src={userinfo.headimgurl} alt="头像"/>
                             <div className="myInfo-header-name">{userinfo.nickname}</div>
@@ -44,23 +44,12 @@ class MyInfo extends React.Component {
                    <ul>
                        <li>
                            <Link to={'/collection'} className="container-list">
-                               <span className="myInfo-label">我的收藏</span><span className="glyphicon glyphicon-chevron-right glyphicon-next"></span>
-                           </Link>
-                       </li>
-                       <li>
-                           <Link to={'/note'} className="container-list">
-                               <span className="myInfo-label">我的笔记</span><span className="glyphicon glyphicon-chevron-right glyphicon-next"></span>
+                               <span className="myInfo-label">我的收藏</span><i className="icon-lmangle-right"></i>
                            </Link>
                        </li>
                        <li>
                            <Link to={'/fedBack'}  className="container-list">
-                                <span className="myInfo-label">我要反馈</span><span className="glyphicon glyphicon-chevron-right glyphicon-next"></span>
-                           </Link>
-                       </li>
-
-                       <li>
-                           <Link to={'/aboutUs'} className="container-list">
-                               <span className="myInfo-label">关于我们</span><span className="glyphicon glyphicon-chevron-right glyphicon-next"></span>
+                                <span className="myInfo-label">我要反馈</span><i className="icon-lmangle-right"></i>
                            </Link>
                        </li>
                    </ul>

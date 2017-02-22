@@ -1202,6 +1202,8 @@ a:link,a:active,a:visited{
 .myInfo-header-banner{
   height:200px;
   background:#505050;
+  background-image: -webkit-linear-gradient(185deg, #505050, #aaa);
+  background-image: linear-gradient(185deg, #505050, #aaa);
 }
 
 .myInfo-header-image-border{
@@ -1209,7 +1211,7 @@ a:link,a:active,a:visited{
   width:100px;
   height:100px;
   left: 50%;
-  margin-left: -40px;
+  margin-left: -50px;
   top:50px;
 }
 .myInfo-header-image{
@@ -1241,8 +1243,8 @@ a:link,a:active,a:visited{
   color:#fff;
 }
 .myInfo-container-list{
-  background: #fff;
-  height: 500px;
+ /* background: #fff;
+  height: 500px;*/
 
 }
 .myInfo-header-name{
@@ -1255,21 +1257,29 @@ a:link,a:active,a:visited{
 }
 .myInfo-container-list ul{
   list-style: none;
+  padding:0;
+  margin: 0;
+
 }
 .myInfo-container-list ul>li{
-  margin:0;
+  margin-top:6px;
   padding:0;
   list-style: none;
-  height:50px;
-  border-bottom: 1px solid #ccc;
+  height:35px;
+  background: #fff;
+  border: 1px solid #eeeeee;
+}
+.myInfo-container-list ul>li:first-child{
+  margin-top:10px;
 }
 .container-list{
   display: flex;
+  padding-left: 10px;
 }
 .myInfo-container-list .myInfo-label{
-  line-height: 50px;
-  vert-align: middle;
-  font-size: 14px;
+  vertical-align: middle;
+  line-height: 35px;
+  font-size: 12px;
   color: #666;
   flex: 3;
   text-align: left;
@@ -1530,4 +1540,25 @@ a:link,a:active,a:visited{
 }
 .content-wrap .container .list{
   padding-top:20px;
+}
+.icon-lmangle-right{
+  color:#666;
+  line-height: 35px;
+  margin-right: 15px;
+}
+.icon-lmuser-circle-o {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  color: #f4645f;
+  font-size: 64px;
+  left: 50%;
+  top: 50px;
+  margin-left: -25px;
+}
+.login-span{
+  color: #fff;
+  margin-top: 18px;
+  text-align: center;
+  letter-spacing: 2px;
 }
