@@ -79,7 +79,7 @@ class Article extends React.Component {
 						</main>
 						<aside className="col-md-4 sidebar">
 							<div className="widget">
-								<h4 className="title">相关推荐</h4>
+								<h4 className="title">狸叔推荐</h4>
 								<Similar ids={article.similar}/>
 							</div>
 						</aside>
