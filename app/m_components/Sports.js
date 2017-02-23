@@ -26,9 +26,9 @@ class Sports extends React.Component {
                         <img src="../images/limao.jpg" alt="七只狸猫" width="100" height="100"/>
                     </div>
                     <div className="sports-content-center-right">
-                        <div>带你静观人工智能风起云涌,花开花落
-                            <div>狸叔给你划重点</div>
-                            <div>--狸叔@七只狸猫</div>
+                        <div>
+                            狸叔给你聚资讯,划重点,带你静观人工智能风起云涌,花开花落
+                            <div>By.狸叔@七只狸猫</div>
                         </div>
                     </div>
                 </div>

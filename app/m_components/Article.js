@@ -77,12 +77,32 @@ class Article extends React.Component {
 
 						</article>
 						</main>
+
 						<aside className="col-md-4 sidebar">
 							<div className="widget">
 								<h4 className="title">狸叔推荐</h4>
 								<Similar ids={article.similar}/>
 							</div>
 						</aside>
+						<aside className="col-md-4 sidebar">
+						<div className="widget">
+						  <h4 className="title">勾搭狸叔</h4>
+							<div className="limao-ad-info">
+								<div className="sports-content-center">
+									<div className="erweima sports-content-center-left">
+										<img src="../images/limao.jpg" alt="七只狸猫" width="100" height="100"/>
+									</div>
+									<div className="sports-content-center-right">
+										<div>
+											狸叔划重点,带你静观人工智能风起云涌,长按左侧二维码关注我。
+											<div className="author-lishu">By.狸叔</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</aside>
+
 					</div>
 				</div>
 			</section>
