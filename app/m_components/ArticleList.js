@@ -11,7 +11,8 @@ class ArticleList extends React.Component {
         super(props);
         this.state = ArticleListStore.getState();
         this.onChange = this.onChange.bind(this);
-        this.limit = 20;
+        this.limit = 7;
+        this.page = 1;
     }
 
     componentDidMount() {
@@ -21,22 +22,29 @@ class ArticleList extends React.Component {
 
         const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
         ArticleListActions.getArticles(page, this.limit);
+        var that = this;
+        $(".pagination").on('click',function(){
+            that.setPage();
+            ArticleListActions.getMoreArticles(that.getPage(), that.limit).then(
+                    data => that.addNewArticle(data.data)
+            );
+        })
     }
 
     componentWillUnmount() {
         ArticleListStore.unlisten(this.onChange);
     }
 
-    componentDidUpdate(prevProps) {
-        const lastPage = prevProps.params && prevProps.params.page ? prevProps.params.page : 1;
-        const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
-        if (lastPage != page) {
-            ArticleListActions.getArticles(this.props.params.page, this.limit);
-        } else {
-            scroll(0, 0);
-        }
-
-    }
+    //componentDidUpdate(prevProps) {
+    //    const lastPage = prevProps.params && prevProps.params.page ? prevProps.params.page : 1;
+    //    const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
+    //    if (lastPage != page) {
+    //        ArticleListActions.getArticles(this.props.params.page, this.limit);
+    //    } else {
+    //        scroll(0, 0);
+    //    }
+    //
+    //}
 
     onChange(state) {
         this.setState(state);
@@ -44,7 +52,10 @@ class ArticleList extends React.Component {
     }
 
     getPage() {
-        return this.props.params && this.props.params.page ? this.props.params.page : 1;
+        return this.page
+    }
+    setPage() {
+        this.page = this.page + 1;
     }
 
     getThumbnail(article) {
@@ -56,7 +67,12 @@ class ArticleList extends React.Component {
         }
         return "";
     }
-
+    addNewArticle(news){
+        this.setState({
+            data:{
+                data:this.state.data.data.concat(news)
+            }});
+    }
     render() {
         function subContent(str) {
             return str.substr(0, 200);
@@ -64,7 +80,7 @@ class ArticleList extends React.Component {
 
         let articles = this.state.data.data;
         let artclelist = articles.map((article) => (
-            <article key={article.id} id={article.id} className='post animated fadeIn'>
+            <article id={article.id} className='post animated fadeIn'>
 
                 {this.getThumbnail(article)}
                 <div className="intro">
@@ -84,9 +100,12 @@ class ArticleList extends React.Component {
                     <div className="row list">
                         <main className="col-md-12 main-content ">
                             {artclelist}
-                            <Pages page={this.state.data.page} limit={this.limit} count={this.state.data.count}
-                                   url="#/page/"/>
                         </main>
+                        <ul className="pagination">
+                            <li>
+                                再来几篇...
+                            </li>
+                        </ul>
                     </div>
 
                 </div>

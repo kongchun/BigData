@@ -17,6 +17,11 @@ class ArticleListActions {
 		ArticleSource.page(page, limit).then((data) => this.onSuccess(data));
 
 	}
+	getMoreArticles(page, limit) {
+		return ArticleSource.page(page, limit).then(function(data){
+			return data
+		});
+	}
 }
 
 export default alt.createActions(ArticleListActions);
