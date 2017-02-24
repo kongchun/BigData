@@ -1416,15 +1416,14 @@ a:visited {
   text-align: center;
   top: 1px;
 }
-.imgTips {
-  /*position: absolute;
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    background: none, url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOXB4IiBoZWlnaHQ9IjlweCIgdmlld0JveD0iMCAwIDkgOSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOSA5IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiM5ODY2NjUiIGQ9Ik00LjUsMEMyLjAxNCwwLDAsMi4wMTQsMCw0LjVTMi4wMTQsOSw0LjUsOVM5LDYuOTg2LDksNC41UzYuOTg2LDAsNC41LDB6IE01LjAwNyw1LjAwMmgxLjQ5TDQuNTE0LDcuMDA4DQoJbC0yLjA0LTIuMDA2aDEuNTJ2LTNoMS4wMTIiLz4NCjwvc3ZnPg0K") no-repeat;
-    cursor: pointer;
-    top: 6px;
-    left:-14px;*/
+.icon-lm-uparrow-up-alt1 {
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+  top: 9px;
+  left: -58px;
 }
 /*****重点段落样式end******/
 .item .carousel-caption {

@@ -30,4 +30,35 @@
 .icon-lmangle-right:before {
     content: "\e900";
 }
+@font-face {
+    font-family: 'limaoUp';
+    src:  url('fonts/limaoUp.eot?z8t190');
+    src:  url('fonts/limaoUp.eot?z8t190#iefix') format('embedded-opentype'),
+    url('fonts/limaoUp.ttf?z8t190') format('truetype'),
+    url('fonts/limaoUp.woff?z8t190') format('woff'),
+    url('fonts/limaoUp.svg?z8t190#limaoUp') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-lm-up"], [class*=" icon-lm-up"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'limaoUp' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lm-uparrow-up-alt1:before {
+    content: "\e900";
+}
+
+
 
