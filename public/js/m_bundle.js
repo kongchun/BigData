@@ -1207,55 +1207,72 @@ var Footer = function (_React$Component) {
     }
 
     _createClass(Footer, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $(".footer-nav .navbar").headroom({
+                tolerance: 2,
+                offset: 50,
+                classes: {
+                    initial: "animated",
+                    pinned: "slideInUp",
+                    unpinned: "slideOutDown"
+                }
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'nav',
-                { className: 'navbar navbar-default navbar-fixed-bottom', role: 'navigation' },
+                'div',
+                { className: 'footer-nav' },
                 _react2.default.createElement(
-                    'div',
-                    { className: 'container-fluid' },
+                    'nav',
+                    { className: 'navbar navbar-default navbar-fixed-bottom', role: 'navigation' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'nav-tab' },
+                        { className: 'container-fluid' },
                         _react2.default.createElement(
-                            _reactRouter.IndexLink,
-                            { to: '/', className: 'tab-item', activeClassName: 'tab-item-active' },
-                            _react2.default.createElement('div', { className: 'glyphicon glyphicon-th-list' }),
+                            'div',
+                            { className: 'nav-tab' },
                             _react2.default.createElement(
-                                'div',
-                                null,
-                                '\u8D44\u8BAF'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            _reactRouter.IndexLink,
-                            { to: '/hotdot', className: 'tab-item', activeClassName: 'tab-item-active' },
-                            _react2.default.createElement('div', { className: 'glyphicon glyphicon-signal' }),
+                                _reactRouter.IndexLink,
+                                { to: '/', className: 'tab-item', activeClassName: 'tab-item-active' },
+                                _react2.default.createElement('div', { className: 'glyphicon glyphicon-th-list' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    '\u8D44\u8BAF'
+                                )
+                            ),
                             _react2.default.createElement(
-                                'div',
-                                null,
-                                '\u8D8B\u52BF'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            _reactRouter.IndexLink,
-                            { to: '/sports', className: 'tab-item', activeClassName: 'tab-item-active' },
-                            _react2.default.createElement('div', { className: 'glyphicon glyphicon-globe' }),
+                                _reactRouter.IndexLink,
+                                { to: '/hotdot', className: 'tab-item', activeClassName: 'tab-item-active' },
+                                _react2.default.createElement('div', { className: 'glyphicon glyphicon-signal' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    '\u8D8B\u52BF'
+                                )
+                            ),
                             _react2.default.createElement(
-                                'div',
-                                null,
-                                '\u4E13\u5BB6'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            _reactRouter.IndexLink,
-                            { to: '/myInfo', className: 'tab-item', activeClassName: 'tab-item-active' },
-                            _react2.default.createElement('div', { className: 'glyphicon glyphicon-user' }),
+                                _reactRouter.IndexLink,
+                                { to: '/sports', className: 'tab-item', activeClassName: 'tab-item-active' },
+                                _react2.default.createElement('div', { className: 'glyphicon glyphicon-globe' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    '\u4E13\u5BB6'
+                                )
+                            ),
                             _react2.default.createElement(
-                                'div',
-                                null,
-                                '\u6211\u7684'
+                                _reactRouter.IndexLink,
+                                { to: '/myInfo', className: 'tab-item', activeClassName: 'tab-item-active' },
+                                _react2.default.createElement('div', { className: 'glyphicon glyphicon-user' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    '\u6211\u7684'
+                                )
                             )
                         )
                     )

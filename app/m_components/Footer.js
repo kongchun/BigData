@@ -3,9 +3,20 @@ import {
     IndexLink
     } from 'react-router';
 class Footer extends React.Component {
+    componentDidMount() {
+        $(".footer-nav .navbar").headroom({
+            tolerance: 2,
+            offset: 50,
+            classes: {
+                initial: "animated",
+                pinned: "slideInUp",
+                unpinned: "slideOutDown"
+            }
+        });
 
+    }
     render() {
-        return (
+        return (<div className="footer-nav">
             <nav className="navbar navbar-default navbar-fixed-bottom" role="navigation">
                 <div className="container-fluid">
                     <div className="nav-tab">
@@ -28,7 +39,7 @@ class Footer extends React.Component {
                     </div>
                 </div>
             </nav>
-        );
+        </div> );
     }
 }
 
