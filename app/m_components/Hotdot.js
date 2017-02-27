@@ -40,19 +40,23 @@ class Hotdot extends React.Component {
     getUpOrDown(curData,preData,isWeek){
         var preDataItem = isWeek ? preData.week:preData.month;
         if(preData==false || preData == [] || preDataItem==undefined){
-            return (<span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>);
+            return (<span className="hotdotRight"><span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>
+            <span className="badge">{curData.value}</span></span>);
         }else{
             for(var i = 0;i < preDataItem.length;i++){
                 if(preDataItem[i].word == curData.word){
                     if(preDataItem[i].value < curData.value){
-                        return (<span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>);
+                        return (<span className="hotdotRight"><span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>
+            <span className="badge">{curData.value}</span></span>);
                     }else{
-                        return (<span className="glyphicon-trend glyphicon glyphicon-arrow-down"></span>);
+                        return (<span className="hotdotRight"><span className="glyphicon-trend glyphicon glyphicon-arrow-down"></span>
+            <span className="badge" style={{backgroundColor:"#4F81E3"}}>{curData.value}</span></span>);
                     }
                 }
             }
         }
-        return (<span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>);
+        return (<span className="hotdotRight"><span className="glyphicon-trend glyphicon glyphicon-arrow-up"></span>
+            <span className="badge">{curData.value}</span></span>);
     }
     render() {
         var hotdotData = (this.state.data);
@@ -67,7 +71,6 @@ class Hotdot extends React.Component {
             var weekList = firstHotData.week.map((weekItem,i)=>(
                 <li className="list-group-item" key={i}>
                     {this.getUpOrDown(weekItem,preHotData,true)}
-                    <span className="badge">{weekItem.value}</span>
                     {weekItem.word}
                 </li>
             ));
@@ -78,7 +81,6 @@ class Hotdot extends React.Component {
             var monthList = firstHotData.month.map((monthItem,i)=>(
                 <li className="list-group-item" key={i}>
                     {this.getUpOrDown(monthItem,preHotData,false)}
-                    <span className="badge">{monthItem.value}</span>
                     {monthItem.word}
                 </li>
             ));
@@ -88,10 +90,6 @@ class Hotdot extends React.Component {
         }else{
             var weekList = (<span>正在构建，敬请期待...</span>);
             var monthList = (<span>正在构建，敬请期待...</span>);
-        }
-        //修改数字下方的颜色，跟随趋势
-        if($(".glyphicon-trend").hasClass("glyphicon-arrow-down")){
-            $(".list-group-item").find(".badge").css("backgroundColor","#4F81E3");
         }
         return (<div>
             <div className="content-container">

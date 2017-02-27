@@ -4,15 +4,15 @@ import {
     } from 'react-router';
 class Footer extends React.Component {
     componentDidMount() {
-        $(".footer-nav .navbar").headroom({
-            tolerance: 2,
-            offset: 50,
+        /*$(".footer-nav .navbar").headroom({
+            tolerance: 0,
+            offset: 0,
             classes: {
                 initial: "animated",
                 pinned: "slideInUp",
                 unpinned: "slideOutDown"
             }
-        });
+        });*/
 
     }
     render() {

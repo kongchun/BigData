@@ -1108,6 +1108,9 @@ a:visited {
 .list-group-item:last-child {
   border-radius: 0;
 }
+.list-group-item > .hotdotRight > .badge {
+  float: right;
+}
 .glyphicon-trend {
   float: right;
   color: #f4645f;
