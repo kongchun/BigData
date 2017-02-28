@@ -103,7 +103,7 @@ class ArticleList extends React.Component {
                         </main>
                         <ul className="pagination">
                             <li>
-                                再来几篇...
+                                再来七篇
                             </li>
                         </ul>
                     </div>
