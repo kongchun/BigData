@@ -42,7 +42,8 @@ gulp.task('vendor', ['vendor-css'], function() {
 var dependencies = [
 	'alt',
 	'react',
-	'react-router'
+	'react-router',
+	'jweixin'
 ];
 
 /*
