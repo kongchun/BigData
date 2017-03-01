@@ -641,7 +641,12 @@ var Article = function (_React$Component) {
 												'\u9605\u8BFB\u6B21\u6570\uFF1A',
 												article.hits
 											),
-											_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id })
+											_react2.default.createElement(
+												'i',
+												{ className: 'fa fa-folder-open-o' },
+												'\u65F6\u95F4\uFF1A',
+												article.hits
+											)
 										),
 										_react2.default.createElement(
 											'div',
@@ -1065,7 +1070,7 @@ var ArticleList = function (_React$Component) {
                             _react2.default.createElement(
                                 'li',
                                 null,
-                                '\u518D\u6765\u51E0\u7BC7...'
+                                '\u518D\u6765\u4E03\u7BC7'
                             )
                         )
                     )
@@ -2347,7 +2352,7 @@ var Sports = function (_React$Component) {
                             _react2.default.createElement(
                                 'p',
                                 null,
-                                '\u76F8\u4F20,\u660E\u671D\u521D\u5E74\u5218\u4F2F\u6E29\u6765\u82CF\u5DDE\u65F6\uFF0C\u611F\u5230\u5C71\u5858\u6CB3\u5367\u4F0F\u767D\uFF0C\u72B6\u5982\u5DE8\u9F99\uFF0C\u9884\u611F\u5230\u8981\u51FA\u771F\u9F99\u5929\u5B50\u4E0E\u6731\u5143\u748B\u4E89\u6C5F\u5C71\uFF0C\u4E8E\u662F\u65BD\u6CD5\u8BBE\u7F6E\u4E03\u53EA\u77F3\u72F8\u732B\u5934\u5728\u5C71\u5858\u8857\u4E0A\u3002\u636E\u8BF4\u8FD9\u4E03\u53EA\u72F8\u6709\u5343\u65A4\u5DE8\u9501\u529F\u80FD\uFF0C\u80FD\u7262\u56FA\u5730\u9501\u4F4F\u9F99\u8EAB\uFF0C\u4EE5\u6B64\u4FDD\u4F4F\u6731\u660E\u6C5F\u5C71\u4F20\u81F3\u4E07\u4E16\u4E07\u4E07\u4E16\u3002'
+                                '\u76F8\u4F20\uFF0C\u660E\u671D\u521D\u5E74\u5218\u4F2F\u6E29\u6765\u82CF\u5DDE\u65F6\uFF0C\u611F\u5230\u5C71\u5858\u6CB3\u5367\u4F0F\u767D\uFF0C\u72B6\u5982\u5DE8\u9F99\uFF0C\u9884\u611F\u5230\u8981\u51FA\u771F\u9F99\u5929\u5B50\u4E0E\u6731\u5143\u748B\u4E89\u6C5F\u5C71\uFF0C\u4E8E\u662F\u65BD\u6CD5\u8BBE\u7F6E\u4E03\u53EA\u77F3\u72F8\u732B\u5934\u5728\u5C71\u5858\u8857\u4E0A\u3002\u636E\u8BF4\u8FD9\u4E03\u53EA\u72F8\u6709\u5343\u65A4\u5DE8\u9501\u529F\u80FD\uFF0C\u80FD\u7262\u56FA\u5730\u9501\u4F4F\u9F99\u8EAB\uFF0C\u4EE5\u6B64\u4FDD\u4F4F\u6731\u660E\u6C5F\u5C71\u4F20\u81F3\u4E07\u4E16\u4E07\u4E07\u4E16\u3002'
                             )
                         )
                     ),
@@ -2365,7 +2370,7 @@ var Sports = function (_React$Component) {
                             _react2.default.createElement(
                                 'div',
                                 null,
-                                '\u72F8\u53D4\u7ED9\u4F60\u805A\u8D44\u8BAF,\u5212\u91CD\u70B9,\u5E26\u4F60\u9759\u89C2\u4EBA\u5DE5\u667A\u80FD\u98CE\u8D77\u4E91\u6D8C,\u82B1\u5F00\u82B1\u843D',
+                                '\u5E26\u4F60\u9759\u89C2\u4EBA\u5DE5\u667A\u80FD\u98CE\u8D77\u4E91\u6D8C\uFF0C\u82B1\u5F00\u82B1\u843D\uFF0C\u4EBA\u5DE5\u667A\u80FD\u4E3A\u4F60\u5212\u91CD\u70B9\u3002',
                                 _react2.default.createElement(
                                     'div',
                                     null,

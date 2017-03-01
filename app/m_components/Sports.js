@@ -27,8 +27,7 @@ class Sports extends React.Component {
                     </div>
                     <div className="sports-content-center-right">
                         <div>
-                            带你静观人工智能风起云涌，花开花落。
-                            <div>人工智能为你划重点。</div>
+                            带你静观人工智能风起云涌，花开花落，人工智能为你划重点。
                             <div>By.狸叔@七只狸猫</div>
                         </div>
                     </div>
