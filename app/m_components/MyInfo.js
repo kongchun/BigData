@@ -27,15 +27,18 @@ class MyInfo extends React.Component {
                 nickname:null
             }
         }
+        $(".loginDiv").click(function(){
+            location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzlxNzcxMzkxMA==&scene=124#wechat_redirect";
+        })
         return (
             <div className="myInfo-content-wrap">
                <div className="myInfo-header-banner">
                     <div className="myInfo-header-loginInfo">
                         {(!userinfo.nickname)?<div>
-                            <div className="icon-lmuser-circle-o"></div>
+                            <div className="icon-lmuser-circle-o loginDiv"></div>
                             <div className="login-span">登录七只狸猫</div>
                         </div> : <div className="myInfo-header-image-border">
-                                <img className="user-thumnail-size" src={userinfo.headimgurl} alt="头像"/>
+                                <img className="user-thumnail-size loginDiv" src={userinfo.headimgurl} alt="头像"/>
                             <div className="myInfo-header-name">{userinfo.nickname}</div>
                         </div>}
                     </div>

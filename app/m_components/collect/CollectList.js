@@ -24,9 +24,14 @@ class CollectList extends React.Component {
 	}
 
 	render(){
+		var height = (document.documentElement.clientHeight-50) + "px";
 		var data = this.state.data;
 		var collectList;
 		var collects = data.collect;
+		var styleApp = {
+			backgroundColor:"#FFFFFF",
+			height:height
+		}
 		if(collects.length > 0){
 			collectList = collects.map((collectArticle)=>(
 				<li>
@@ -34,17 +39,18 @@ class CollectList extends React.Component {
 				</li>
 			));
 		}else{
-			let height = document.documentElement.clientHeight + "px"
+			let height = (document.documentElement.clientHeight-50) + "px"
 			let styles = {
 				backgroundColor:"#FFFFFF",
 				height:height,
 				lineHeight:height,
 				textAlign:"center",
-				fontSize:"20px"
+				fontSize:"16px",
+				marginLeft:"-40px"
 			}
-			collectList = <div style={styles}>暂无收藏</div>
+			collectList = <div style={styles}>还没有收藏过文章</div>
 		}
-		return ( <div className="collect-list">
+		return ( <div className="collect-list" style={styleApp}>
 			<ul>
 				{collectList}
 			</ul>

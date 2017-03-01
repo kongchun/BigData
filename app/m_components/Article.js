@@ -63,7 +63,7 @@ class Article extends React.Component {
 	}
 	render() {
 		var article = (this.state.data);
-		if (article && article != "") {
+		/*if (article && article != "") {
 			wx.ready(function () {
 				wx.checkJsApi({
 					jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
@@ -88,10 +88,9 @@ class Article extends React.Component {
 					success: function success(res) {},
 					cancel: function cancel(res) {}
 				});
-
 				wx.error(function (res) {});
 			});
-		}
+		}*/
 		function createMarkup() {
 			return {
 				__html: article.html
