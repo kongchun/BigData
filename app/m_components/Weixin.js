@@ -35,7 +35,7 @@ class Weixin {
     }
     weixinReady(article = {
         'title':"七只狸猫",
-        'desc':'你的私家人工智能知识秘书',
+        'desc':'【聚资讯，懂推荐，划重点，看趋势】 狸叔三板斧，带你静观人工智能风起云涌！山塘七只狸猫',
         'thumbnail':location.origin + '/images/logo.jpg',
         'link':'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
     }){
