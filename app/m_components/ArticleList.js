@@ -80,10 +80,24 @@ class ArticleList extends React.Component {
         function subContent(str) {
             return str.substr(0, 200);
         }
-
+        function readTime(time){
+            let data = new Date(time);
+            let diff = (new Date().getTime() - data.getTime())/1000;
+            let aDate = 86400;
+            if(diff < aDate){
+                return "最新"
+            }
+            if(diff < aDate*7){
+                return "最近"
+            }
+            if(diff < aDate*30){
+                return "7天前"
+            }
+            return "a天前";
+        }
         let articles = this.state.data.data;
         let artclelist = articles.map((article) => (
-            <article id={article.id} className='post animated fadeIn'>
+            <article key={article.id} id={article.id} className='post animated fadeIn'>
 
                 {this.getThumbnail(article)}
                 <div className="intro">
@@ -92,6 +106,9 @@ class ArticleList extends React.Component {
                     </div>
                     <div className="post-content">
                         <p>{subContent(article.content)}</p>
+                    </div>
+                    <div className="post-permalink">
+                        <Link to={'/article/' + article.id} className="info">{readTime(article.createDate)}</Link>
                     </div>
                 </div>
             </article>
