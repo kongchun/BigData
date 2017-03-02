@@ -33,7 +33,8 @@ gulp.task('vendor', ['vendor-css'], function() {
 			'node_modules/jquery/dist/jquery.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
 			'node_modules/headroom.js/dist/headroom.js',
-			'node_modules/headroom.js/dist/jQuery.headroom.js'
+			'node_modules/headroom.js/dist/jQuery.headroom.js',
+			'node_modules/jweixin/jweixin-1.0.0.js'
 		]).pipe(concat('vendor.js'))
 		//.pipe(gulpif(production, uglify({mangle: false})))
 		.pipe(gulp.dest('public/js'));
@@ -42,8 +43,7 @@ gulp.task('vendor', ['vendor-css'], function() {
 var dependencies = [
 	'alt',
 	'react',
-	'react-router',
-	'jweixin'
+	'react-router'
 ];
 
 /*
