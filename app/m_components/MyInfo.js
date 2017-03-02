@@ -3,7 +3,8 @@ import {
     Link
     } from 'react-router';
 import UserActions from '../actions/UserStoreActions';
-import UserStore from '../stores/UserStore.js'
+import UserStore from '../stores/UserStore.js';
+import Weixin from './Weixin';
 class MyInfo extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +13,8 @@ class MyInfo extends React.Component {
     }
     componentWillMount() {
         UserStore.unlisten(this.onChange);
+        Weixin.getUrl();
+        Weixin.weixinReady();
     }
     componentDidMount() {
         UserStore.listen(this.onChange);

@@ -36,6 +36,7 @@ class Weixin {
     weixinReady(article = {
         'title':"七只狸猫",
         'desc':'你的私家人工智能知识秘书',
+        'thumbnail':location.origin + '/images/logo.jpg',
         'link':'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
     }){
         wx.ready(function () {

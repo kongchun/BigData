@@ -3,9 +3,15 @@ import {
     Link
     } from 'react-router';
 import MyInfoNavbar from './MyInfoNavbar';
-
+import Weixin from './Weixin';
 class Sports extends React.Component {
-
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        Weixin.getUrl();
+        Weixin.weixinReady();
+    }
     render() {
         return (<div>
             <div className="sports-content-wrap">

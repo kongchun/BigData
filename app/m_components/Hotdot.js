@@ -5,6 +5,7 @@ import {
 import HotdotActions from '../actions/HotdotActions';
 import HotdotObjStore from '../stores/HotdotObjStore';
 import MyInfoNavbar from './MyInfoNavbar';
+import Weixin from './Weixin';
 class Hotdot extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +29,8 @@ class Hotdot extends React.Component {
 
         });
         HotdotObjStore.listen(this.onChange);
+        Weixin.getUrl();
+        Weixin.weixinReady();
     }
     componentWillUnmount() {
         HotdotObjStore.unlisten(this.onChange);

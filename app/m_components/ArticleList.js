@@ -31,6 +31,7 @@ class ArticleList extends React.Component {
             );
         })
         Weixin.getUrl();
+        Weixin.weixinReady()
     }
 
     componentWillUnmount() {
@@ -96,9 +97,6 @@ class ArticleList extends React.Component {
             </article>
 
         ));
-        if(articles && articles.length > 0){
-            Weixin.weixinReady()
-        }
         return (
             <section className="content-wrap">
                 <div className="container">

@@ -956,6 +956,7 @@ var ArticleList = function (_React$Component) {
                 });
             });
             _Weixin2.default.getUrl();
+            _Weixin2.default.weixinReady();
         }
     }, {
         key: 'componentWillUnmount',
@@ -1057,9 +1058,6 @@ var ArticleList = function (_React$Component) {
                     )
                 );
             });
-            if (articles && articles.length > 0) {
-                _Weixin2.default.weixinReady();
-            }
             return _react2.default.createElement(
                 'section',
                 { className: 'content-wrap' },
@@ -1192,6 +1190,10 @@ var _MyInfoNavbar = require('./MyInfoNavbar');
 
 var _MyInfoNavbar2 = _interopRequireDefault(_MyInfoNavbar);
 
+var _Weixin = require('./Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1212,6 +1214,8 @@ var FedBack = function (_React$Component) {
 	_createClass(FedBack, [{
 		key: 'render',
 		value: function render() {
+			_Weixin2.default.getUrl();
+			_Weixin2.default.weixinReady();
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -1225,7 +1229,7 @@ var FedBack = function (_React$Component) {
 
 exports.default = FedBack;
 
-},{"./MyInfoNavbar":20,"react":"react","react-router":"react-router"}],15:[function(require,module,exports){
+},{"./MyInfoNavbar":20,"./Weixin":26,"react":"react","react-router":"react-router"}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1507,6 +1511,10 @@ var _MyInfoNavbar = require('./MyInfoNavbar');
 
 var _MyInfoNavbar2 = _interopRequireDefault(_MyInfoNavbar);
 
+var _Weixin = require('./Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1546,6 +1554,8 @@ var Hotdot = function (_React$Component) {
                 }
             });
             _HotdotObjStore2.default.listen(this.onChange);
+            _Weixin2.default.getUrl();
+            _Weixin2.default.weixinReady();
         }
     }, {
         key: 'componentWillUnmount',
@@ -1765,7 +1775,7 @@ var Hotdot = function (_React$Component) {
 
 exports.default = Hotdot;
 
-},{"../actions/HotdotActions":4,"../stores/HotdotObjStore":38,"./MyInfoNavbar":20,"react":"react","react-router":"react-router"}],19:[function(require,module,exports){
+},{"../actions/HotdotActions":4,"../stores/HotdotObjStore":38,"./MyInfoNavbar":20,"./Weixin":26,"react":"react","react-router":"react-router"}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1787,6 +1797,10 @@ var _UserStoreActions2 = _interopRequireDefault(_UserStoreActions);
 var _UserStore = require('../stores/UserStore.js');
 
 var _UserStore2 = _interopRequireDefault(_UserStore);
+
+var _Weixin = require('./Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1813,6 +1827,8 @@ var MyInfo = function (_React$Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             _UserStore2.default.unlisten(this.onChange);
+            _Weixin2.default.getUrl();
+            _Weixin2.default.weixinReady();
         }
     }, {
         key: 'componentDidMount',
@@ -1912,7 +1928,7 @@ var MyInfo = function (_React$Component) {
 
 exports.default = MyInfo;
 
-},{"../actions/UserStoreActions":6,"../stores/UserStore.js":40,"react":"react","react-router":"react-router"}],20:[function(require,module,exports){
+},{"../actions/UserStoreActions":6,"../stores/UserStore.js":40,"./Weixin":26,"react":"react","react-router":"react-router"}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2302,6 +2318,10 @@ var _MyInfoNavbar = require('./MyInfoNavbar');
 
 var _MyInfoNavbar2 = _interopRequireDefault(_MyInfoNavbar);
 
+var _Weixin = require('./Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2313,13 +2333,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Sports = function (_React$Component) {
     _inherits(Sports, _React$Component);
 
-    function Sports() {
+    function Sports(props) {
         _classCallCheck(this, Sports);
 
-        return _possibleConstructorReturn(this, (Sports.__proto__ || Object.getPrototypeOf(Sports)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (Sports.__proto__ || Object.getPrototypeOf(Sports)).call(this, props));
     }
 
     _createClass(Sports, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            _Weixin2.default.getUrl();
+            _Weixin2.default.weixinReady();
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -2402,7 +2428,7 @@ var Sports = function (_React$Component) {
 
 exports.default = Sports;
 
-},{"./MyInfoNavbar":20,"react":"react","react-router":"react-router"}],25:[function(require,module,exports){
+},{"./MyInfoNavbar":20,"./Weixin":26,"react":"react","react-router":"react-router"}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2583,6 +2609,7 @@ var Weixin = function () {
             var article = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
                 'title': "七只狸猫",
                 'desc': '你的私家人工智能知识秘书',
+                'thumbnail': location.origin + '/images/logo.jpg',
                 'link': 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
             };
 
@@ -2813,6 +2840,10 @@ var _CollectList = require('./CollectList');
 
 var _CollectList2 = _interopRequireDefault(_CollectList);
 
+var _Weixin = require('../Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2833,6 +2864,8 @@ var Collection = function (_React$Component) {
 	_createClass(Collection, [{
 		key: 'render',
 		value: function render() {
+			_Weixin2.default.getUrl();
+			_Weixin2.default.weixinReady();
 			return _react2.default.createElement(
 				'div',
 				null,
@@ -2846,7 +2879,7 @@ var Collection = function (_React$Component) {
 
 exports.default = Collection;
 
-},{"./CollectList":28,"react":"react","react-router":"react-router"}],30:[function(require,module,exports){
+},{"../Weixin":26,"./CollectList":28,"react":"react","react-router":"react-router"}],30:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
