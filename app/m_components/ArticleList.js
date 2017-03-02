@@ -6,6 +6,7 @@ import {
 import ArticleListStore from '../stores/ArticleListStore';
 import ArticleListActions from '../actions/ArticleListActions';
 import Pages from './Pages';
+import Weixin from './Weixin';
 class ArticleList extends React.Component {
     constructor(props) {
         super(props);
@@ -29,6 +30,7 @@ class ArticleList extends React.Component {
                     data => that.addNewArticle(data.data)
             );
         })
+        Weixin.getUrl();
     }
 
     componentWillUnmount() {
@@ -94,6 +96,9 @@ class ArticleList extends React.Component {
             </article>
 
         ));
+        if(articles && articles.length > 0){
+            Weixin.weixinReady()
+        }
         return (
             <section className="content-wrap">
                 <div className="container">

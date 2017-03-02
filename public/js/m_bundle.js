@@ -912,6 +912,10 @@ var _Pages = require('./Pages');
 
 var _Pages2 = _interopRequireDefault(_Pages);
 
+var _Weixin = require('./Weixin');
+
+var _Weixin2 = _interopRequireDefault(_Weixin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -951,6 +955,7 @@ var ArticleList = function (_React$Component) {
                     return that.addNewArticle(data.data);
                 });
             });
+            _Weixin2.default.getUrl();
         }
     }, {
         key: 'componentWillUnmount',
@@ -1052,6 +1057,9 @@ var ArticleList = function (_React$Component) {
                     )
                 );
             });
+            if (articles && articles.length > 0) {
+                _Weixin2.default.weixinReady();
+            }
             return _react2.default.createElement(
                 'section',
                 { className: 'content-wrap' },
@@ -1086,7 +1094,7 @@ var ArticleList = function (_React$Component) {
 
 exports.default = ArticleList;
 
-},{"../actions/ArticleListActions":2,"../stores/ArticleListStore":35,"./Pages":22,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
+},{"../actions/ArticleListActions":2,"../stores/ArticleListStore":35,"./Pages":22,"./Weixin":26,"react":"react","react-router":"react-router"}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2571,7 +2579,13 @@ var Weixin = function () {
         }
     }, {
         key: 'weixinReady',
-        value: function weixinReady(article) {
+        value: function weixinReady() {
+            var article = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+                'title': "七只狸猫",
+                'desc': '你的私家人工智能知识秘书',
+                'link': 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
+            };
+
             wx.ready(function () {
                 wx.checkJsApi({
                     jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
@@ -2581,7 +2595,7 @@ var Weixin = function () {
                 //获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
                 wx.onMenuShareTimeline({
                     title: article.title, // 分享标题
-                    link: location.href,
+                    link: article.link ? article.link : location.href,
                     imgUrl: article.thumbnail, // 分享图标
                     success: function success(res) {},
                     cancel: function cancel(res) {}
@@ -2589,8 +2603,8 @@ var Weixin = function () {
                 //获取“分享给朋友”按钮点击状态及自定义分享内容接口
                 wx.onMenuShareAppMessage({
                     title: article.title, // 分享标题
-                    desc: "七只狸猫：人工智能助手！", // 分享描述
-                    link: location.href,
+                    desc: article.desc ? article.desc : "七只狸猫：人工智能助手！", // 分享描述
+                    link: article.link ? article.link : location.href,
                     imgUrl: article.thumbnail, // 分享图标
                     type: 'link', // 分享类型,music、video或link，不填默认为link
                     success: function success(res) {},
