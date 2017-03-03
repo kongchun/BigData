@@ -95,6 +95,11 @@ class ArticleList extends React.Component {
             }
             return "a天前";
         }
+        function markTag(tags){
+            return tags.map((tag) => (
+                <span className="article-tag">{tag}</span>
+            ))
+        }
         let articles = this.state.data.data;
         let artclelist = articles.map((article) => (
             <article key={article.id} id={article.id} className='post animated fadeIn'>
@@ -110,6 +115,7 @@ class ArticleList extends React.Component {
                     <div className="post-permalink">
                         <Link to={'/article/' + article.id} className="info">
                             {readTime(article.createDate)}
+                            {markTag(article.tags)}
                         </Link>
                     </div>
                 </div>
