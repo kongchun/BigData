@@ -101,7 +101,12 @@ class ArticleList extends React.Component {
             ))
         }
         let articles = this.state.data.data;
-        let cookie = JSON.parse(unescape(document.cookie.split("articles=")[1].split(";")[0]))
+        let cookie;
+        if(document.cookie.split("articles=")[1] && document.cookie.split("articles=")[1] != ""){
+            cookie = JSON.parse(unescape(document.cookie.split("articles=")[1].split(";")[0]))
+        }else{
+            cookie = []
+        }
         let cookie_art = new Set(cookie);
         let that = this;
         let artclelist = articles.map(function(article){
