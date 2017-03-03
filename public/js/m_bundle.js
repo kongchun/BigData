@@ -1084,8 +1084,7 @@ var ArticleList = function (_React$Component) {
                             _react2.default.createElement(
                                 _reactRouter.Link,
                                 { to: '/article/' + article.id, className: 'info' },
-                                readTime(article.createDate),
-                                markTag(article.tags)
+                                readTime(article.createDate)
                             )
                         )
                     )
