@@ -101,13 +101,20 @@ class ArticleList extends React.Component {
             ))
         }
         let articles = this.state.data.data;
-        let artclelist = articles.map((article) => (
-            <article key={article.id} id={article.id} className='post animated fadeIn'>
+        let cookie = JSON.parse(unescape(document.cookie.split("articles=")[1].split(";")[0]))
+        let cookie_art = new Set(cookie);
+        let that = this;
+        let artclelist = articles.map(function(article){
+            let title_class = "";
+            if(cookie_art.has(article.id)){
+                title_class = "read";
+            }
+            return <article key={article.id} id={article.id} className='post animated fadeIn'>
 
-                {this.getThumbnail(article)}
+                {that.getThumbnail(article)}
                 <div className="intro">
                     <div className="post-head">
-                        <h3 className="post-title"><Link to={'/article/' + article.id}>{article.title}</Link></h3>
+                        <h3 className="post-title"><Link className={title_class} to={'/article/' + article.id}>{article.title}</Link></h3>
                     </div>
                     <div className="post-content">
                         <p>{subContent(article.content)}</p>
@@ -119,8 +126,7 @@ class ArticleList extends React.Component {
                     </div>
                 </div>
             </article>
-
-        ));
+        });
         return (
             <section className="content-wrap">
                 <div className="container">

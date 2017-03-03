@@ -1566,3 +1566,6 @@ a:visited {
   border: 1px solid #d4d4d4;
   border-radius: 2px;
 }
+.read {
+  color: #d4d4d4 !important;
+}

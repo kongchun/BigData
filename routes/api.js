@@ -29,6 +29,17 @@ router.get('/article/:id', function(req, res) {
 				})
 			}
 		})
+		if(id && id != ""){
+			if(!req.cookies["articles"]){
+				let articles = new Set();
+				articles.add(id)
+				res.cookie("articles", JSON.stringify([...articles]))
+			}else{
+				let articles = new Set(JSON.parse(req.cookies["articles"]));
+				articles.add(id)
+				res.cookie("articles", JSON.stringify([...articles]))
+			}
+		}
 		res.send(data);
 	}).catch(function() {
 		res.send([]);
