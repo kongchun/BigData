@@ -30,16 +30,17 @@ class CollectList extends React.Component {
 		var collects = data.collect;
 		var styleApp = {
 			backgroundColor:"#FFFFFF",
-			height:height
+			minHeight:height
 		}
 		if(collects.length > 0){
+			console.log(collects);
 			collectList = collects.map((collectArticle)=>(
 				<li>
-					<CollectItem articleid={collectArticle.articleId} title={collectArticle.articleTitle} time={collectArticle.collectTime}/>
+					<CollectItem articleid={collectArticle.articleId} title={collectArticle.articleTitle} time={collectArticle.collectTime} thumbnail={collectArticle.thumbnail}/>
 				</li>
 			));
 		}else{
-			let height = (document.documentElement.clientHeight-50) + "px"
+			let height = (document.documentElement.clientHeight-50) + "px";
 			let styles = {
 				backgroundColor:"#FFFFFF",
 				height:height,

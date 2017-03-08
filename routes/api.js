@@ -103,7 +103,6 @@ router.get('/user', function(req, res) {
 				"headimgurl": "",
 				"privilege": []
 			}
-			console.log(newUser)
 			read.setUserData(newUser).then(function(data){
 				res.cookie("userinfo", JSON.stringify(newUser))
 				read.recordLog({
@@ -125,7 +124,8 @@ router.post('/articles/setArticleCollect', function(req, res) {
 	var articleId = req.body.articleId;
 	var collectDate = req.body.collectDate;
 	var articleTitle = req.body.articleTitle;
-	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle).then(function(data){
+	var thumbnail = req.body.thumbnail;
+	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle,thumbnail).then(function(data){
 		read.recordLog({
 			"openid":openId,
 			"action":2,
@@ -143,7 +143,8 @@ router.post('/articles/cancelArticleCollect', function(req, res) {
 	var openId = req.body.openId;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
-	read.cancelArticleCollect(openId,name,articleId).then(function(data){
+	var thumbnail = req.body.thumbnail;
+	read.cancelArticleCollect(openId,name,articleId,thumbnail).then(function(data){
 		read.recordLog({
 			"openid":openId,
 			"action":3,

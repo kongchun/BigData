@@ -58,7 +58,8 @@ var ArticleSource = {
 					name:param.name,
 					articleId:param.articleId,
 					collectDate:param.collectDate,
-					articleTitle:param.articleTitle
+					articleTitle:param.articleTitle,
+					thumbnail:param.thumbnail
 				}).done(resolve).fail(reject);
 			}else{
 				console.log("收藏失败，参数为空");
@@ -73,7 +74,8 @@ var ArticleSource = {
 				$.post(url,{
 					openId:param.openId,
 					name:param.name,
-					articleId:param.articleId
+					articleId:param.articleId,
+					thumbnail:param.thumbnail
 				}).done(resolve).fail(reject);
 			}else{
 				console.log("取消收藏失败");

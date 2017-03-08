@@ -45,6 +45,7 @@ class ArticleCollect extends React.Component {
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
 		var articleTitle = this.props.articleTitle;
+		var articleThumbnail = this.props.articleThumbnail;
 		var currentUser = this.currentUser;
 		if(!isCollectedFlag){
 			var collectMsg = {
@@ -52,7 +53,8 @@ class ArticleCollect extends React.Component {
 				name:currentUser.nickname,
 				articleId:articleId,
 				collectDate:new Date().toLocaleString(),
-				articleTitle:articleTitle
+				articleTitle:articleTitle,
+				thumbnail:articleThumbnail
 			}
 			ArticleActions.articleCollect(collectMsg);
 			this.setState({collected:true});
@@ -61,7 +63,8 @@ class ArticleCollect extends React.Component {
 			var cancelCollectMsg = {
 				openId:currentUser.openid,
 				name:currentUser.nickname,
-				articleId:articleId
+				articleId:articleId,
+				thumbnail:currentUser.headimgurl
 			}
 			ArticleActions.cancelArticleCollect(cancelCollectMsg);
 			this.setState({collected:false});

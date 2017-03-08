@@ -219,7 +219,7 @@ exports.userData = function(userinfo) {
 }
 
 //收藏
-exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle){
+exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle,thumbnail){
 	db.close();
 	return db.open('users').then(function(collection){
 		return collection.findOne({
@@ -238,7 +238,8 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 				var collect = {
 					"articleId" : articleId,
 					"collectTime" : collectDate,
-					"articleTitle" : articleTitle
+					"articleTitle" : articleTitle,
+					"thumbnail":thumbnail
 				}
 				data.collect.push(collect);
 				var newCollect = data.collect;
@@ -266,7 +267,7 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 	})
 }
 //取消收藏
-exports.cancelArticleCollect = function(openId,name,articleId){
+exports.cancelArticleCollect = function(openId,name,articleId,thumbnail){
 	db.close();
 	return db.open("users").then(function(collection){
 		return collection.findOne({
