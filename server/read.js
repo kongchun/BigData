@@ -6,7 +6,7 @@ exports.articlesByPage = function(page, limit) {
 		return collection.find({
 			"delete": null
 		}).sort({
-			id: -1
+			createDate: -1
 		}).skip(start).limit(limit).toArray();
 	}).then(function(data) {
 		//console.log(data.length, "data");
@@ -57,7 +57,7 @@ exports.articleWithHits = function(id) {
 }
 exports.addArticleWithHits = function(data){
 	let hits = parseInt(data.hits) + 1;
-	let id = parseInt(data.id);
+	let id = data.id;
 	data.hits = hits;
 	console.log("insert----------------------------"+hits)
 	return db.open("articles").then(function(collection) {

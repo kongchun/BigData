@@ -16,7 +16,7 @@ router.get('/articles', function(req, res) {
 
 
 router.get('/article/:id', function(req, res) {
-	var id = parseInt(req.params.id);
+	var id = req.params.id;
 	read.articleWithHits(id).then(function(data) {
 		read.addArticleWithHits(data).then(function(){
 			if(req.cookies["userinfo"] && req.cookies["userinfo"] != ""){

@@ -1288,8 +1288,13 @@ a:visited {
       -ms-flex: 4;
           flex: 4;
 }
+.container-row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .collect-list {
   background: #fff;
+  margin-bottom: 50px;
 }
 .collect-list ul {
   margin-left: -30px;

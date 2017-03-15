@@ -684,7 +684,7 @@ var Article = function (_React$Component) {
 												_react2.default.createElement(
 													'div',
 													{ className: 'collectArticle' },
-													_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id, articleTitle: article.title })
+													_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id, articleTitle: article.title, articleThumbnail: article.thumbnail })
 												)
 											)
 										)
@@ -840,6 +840,7 @@ var ArticleCollect = function (_React$Component) {
 			var currentTarget = event.currentTarget;
 			var articleId = this.props.articleId;
 			var articleTitle = this.props.articleTitle;
+			var articleThumbnail = this.props.articleThumbnail;
 			var currentUser = this.currentUser;
 			if (!isCollectedFlag) {
 				var collectMsg = {
@@ -847,7 +848,8 @@ var ArticleCollect = function (_React$Component) {
 					name: currentUser.nickname,
 					articleId: articleId,
 					collectDate: new Date().toLocaleString(),
-					articleTitle: articleTitle
+					articleTitle: articleTitle,
+					thumbnail: articleThumbnail
 				};
 				_ArticleActions2.default.articleCollect(collectMsg);
 				this.setState({ collected: true });
@@ -856,7 +858,8 @@ var ArticleCollect = function (_React$Component) {
 				var cancelCollectMsg = {
 					openId: currentUser.openid,
 					name: currentUser.nickname,
-					articleId: articleId
+					articleId: articleId,
+					thumbnail: currentUser.headimgurl
 				};
 				_ArticleActions2.default.cancelArticleCollect(cancelCollectMsg);
 				this.setState({ collected: false });
@@ -1022,8 +1025,8 @@ var ArticleList = function (_React$Component) {
                 return str.substr(0, 200);
             }
             function readTime(time) {
-                var data = new Date(time);
-                var diff = (new Date().getTime() - data.getTime()) / 1000;
+                //let data = new Date(time);
+                var diff = (new Date().getTime() - parseInt(time)) / 1000;
                 var aDate = 86400;
                 if (diff < aDate) {
                     return "最新";
@@ -2731,13 +2734,34 @@ var CollectItem = function (_React$Component) {
 				{ to: '/article/' + this.props.articleid, className: 'collect-list-item' },
 				_react2.default.createElement(
 					'div',
-					{ className: 'collect-title' },
-					this.props.title
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'collect-time' },
-					this.props.time
+					{ className: 'container container-row' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-8' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'collect-title' },
+								this.props.title
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'collect-time' },
+								this.props.time
+							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-4' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'collect-thumbnail' },
+								_react2.default.createElement('img', { className: 'img-responsive', src: this.props.thumbnail, alt: '\u4E03\u53EA\u72F8\u732B' })
+							)
+						)
+					)
 				)
 			);
 		}
@@ -2820,14 +2844,15 @@ var CollectList = function (_React$Component) {
 			var collects = data.collect;
 			var styleApp = {
 				backgroundColor: "#FFFFFF",
-				height: height
+				minHeight: height
 			};
 			if (collects.length > 0) {
+				console.log(collects);
 				collectList = collects.map(function (collectArticle) {
 					return _react2.default.createElement(
 						'li',
 						null,
-						_react2.default.createElement(_CollectItem2.default, { articleid: collectArticle.articleId, title: collectArticle.articleTitle, time: collectArticle.collectTime })
+						_react2.default.createElement(_CollectItem2.default, { articleid: collectArticle.articleId, title: collectArticle.articleTitle, time: collectArticle.collectTime, thumbnail: collectArticle.thumbnail })
 					);
 				});
 			} else {
@@ -3091,7 +3116,8 @@ var ArticleSource = {
 					name: param.name,
 					articleId: param.articleId,
 					collectDate: param.collectDate,
-					articleTitle: param.articleTitle
+					articleTitle: param.articleTitle,
+					thumbnail: param.thumbnail
 				}).done(resolve).fail(reject);
 			} else {
 				console.log("收藏失败，参数为空");
@@ -3106,7 +3132,8 @@ var ArticleSource = {
 				$.post(url, {
 					openId: param.openId,
 					name: param.name,
-					articleId: param.articleId
+					articleId: param.articleId,
+					thumbnail: param.thumbnail
 				}).done(resolve).fail(reject);
 			} else {
 				console.log("取消收藏失败");

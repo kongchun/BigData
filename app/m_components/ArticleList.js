@@ -81,8 +81,8 @@ class ArticleList extends React.Component {
             return str.substr(0, 200);
         }
         function readTime(time){
-            let data = new Date(time);
-            let diff = (new Date().getTime() - data.getTime())/1000;
+            //let data = new Date(time);
+            let diff = (new Date().getTime() - parseInt(time))/1000;
             let aDate = 86400;
             if(diff < aDate){
                 return "最新"
