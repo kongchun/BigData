@@ -81,7 +81,8 @@ exports.addArticleWithHits = function(data){
 
 exports.articlesByIds = function(ids) {
 	db.close();
-	var arr = ids.map((i) => parseInt(i))
+	var arr = ids.map((i) => i)
+	console.log("articlesByIds"+arr)
 	return db.open("articles").then(function(collection) {
 		return collection.find({
 			"id": {
