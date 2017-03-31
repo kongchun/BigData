@@ -33,11 +33,11 @@ router.get('/article/:id', function(req, res) {
 			if(!req.cookies["articles"]){
 				let articles = new Set();
 				articles.add(id)
-				res.cookie("articles", JSON.stringify([...articles]))
+				res.cookie("articles", JSON.stringify([...articles]),{maxAge:86400000})
 			}else{
 				let articles = new Set(JSON.parse(req.cookies["articles"]));
 				articles.add(id)
-				res.cookie("articles", JSON.stringify([...articles]))
+				res.cookie("articles", JSON.stringify([...articles]),{maxAge:86400000})
 			}
 		}
 		res.send(data);
