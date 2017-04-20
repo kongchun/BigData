@@ -13,6 +13,8 @@ class Similar extends React.Component {
 		this.onChange = this.onChange.bind(this);
 	}
 	componentDidMount() {
+		let ids = this.props.ids;
+		ArticleObjActions.getArticlesByIds(ids);
 		ArticleObjStore.listen(this.onChange);
 	}
 

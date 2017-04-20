@@ -24,11 +24,11 @@ class Footer extends React.Component {
                                 <div className="glyphicon glyphicon-th-list"></div>
                                 <div>资讯</div>
                             </IndexLink>
-                            <IndexLink  to={'/hotdot'} className="tab-item" activeClassName="tab-item-active">
+                            <IndexLink  to={'/hotdot'} className="tab-item hide" activeClassName="tab-item-active">
                                 <div className="glyphicon glyphicon-signal"></div>
                                 <div>趋势</div>
                             </IndexLink>
-                            <IndexLink to={'/sports'} className="tab-item" activeClassName="tab-item-active">
+                            <IndexLink to={'/sports'} className="tab-item hide" activeClassName="tab-item-active">
                                 <div className="glyphicon glyphicon-globe"></div>
                                 <div>专家</div>
                             </IndexLink>

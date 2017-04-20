@@ -84,14 +84,41 @@ class ArticleList extends React.Component {
             //let data = new Date(time);
             let diff = (new Date().getTime() - parseInt(time))/1000;
             let aDate = 86400;
-            if(diff < aDate){
-                return "最新"
+            let aHour = 3600;
+            if(diff < aHour){
+                let minute = Math.ceil(diff/36);
+                return minute + "分钟前"
             }
-            if(diff < aDate*7){
-                return "最近"
+            if(diff < aDate){
+                let hour = parseInt(diff/aHour);
+                return hour + "小时前"
+            }
+            if(diff < 2*aDate){
+                return "1天前"
+            }
+            if(diff < 3*aDate){
+                return "2天前"
+            }
+            if(diff < 4*aDate){
+                return "3天前"
+            }
+            if(diff < 5*aDate){
+                return "4天前"
+            }
+            if(diff < 6*aDate){
+                return "5天前"
+            }
+            if(diff < 7*aDate){
+                return "6天前"
+            }
+            if(diff < 8*aDate){
+                return "7天前"
             }
             if(diff < aDate*30){
-                return "7天前"
+                return "7天以前"
+            }
+            if(diff < aDate*60){
+                return "一个月前"
             }
             return "a天前";
         }
