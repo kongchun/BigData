@@ -35,7 +35,7 @@ class ArticleCollect extends React.Component {
 			if(url){
 				var lIndex = url.lastIndexOf("/");
 				var dotIndex = url.lastIndexOf("?");
-				return parseInt(url.substring(lIndex+1,dotIndex));
+				return url.substring(lIndex+1,dotIndex);
 			}
 		}
     }
