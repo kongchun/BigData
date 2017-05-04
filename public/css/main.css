@@ -337,6 +337,25 @@ pre {
 }
 .post .post-content {
   margin: 30px 0;
+  display: none;
+}
+.post .post-summary {
+  margin: 30px 0;
+}
+.post .post-summaryBtn {
+  width: 80%;
+  border: 1px solid #d4d4d4;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+.post .post-summaryBtn:active {
+  color: #ffffff;
+  background-color: #f4645f;
+}
+.post .post-fastRead {
+  font-weight: bold;
 }
 .post .post-footer {
   margin-top: 30px;

@@ -37,6 +37,15 @@ class Article extends React.Component {
 	onChange(state) {
 		this.setState(state);
 	}
+	onHandleFastRead(){
+		$(".post-fast").animate({
+			height:"hide"
+		});
+		$(".post-content").animate({
+			height:"show"
+		});
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
+	}
 	render() {
 		var article = (this.state.data);
 		if (article && article != "") {
@@ -50,6 +59,18 @@ class Article extends React.Component {
 		if(article.length < 1){
 			return (<div></div>)
 		}
+		let style = {"display":"block"}
+		let summary = (<section className="post-content"  style={style} dangerouslySetInnerHTML={createMarkup()}></section>);
+		if(article.smartSummary){
+			summary = (<div>
+				<div className="post-fast">
+						<section className="post-summary"><span className="post-fastRead">狸猫快阅：</span>
+							{article.smartSummary}</section>
+						<div className="post-summaryBtn" onClick={this.onHandleFastRead.bind(this)}>阅读全文</div>
+				</div>
+				<section className="post-content" dangerouslySetInnerHTML={createMarkup()}></section>
+			</div>)
+		}
 		return (<div>
 			<section className="article-content-wrap ">
 	        	<div className="container">
@@ -59,8 +80,7 @@ class Article extends React.Component {
 						    <header className="post-head">
 						        <h1 className="post-title">{article.title}</h1>
 						    </header>
-						    <section className="post-content" dangerouslySetInnerHTML={createMarkup()}>
-						    </section>
+								{summary}
 						    <footer className="post-footer clearfix">
 								<div className="pull-left tag-list">
 									<i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
