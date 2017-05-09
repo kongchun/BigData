@@ -154,7 +154,7 @@ class ArticleList extends React.Component {
                     <div className="post-permalink">
                         <Link to={'/article/' + article.id} className="info">
                             {readTime(article.createDate)}
-                        </Link>
+                        </Link>{markTag(article.tags)}
                     </div>
                 </div>
             </article>
