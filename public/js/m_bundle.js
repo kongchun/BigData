@@ -2748,11 +2748,13 @@ var Weixin = function () {
                     jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage'],
                     success: function success(res) {}
                 });
-
+                //var href = location.href;
+                var href = "http://www.limaodata.com/#/article/" + article.id;
+                var link = article.link ? article.link : href;
                 //获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
                 wx.onMenuShareTimeline({
                     title: article.title, // 分享标题
-                    link: article.link ? article.link : location.href,
+                    link: link,
                     imgUrl: article.thumbnail, // 分享图标
                     success: function success(res) {},
                     cancel: function cancel(res) {}
@@ -2760,14 +2762,13 @@ var Weixin = function () {
                 //获取“分享给朋友”按钮点击状态及自定义分享内容接口
                 wx.onMenuShareAppMessage({
                     title: article.title, // 分享标题
-                    desc: article.desc ? article.desc : "七只狸猫：人工智能助手！", // 分享描述
-                    link: article.link ? article.link : location.href,
+                    desc: "七只狸猫：人工智能助手！", // 分享描述
+                    link: link,
                     imgUrl: article.thumbnail, // 分享图标
                     type: 'link', // 分享类型,music、video或link，不填默认为link
                     success: function success(res) {},
                     cancel: function cancel(res) {}
                 });
-
                 wx.error(function (res) {});
             });
         }
