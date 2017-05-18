@@ -36,8 +36,9 @@ class Weixin {
     weixinReady(article = {
         'title':"七只狸猫",
         'desc':'【聚资讯，懂推荐，划重点，看趋势】 狸叔三板斧，带你静观人工智能风起云涌！山塘七只狸猫',
-        'thumbnail':location.origin + '/images/logo.jpg',
-        'link':'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
+        'thumbnail':'http://www.limaodata.com/images/logo.jpg',
+        //'link':'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect'
+        'link':"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx441605e8c97cf43e&redirect_uri=http%3a%2f%2fwww.limaodata.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
     }){
         wx.ready(function () {
             wx.checkJsApi({
@@ -50,6 +51,7 @@ class Weixin {
             //获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
             wx.onMenuShareTimeline({
                 title: article.title, // 分享标题
+                desc: "七只狸猫：人工智能助手！" , // 分享描述
                 link: link,
                 imgUrl: article.thumbnail, // 分享图标
                 success: function success(res) {},
