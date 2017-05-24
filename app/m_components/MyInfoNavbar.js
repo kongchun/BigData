@@ -18,6 +18,10 @@ class MyInfoNavbar extends React.Component {
 		}
 	}
 	render(){
+		var ua = navigator.userAgent.toLowerCase();
+		if (/iphone|ipad|ipod/.test(ua)) {
+			return null;
+		}
 		return (
 			<div className="collectNavbar">
 				<span className="collect-returnBtn glyphicon glyphicon-chevron-left" onClick={this.handleReturnClick}></span>

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Copyright from './Copyright';
 import Footer from './Footer'
+import BackLastPage from './BackLastPage';
 
 class App extends React.Component {
 
@@ -34,6 +35,7 @@ class App extends React.Component {
 			<div>
         		{this.props.children}
         		<BackTop />
+        		<BackLastPage />
 				<Footer />
      		</div>
 		);

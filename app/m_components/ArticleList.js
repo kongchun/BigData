@@ -2,6 +2,9 @@ import React from 'react';
 import {
     Link
     } from 'react-router';
+import {
+    browserHistory
+    } from 'react-router';
 
 import ArticleListStore from '../stores/ArticleListStore';
 import ArticleListActions from '../actions/ArticleListActions';
@@ -13,7 +16,12 @@ class ArticleList extends React.Component {
         this.state = ArticleListStore.getState();
         this.onChange = this.onChange.bind(this);
         this.limit = 7;
-        this.page = 1;
+        this.page = props.params && props.params.page ? parseInt(props.params.page) : 1;
+        this.url = window.location.href;
+        if(this.url.indexOf("?_k")!=-1){
+            this.url = this.url.split("?_k")[0];
+        }
+        this.pagePath = window.sessionStorage.getItem("data_pagePath");
     }
 
     componentDidMount() {
@@ -21,11 +29,30 @@ class ArticleList extends React.Component {
 
         ArticleListStore.listen(this.onChange);
 
-        const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
-        ArticleListActions.getArticles(page, this.limit);
         var that = this;
+        var data = window.sessionStorage.getItem("data");
+
+        if(!!data){
+            this.state.data = JSON.parse(data);
+            this.setData(JSON.parse(data));
+            var pagePath = window.sessionStorage.getItem("data_pagePath");
+            if(!!pagePath && "null"!=pagePath){
+                browserHistory.push(pagePath);
+                this.page = parseInt(window.sessionStorage.getItem("data_pageNum"));
+            }
+            var transformIndex = window.sessionStorage.getItem("urlScroll_"+this.url);
+            if(!!transformIndex){
+                $("html,body").animate({scrollTop: transformIndex}, 10);
+            }
+        }else{
+            const page = 1;
+            ArticleListActions.getArticles(page, this.limit);
+            $("html,body").animate({scrollTop: 0}, 10);
+        }
         $(".pagination").on('click',function(){
             that.setPage();
+            browserHistory.push('#/page/'+that.page);
+            that.pagePath = '#/page/'+that.page;
             ArticleListActions.getMoreArticles(that.getPage(), that.limit).then(
                     data => that.addNewArticle(data.data)
             );
@@ -35,6 +62,14 @@ class ArticleList extends React.Component {
     }
 
     componentWillUnmount() {
+        window.sessionStorage.removeItem("data");
+        window.sessionStorage.removeItem("data_pagePath");
+        window.sessionStorage.removeItem("data_pageNum");
+        window.sessionStorage.setItem("data",JSON.stringify(this.state.data));
+        window.sessionStorage.setItem("data_pagePath",this.pagePath);
+        window.sessionStorage.setItem("data_pageNum",this.page);
+        window.sessionStorage.removeItem("urlScroll_"+this.url);
+        window.sessionStorage.setItem("urlScroll_"+this.url,document.body.scrollTop);
         ArticleListStore.unlisten(this.onChange);
     }
 
@@ -48,6 +83,14 @@ class ArticleList extends React.Component {
     //    }
     //
     //}
+
+    setData(news){
+        this.setState({
+            data:{
+                data:news.data,
+                count:news.count
+            }});
+    }
 
     onChange(state) {
         this.setState(state);

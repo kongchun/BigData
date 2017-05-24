@@ -21,6 +21,7 @@ class MyInfo extends React.Component {
     componentDidMount() {
         UserStore.listen(this.onChange);
         UserActions.getUser();
+        $("html,body").animate({scrollTop: 0}, 10);
     }
 
     onChange(state) {
@@ -35,7 +36,7 @@ class MyInfo extends React.Component {
             }
         }
         $(".loginDiv").click(function () {
-            location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzlxNzcxMzkxMA==&scene=124#wechat_redirect";
+            location.href = "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIxNzcxMzkxMA==&scene=124#wechat_redirect"
         })
         return (
             <div className="myInfo-content-wrap">
@@ -63,9 +64,19 @@ class MyInfo extends React.Component {
                                 <span className="myInfo-label">我要反馈</span><i className="icon-lmangle-right"></i>
                             </Link>
                         </li>
+                        <li>
+                            <Link to={'/pcWebSite'} className="container-list">
+                                <span className="myInfo-label">七只狸猫·端午快讯 PC版</span><i className="icon-lmangle-right"></i>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to={'/aboutUs'} className="container-list">
+                                <span className="myInfo-label">关于我们</span><i className="icon-lmangle-right"></i>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
-                <div className="myInfo">七只狸猫，带你静观人工智能花开花落。</div>
+                <div className="myInfo"></div>
             </div>
         );
     }

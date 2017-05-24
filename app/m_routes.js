@@ -20,11 +20,14 @@ import Collection from './m_components/collect/Collection';
 import Note from './m_components/MyNote';
 import FedBack from './m_components/FedBack';
 import AboutUs from './m_components/AboutUs';
+import PcWebSite from './m_components/PcWebSite';
+import QuickRead from './m_components/QuickRead';
 export default (
     <Router history={hashHistory}>
         <Route path="/" component={App}>
             <IndexRoute component={Home}/>
-            <Redirect from="home" to="page/1" />
+            <Redirect from="home" to="quickRead/1" />
+            <Route path="quickRead/:page" component={QuickRead} />
             <Route path="page/:page" component={ArticleList} />
             <Route path="article/:id" component={Article} />
             <Route path="hotdot" component={Hotdot} />
@@ -34,6 +37,7 @@ export default (
             <Route path="note" component={Note} />
             <Route path="fedBack" component={FedBack} />
             <Route path="aboutUs" component={AboutUs} />
+            <Route path="pcWebSite" component={PcWebSite} />
         </Route>
     </Router>
 )

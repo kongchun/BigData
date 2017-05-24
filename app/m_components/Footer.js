@@ -20,7 +20,11 @@ class Footer extends React.Component {
             <nav className="navbar navbar-default navbar-fixed-bottom" role="navigation">
                 <div className="container-fluid">
                     <div className="nav-tab">
-                            <IndexLink  to={'/'}  className="tab-item"  activeClassName="tab-item-active">
+                            <IndexLink  to={'/'} className="tab-item" activeClassName="tab-item-active">
+                                <div className="glyphicon glyphicon-inbox"></div>
+                                <div>快阅</div>
+                            </IndexLink>
+                            <IndexLink  to={'/page/1'}  className="tab-item"  activeClassName="tab-item-active">
                                 <div className="glyphicon glyphicon-th-list"></div>
                                 <div>资讯</div>
                             </IndexLink>

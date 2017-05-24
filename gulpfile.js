@@ -91,7 +91,7 @@ gulp.task('m_browserify', ['browserify-vendor'], function() {
 });
 
 gulp.task('styles', function() {
-	return gulp.src(['app/stylesheets/main.less','app/stylesheets/fonts.css'])
+	return gulp.src(['app/stylesheets/*.less','app/stylesheets/*.css'])
 		.pipe(plumber())
 		.pipe(less())
 		.pipe(autoprefixer())
