@@ -759,7 +759,7 @@ var Article = function (_React$Component) {
 																																																				_react2.default.createElement(
 																																																								'div',
 																																																								{ className: 'collectArticle' },
-																																																								_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id, articleTitle: article.title, articleThumbnail: article.thumbnail })
+																																																								_react2.default.createElement(_ArticleCollect2.default, { articleId: article.id, articleTitle: article.title, articleSmartSummary: article.smartSummary, tags: article.tags, articleThumbnail: article.thumbnail })
 																																																				)
 																																																)
 																																												)
@@ -808,7 +808,7 @@ var Article = function (_React$Component) {
 																																																				_react2.default.createElement(
 																																																								'div',
 																																																								null,
-																																																								'\u72F8\u53D4\u5212\u91CD\u70B9,\u5E26\u4F60\u9759\u89C2\u4EBA\u5DE5\u667A\u80FD\u98CE\u8D77\u4E91\u6D8C,\u957F\u6309\u5DE6\u4FA7\u4E8C\u7EF4\u7801\u5173\u6CE8\u6211\u3002',
+																																																								'\u6BCF\u5929\u5341\u5206\u949F\u9605\u8BFB\u4EBA\u5DE5\u667A\u80FD\u79D1\u6280\u8D44\u8BAF-\u7528\u79D1\u6280\u89C6\u89D2\u770B\u4E16\u754C,\u957F\u6309\u5DE6\u4FA7\u4E8C\u7EF4\u7801\u5173\u6CE8\u6211\u3002',
 																																																								_react2.default.createElement(
 																																																												'div',
 																																																												{ className: 'author-lishu' },
@@ -941,6 +941,8 @@ var ArticleCollect = function (_React$Component) {
 			var articleId = this.props.articleId;
 			var articleTitle = this.props.articleTitle;
 			var articleThumbnail = this.props.articleThumbnail;
+			var articleSmartSummary = this.props.articleSmartSummary;
+			var tags = this.props.tags;
 			var currentUser = this.currentUser;
 			if (!isCollectedFlag) {
 				var collectMsg = {
@@ -949,6 +951,8 @@ var ArticleCollect = function (_React$Component) {
 					articleId: articleId,
 					collectDate: new Date().toLocaleString(),
 					articleTitle: articleTitle,
+					articleSmartSummary: articleSmartSummary,
+					tags: tags,
 					thumbnail: articleThumbnail
 				};
 				_ArticleActions2.default.articleCollect(collectMsg);
@@ -2915,8 +2919,10 @@ var QuickRead = function (_React$Component) {
             var cookie_art = new Set(cookie);
             var artclelist = articles.map(function (article) {
                 var title_class = "cd-read-more";
+                var content_read_class = "";
                 if (cookie_art.has(article.id)) {
-                    title_class = "cd-read-more read";
+                    title_class = "cd-read-more cd-btn-read";
+                    content_read_class = "cd-content-read";
                 }
                 var tagsLen = article.tags.length;
                 var tagsPClassName = "";
@@ -2939,10 +2945,10 @@ var QuickRead = function (_React$Component) {
                 var moreContentClassName = "";
                 var closeClassName = "";
                 if (strLen > that.maxShowLength) {
-                    openClassName = "to-get-quick-more";
+                    openClassName = "to-get-quick-more " + content_read_class;
                     moreDotClassName = "";
-                    moreContentClassName = "quick_more_content quick-more-hide";
-                    closeClassName = "close-get-quick-more";
+                    moreContentClassName = "quick_more_content quick-more-hide " + content_read_class;
+                    closeClassName = "close-get-quick-more " + content_read_class;
                 } else {
                     openClassName = "quick-more-hide";
                     moreDotClassName = "quick-more-hide";
@@ -2957,7 +2963,7 @@ var QuickRead = function (_React$Component) {
                         { className: 'cd-timeline-content' },
                         _react2.default.createElement(
                             'h5',
-                            { style: { 'font-weight': 'bold' } },
+                            { style: { 'font-weight': 'bold' }, className: content_read_class },
                             article.title
                         ),
                         _react2.default.createElement(
@@ -2973,7 +2979,7 @@ var QuickRead = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             'p',
-                            null,
+                            { className: content_read_class },
                             subContent(article.smartSummary),
                             _react2.default.createElement(
                                 'span',
@@ -2998,7 +3004,7 @@ var QuickRead = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             _reactRouter.Link,
-                            { to: '/article/' + article.id, className: 'cd-read-more' },
+                            { to: '/article/' + article.id, className: title_class },
                             '\u9605\u8BFB\u5168\u6587'
                         ),
                         _react2.default.createElement('icon', { className: 'glyphicon glyphicon-eye-open cd-view-icon', style: { display: 'none' } }),
@@ -3696,6 +3702,19 @@ var Weixin = function () {
                 wx.error(function (res) {});
             });
         }
+    }, {
+        key: 'updateUrlCode',
+        value: function updateUrlCode() {
+            if (!!$("#urlcode")) {
+                var hrefText = window.location.href;
+                $("#urlcode").qrcode({
+                    render: "table", //table方式
+                    width: 120, //宽度
+                    height: 120, //高度
+                    text: hrefText //任意内容
+                });
+            }
+        }
     }]);
 
     return Weixin;
@@ -4077,95 +4096,109 @@ exports.default = _react2.default.createElement(
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 var ArticleSource = {
-	page: function page(_page) {
-		var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+    page: function page(_page) {
+        var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
-		return new Promise(function (resolve, reject) {
-			var url = "/api/articles";
-			$.get(url, {
-				"page": _page,
-				"limit": limit
-			}).done(resolve).fail(reject);
-		});
-	},
-	getArticleById: function getArticleById(id) {
-		return new Promise(function (resolve, reject) {
-			var url = "/api/article/" + id;
-			$.get(url, {}).done(resolve).fail(reject);
-		});
-	},
-	getArticlesByIds: function getArticlesByIds(ids) {
-		return new Promise(function (resolve, reject) {
-			if (ids == "") {
-				resolve([]);
-			} else {
-				var url = "/api/articles/ids/" + ids;
-				$.get(url, {}).done(resolve).fail(reject);
-			}
-		});
-	},
-	setKeyWordsCount: function setKeyWordsCount(articleId, countArr) {
-		return new Promise(function (resolve, reject) {
-			if (articleId == '') {
-				reject();
-			} else {
-				var url = "/api/articles/setKeyWordsCount";
-				$.post(url, {
-					id: articleId,
-					arr: countArr
-				}).done(resolve).fail(reject);
-			}
-		});
-	},
-	getKeyWordsCountJson: function getKeyWordsCountJson(artId) {
-		return new Promise(function (resolve, reject) {
-			if (artId == "") {
-				resolve([]);
-			} else {
-				var url = "/api/articles/getKeyWordsCountJson";
-				$.get(url, {
-					id: artId
-				}).done(resolve).fail(reject);
-			}
-		});
-	},
-	articleCollect: function articleCollect(param) {
-		return new Promise(function (resolve, reject) {
-			if (param) {
-				var url = "/api/articles/setArticleCollect";
-				$.post(url, {
-					openId: param.openId,
-					name: param.name,
-					articleId: param.articleId,
-					collectDate: param.collectDate,
-					articleTitle: param.articleTitle,
-					thumbnail: param.thumbnail
-				}).done(resolve).fail(reject);
-			} else {
-				console.log("收藏失败，参数为空");
-				reject([]);
-			}
-		});
-	},
-	cancelArticleCollect: function cancelArticleCollect(param) {
-		return new Promise(function (resolve, reject) {
-			if (param) {
-				var url = "/api/articles/cancelArticleCollect";
-				$.post(url, {
-					openId: param.openId,
-					name: param.name,
-					articleId: param.articleId,
-					thumbnail: param.thumbnail
-				}).done(resolve).fail(reject);
-			} else {
-				console.log("取消收藏失败");
-				reject([]);
-			}
-		});
-	}
+        return new Promise(function (resolve, reject) {
+            var url = "/api/articles";
+            $.get(url, {
+                "page": _page,
+                "limit": limit
+            }).done(resolve).fail(reject);
+        });
+    },
+    getArticleById: function getArticleById(id) {
+        return new Promise(function (resolve, reject) {
+            var url = "/api/article/" + id;
+            $.get(url, {}).done(resolve).fail(reject);
+        });
+    },
+    getArticlesByIds: function getArticlesByIds(ids) {
+        return new Promise(function (resolve, reject) {
+            if (ids == "") {
+                resolve([]);
+            } else {
+                var url = "/api/articles/ids/" + ids;
+                $.get(url, {}).done(resolve).fail(reject);
+            }
+        });
+    },
+    //设置关键字权重
+    setKeyWordsCount: function setKeyWordsCount(articleId, countArr) {
+        return new Promise(function (resolve, reject) {
+            if (articleId == '') {
+                reject();
+            } else {
+                var url = "/api/articles/setKeyWordsCount";
+                $.post(url, {
+                    id: articleId,
+                    arr: countArr
+                }).done(resolve).fail(reject);
+            }
+        });
+    },
+    getKeyWordsCountJson: function getKeyWordsCountJson(artId) {
+        return new Promise(function (resolve, reject) {
+            if (artId == "") {
+                resolve([]);
+            } else {
+                var url = "/api/articles/getKeyWordsCountJson";
+                $.get(url, {
+                    id: artId
+                }).done(resolve).fail(reject);
+            }
+        });
+    },
+    articleCollect: function articleCollect(param) {
+        return new Promise(function (resolve, reject) {
+            if (param) {
+                var url = "/api/articles/setArticleCollect";
+                $.post(url, {
+                    openId: param.openId,
+                    name: param.name,
+                    articleId: param.articleId,
+                    collectDate: param.collectDate,
+                    articleTitle: param.articleTitle,
+                    thumbnail: param.thumbnail,
+                    tags: param.tags,
+                    articleSmartSummary: param.articleSmartSummary
+                }).done(resolve).fail(reject);
+            } else {
+                console.log("收藏文章失败.");
+                reject([]);
+            }
+        });
+    },
+    cancelArticleCollect: function cancelArticleCollect(param) {
+        return new Promise(function (resolve, reject) {
+            if (param) {
+                var url = "/api/articles/cancelArticleCollect";
+                $.post(url, {
+                    openId: param.openId,
+                    name: param.name,
+                    articleId: param.articleId,
+                    thumbnail: param.thumbnail
+                }).done(resolve).fail(reject);
+            } else {
+                console.log("取消收藏失败");
+                reject([]);
+            }
+        });
+    },
+    getArticleByUser: function getArticleByUser(param) {
+        return new Promise(function (resolve, reject) {
+            if (param) {
+                var url = "/api/articles/getArticleByUser?openId=" + param.openId + "&articleId=" + param.articleId;
+                $.get(url).done(resolve).fail(reject);
+            } else {
+                console.log("获取用户信息失败");
+                reject([]);
+            }
+        });
+    }
 };
 
 exports.default = ArticleSource;

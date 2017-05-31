@@ -1,0 +1,49 @@
+.wx_icon{
+	display:block;
+	position:relative;
+	float:left;
+	margin-right:5px;
+}
+.wx_icon16{
+	background: url("../images/weixin/icon16_wx_logo.png");
+	width:16px;
+	height:16px;
+}
+.wx_icon32{
+	background: url("../images/weixin/icon32_wx_logo.png");
+	width:32px;
+	height:32px;
+}
+.wx_btn24{
+	background: url("../images/weixin/icon24_wx_button.png");
+	width:118px;
+	height:24px;
+	display: block;
+	cursor: pointer;
+}
+.wx_btn32{
+	background: url("../images/weixin/icon32_wx_button.png");
+	width:156px;
+	height:32px;
+	display: block;
+	cursor: pointer;
+}
+.wxLoginLabel{
+	line-height:16px;
+}
+.wxLoginModal{
+	text-align: center;
+}
+.wx_login_icon{
+	width: 24px;
+	margin-right: 5px;
+	border: 0px solid;
+}
+.wx_login_username{
+    cursor: pointer;
+}
+.impowerBox .qrcode {width: 200px;}
+.impowerBox .title {display: none;}
+.impowerBox .info {width: 200px;}
+.status_icon {display:none;}
+.impowerBox .status {text-align: center;} 

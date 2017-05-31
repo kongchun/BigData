@@ -40,14 +40,24 @@ class ArticleCollect extends React.Component {
 		}
     }
 	onHandleCollectClick(event){
+        var cookie = decodeURIComponent(document.cookie);
+        if(cookie.split("userinfo=")[1] && cookie.split("userinfo=")[1] != ""){
+            var userinfo = null;
+            userinfo = JSON.parse(unescape(cookie.split("userinfo=")[1].split(";")[0]))
+            if (!!userinfo && !!!userinfo.errcode && !!userinfo.nickname) {
+
+            }else{
+                $('#myModal').modal('show');
+            }
+        }
 		//收藏文章
 		var isCollectedFlag = this.state.collected;
 		var currentTarget = event.currentTarget;
 		var articleId = this.props.articleId;
 		var articleTitle = this.props.articleTitle;
 		var articleThumbnail = this.props.articleThumbnail;
-        var articleSmartSummary = this.props.articleSmartSummary;
-        var tags = this.props.tags;
+		var articleSmartSummary = this.props.articleSmartSummary;
+		var tags = this.props.tags;
 		var currentUser = this.currentUser;
 		if(!isCollectedFlag){
 			var collectMsg = {
@@ -56,10 +66,11 @@ class ArticleCollect extends React.Component {
 				articleId:articleId,
 				collectDate:new Date().toLocaleString(),
 				articleTitle:articleTitle,
-                articleSmartSummary:articleSmartSummary,
+                thumbnail:articleThumbnail,
                 tags:tags,
-				thumbnail:articleThumbnail
-			}
+                articleSmartSummary:articleSmartSummary
+            }
+
 			ArticleActions.articleCollect(collectMsg);
 			this.setState({collected:true});
 		}else{

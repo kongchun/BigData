@@ -220,7 +220,7 @@ exports.userData = function(userinfo) {
 }
 
 //收藏
-exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle,thumbnail){
+exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle,thumbnail,smartSummary,tags){
 	db.close();
 	return db.open('users').then(function(collection){
 		return collection.findOne({
@@ -240,8 +240,10 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 					"articleId" : articleId,
 					"collectTime" : collectDate,
 					"articleTitle" : articleTitle,
-					"thumbnail":thumbnail
-				}
+					"thumbnail":thumbnail,
+					"tags":tags,
+                    "smartSummary" : smartSummary
+                }
 				data.collect.push(collect);
 				var newCollect = data.collect;
 				return db.collection.updateOne({

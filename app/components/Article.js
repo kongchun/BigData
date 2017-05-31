@@ -7,6 +7,8 @@ import ArticleStore from '../stores/ArticleStore';
 import ArticleActions from '../actions/ArticleActions';
 import Similar from './Similar';
 import Tag from './Tag';
+import ArticleCollect from './ArticleCollect';
+import Weixin from './Weixin';
 
 class Article extends React.Component {
 	constructor(props) {
@@ -18,6 +20,7 @@ class Article extends React.Component {
 		const id = this.props.params.id;
 		ArticleStore.listen(this.onChange);
 		ArticleActions.getArticleById(id);
+        Weixin.updateUrlCode();
 	}
 
 	componentWillUnmount() {
@@ -39,34 +42,47 @@ class Article extends React.Component {
 				__html: article.html
 			};
 		}
+        function markTag(tags){
+            if(!!!tags){
+                return null;
+            }
+            return tags.map((tag) => (
+                <span className="article-more-tag">{tag}</span>
+            ))
+        }
 		return (
 			<section className="content-wrap ">
-	        	<div className="container">
+	        	<div className="container1">
 		        	<div className="row article">
 			        	<main className="col-md-8 main-content">
 			        		<article className="post">
 						    <header className="post-head">
 						        <h1 className="post-title">{article.title}</h1>
 
-						        <section className="post-meta">
+						        <section className="post-meta hide">
 						            <span className="url">来源：<a href={article.url} >{article.url}</a></span>
-									
 						        </section>
 						    </header>
-						    <section className="post-content" dangerouslySetInnerHTML={createMarkup()}>
+						    <section className="post-content" style={{display: 'block'}} dangerouslySetInnerHTML={createMarkup()}>
 						    </section>
 						    <footer className="post-footer clearfix">
-					        <div className="pull-left tag-list">
-					            <i className="fa fa-folder-open-o">阅读次数：{article.hits}</i>
+					        <div className="pull-right" title="收藏" style={{cursor:'pointer'}}>
+                                <ArticleCollect articleId={article.id} articleTitle={article.title} articleSmartSummary={article.smartSummary} tags={article.tags} articleThumbnail={article.thumbnail}/>
 					        </div>
 					    </footer>
 
 						</article>
 						</main>
 						<aside className="col-md-4 sidebar">
+
 							<div className="widget">
-								<h4 className="title">关键字</h4>
-								<Tag id={article.id}/>
+								<h4 className="title">快阅</h4>
+								<p>{article.smartSummary}</p>
+							</div>
+
+							<div className="widget">
+								<h4 className="title">标签</h4>
+								<p>{markTag(article.tags)}</p>
 							</div>
 
 							<div className="widget">

@@ -1,81 +1,36 @@
 import React from 'react';
 import {
     Link
-} from 'react-router';
-
-import ArticleListStore from '../stores/ArticleListStore';
-import ArticleListActions from '../actions/ArticleListActions';
-import Pages from './Pages';
+    } from 'react-router';
+import UserStoreActions from './../actions/UserStoreActions';
+import UserStore from './../stores/UserStore';
 import SideColumn from './SideColumn';
-import Weixin from './Weixin';
-
-class ArticleList extends React.Component {
+class MyCollection extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ArticleListStore.getState();
+        this.state = UserStore.getState();
         this.onChange = this.onChange.bind(this);
-        this.limit = 10;
-        this.stop = true;
-        this.page = props.params && props.params.page ? parseInt(props.params.page) : 1;
-        this.maxShowLength = 150;
         this.url = location.href.split('#')[0];
-        this.autoLoadCount = 6;
+        this.maxShowLength = 150;
     }
-
-    componentDidMount() {
-        Weixin.updateUrlCode();
-        console.log("ArticleList", "componentDidMount");
+    onChange(state) {
+        this.setState(state);
+    }
+    componentDidMount(){
         $(".active").removeClass("active");
-        $("#quickRead").addClass("active");
-        ArticleListStore.listen(this.onChange);
+        $("#myCollection").parent().addClass("active");
 
-        const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
-        ArticleListActions.getArticles(page, this.limit);
-        var that =this;
-        $(window).scroll(function() {
-            //当内容滚动到底部时加载新的内容 100当距离最底部100个像素时开始加载.
-            if ($(this).scrollTop() + $(window).height() + 50 >= $(document).height() && $(this).scrollTop() > 100) {
-                if(that.stop==true){
-                    that.stop=false;
-                    //加载提示信息
-                    $(".pc-center-box").append("<div class='spinner'><div class='bounce1'></div><div class='bounce2'></div><div class='bounce3'></div></div>");
-                    ArticleListActions.getMoreArticles(++that.page, that.limit).then(
-                            data => that.addNewArticle(data.data)
-                    );
-                }
-            }
-        });
         this.bindGetMoreDetailEvent();
     }
+    componentWillMount(){
+        /**
+         * 1.根据名称查询当前用户的信息
+         * 2.根据查询到的Id去查询文章内容
+         * */
+        UserStore.listen(this.onChange);
+        UserStoreActions.getUser();
+    }
 
-    componentWillUnmount() {
-        ArticleListStore.unlisten(this.onChange);
-        $(window).unbind('scroll');
-    }
-    componentDidUpdate(prevProps) {
-        const lastPage = prevProps.params && prevProps.params.page ? prevProps.params.page : 1;
-        const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
-        if (lastPage != page) {
-            ArticleListActions.getArticles(this.props.params.page, this.limit);
-        } else {
-            //scroll(0, 0);
-        }
-
-    }
-    addNewArticle(news){
-        $(".spinner").remove();
-        this.setState({
-            data:{
-                data:this.state.data.data.concat(news)
-            }});
-        if(this.autoLoadCount>0){
-            this.autoLoadCount--;
-        }else{
-            $(window).unbind('scroll');
-            $(".pc-center-box").append("<div class='pc-click-get-more'><p>点击加载更多</p></div>");
-        }
-        this.stop=true;
-    }
     bindGetMoreDetailEvent(){
         var that = this;
         $("#pc-body-box").on('click','.pc-click-get-more',function(){
@@ -118,20 +73,13 @@ class ArticleList extends React.Component {
             }
         });
     }
-    onChange(state) {
-        this.setState(state);
-
-    }
-    getPage() {
-        return this.props.params && this.props.params.page ? this.props.params.page : 1;
-    }
 
     getThumbnail(article) {
         var thumbnail = article.thumbnail;
         if (thumbnail != "") {
             return (<div className="featured-media">
-                <Link to={'/article/' + article.id}><img src={thumbnail} alt={article.title} /></Link>
-             </div>)
+                <Link to={'/article/' + article.articleId}><img src={thumbnail} alt={article.articleTitle} /></Link>
+            </div>)
         }
         return "";
     }
@@ -143,67 +91,14 @@ class ArticleList extends React.Component {
             }
             return str;
         }
-        function readTime(time){
 
-            //let data = new Date(time);
-            let diff = (new Date().getTime() - parseInt(time))/1000;
-            let aDate = 86400;
-            let aHour = 3600;
-            if(diff < aHour){
-                let minute = Math.ceil(diff/36);
-                return minute + "分钟前"
-            }
-            if(diff < aDate){
-                let hour = parseInt(diff/aHour);
-                return hour + "小时前"
-            }
-            if(diff < 2*aDate){
-                return "1天前"
-            }
-            if(diff < 3*aDate){
-                return "2天前"
-            }
-            if(diff < 4*aDate){
-                return "3天前"
-            }
-            if(diff < 5*aDate){
-                return "4天前"
-            }
-            if(diff < 6*aDate){
-                return "5天前"
-            }
-            if(diff < 7*aDate){
-                return "6天前"
-            }
-            if(diff < 8*aDate){
-                return "7天前"
-            }
-            if(diff < aDate*30){
-                return "7天以前"
-            }
-            if(diff < aDate*60){
-                return "一个月前"
-            }
-            return "a天前";
-        }
         function markTag(tags){
             return tags.map((tag) => (
                 <span className="article-tag">{tag}</span>
             ))
         }
-        let cookie;
-        if(document.cookie.split("articles=")[1] && document.cookie.split("articles=")[1] != ""){
-            cookie = JSON.parse(unescape(document.cookie.split("articles=")[1].split(";")[0]))
-        }else{
-            cookie = []
-        }
-        let cookie_art = new Set(cookie);
-        let articles = this.state.data.data;
+        let articles = this.state.data.collect;
         let artclelist = articles.map(function(article) {
-            let title_class = "title_link";
-            if(cookie_art.has(article.id)){
-                title_class = "title_link read";
-            }
             if(!!!article.tags) article.tags=[];
             if(!!!article.smartSummary) article.smartSummary='';
             var tagsLen = article.tags.length;
@@ -236,12 +131,12 @@ class ArticleList extends React.Component {
                                 </div>
                                 <div className="col-xs-9">
                                     <div className="col-xs-12 pc-card-title">
-                                        <h5 title={article.title}><a className={title_class} href={that.url+'#/article/'+article.id} target="_blank">{article.title}</a></h5>
+                                        <h5 title={article.articleTitle}><a href={that.url+'#/article/'+article.articleId} target="_blank">{article.articleTitle}</a></h5>
                                         <span className={iconClass}></span>
                                     </div>
                                     <div className="col-xs-12 pc-card-tags">
                                         <p>
-                                            <span className="cd-view-time cd-tag-icon">{readTime(article.createDate)}</span>
+                                            <span className="cd-view-time cd-tag-icon" style={{width:'140px'}}>{article.collectTime}</span>
                                             <span className={tagsPClassName}></span>
                                             {markTag(currentTags)}
                                         </p>
@@ -276,5 +171,4 @@ class ArticleList extends React.Component {
         );
     }
 }
-
-export default ArticleList;
+export default MyCollection;

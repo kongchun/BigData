@@ -98,7 +98,7 @@ class Article extends React.Component {
                                             <div className="source-article-url">原网页由七只狸猫转码以便于移动设备阅读<a href={article.url}>查看原文</a></div>
                                             <div className="article-operate-all">
                                                 <div className="collectArticle">
-                                                    <ArticleCollect articleId={article.id} articleTitle={article.title} articleThumbnail={article.thumbnail}/>
+													<ArticleCollect articleId={article.id} articleTitle={article.title} articleSmartSummary={article.smartSummary} tags={article.tags} articleThumbnail={article.thumbnail}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@ class Article extends React.Component {
                                             </div>
                                             <div className="sports-content-center-right">
                                                 <div>
-                                                    狸叔划重点,带你静观人工智能风起云涌,长按左侧二维码关注我。
+													每天十分钟阅读人工智能科技资讯-用科技视角看世界,长按左侧二维码关注我。
                                                     <div className="author-lishu">By.狸叔</div>
                                                 </div>
                                             </div>

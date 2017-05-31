@@ -125,7 +125,9 @@ router.post('/articles/setArticleCollect', function(req, res) {
 	var collectDate = req.body.collectDate;
 	var articleTitle = req.body.articleTitle;
 	var thumbnail = req.body.thumbnail;
-	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle,thumbnail).then(function(data){
+	var articleSmartSummary = req.body.articleSmartSummary;
+	var tags = req.body.tags;
+	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle,thumbnail,articleSmartSummary,tags).then(function(data){
 		read.recordLog({
 			"openid":openId,
 			"action":2,

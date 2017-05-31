@@ -73,14 +73,16 @@ class Weixin {
     updateUrlCode(){
         if(!!$("#urlcode")){
             var hrefText = window.location.href;
-            $("#urlcode").qrcode({
-                render: "table", //table方式
-                width: 120, //宽度
-                height:120, //高度
-                text: hrefText //任意内容
+            $("#urlcode").html("");
+            new QRCode('urlcode', {
+                text: hrefText,
+                width: 130,
+                height: 130,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
             });
         }
-
     }
 }
 export default alt.createActions(Weixin);;

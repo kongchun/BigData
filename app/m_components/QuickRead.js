@@ -204,8 +204,10 @@ class QuickRead extends React.Component {
         let cookie_art = new Set(cookie);
         let artclelist = articles.map(function(article){
             let title_class = "cd-read-more";
+            let content_read_class = "";
             if(cookie_art.has(article.id)){
-                title_class = "cd-read-more read";
+                title_class = "cd-read-more cd-btn-read";
+                content_read_class = "cd-content-read";
             }
             var tagsLen = article.tags.length;
             let tagsPClassName = "";
@@ -228,10 +230,10 @@ class QuickRead extends React.Component {
             let moreContentClassName = "";
             let closeClassName = "";
             if(strLen>that.maxShowLength){
-                openClassName = "to-get-quick-more";
+                openClassName = "to-get-quick-more "+content_read_class;
                 moreDotClassName = "";
-                moreContentClassName = "quick_more_content quick-more-hide";
-                closeClassName = "close-get-quick-more";
+                moreContentClassName = "quick_more_content quick-more-hide "+content_read_class;
+                closeClassName = "close-get-quick-more "+content_read_class;
             }else{
                 openClassName = "quick-more-hide";
                 moreDotClassName = "quick-more-hide";
@@ -240,7 +242,7 @@ class QuickRead extends React.Component {
             }
             return (<div className="cd-timeline-block">
                         <div className="cd-timeline-content">
-                            <h5 style={{'font-weight':'bold'}}>{article.title}</h5>
+                            <h5 style={{'font-weight':'bold'}} className={content_read_class}>{article.title}</h5>
                             <p className={tagsPClassName}>
                                 <icon className="glyphicon glyphicon-tags cd-tag-icon"></icon>
                                 {markTag(currentTags)}
@@ -248,7 +250,7 @@ class QuickRead extends React.Component {
                             <div className="quick-pic-view" style={{display:'none'}}>
                                 <img src={article.thumbnail} alt={article.title} />
                             </div>
-                            <p>
+                            <p className={content_read_class}>
                                 {subContent(article.smartSummary)}
                                 <span className={moreDotClassName}>...</span>
                                 <span className={openClassName}>&nbsp;全部摘要</span>
@@ -257,7 +259,7 @@ class QuickRead extends React.Component {
                                     <span className={closeClassName}>&nbsp;收缩</span>
                                 </span>
                             </p>
-                            <Link to={'/article/' + article.id} className="cd-read-more">阅读全文</Link>
+                            <Link to={'/article/' + article.id} className={title_class}>阅读全文</Link>
                             <icon className="glyphicon glyphicon-eye-open cd-view-icon" style={{display:'none'}}></icon>
                             <span className="cd-view-count" style={{display:'none'}}>{article.hits}</span>
                             <icon className="glyphicon glyphicon-time cd-view-icon"></icon>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Copyright from './Copyright';
+import PCHeader from './PCHeader';
 
 class App extends React.Component {
 
@@ -17,16 +18,33 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div>
-				<Header />
+			<div className="pc-container">
+				<PCHeader />
         		{this.props.children}
         		<Copyright />
-        		<BackTop />
+        		<ToolBar />
      		</div>
 		);
 	}
 }
-
+class ToolBar extends React.Component {
+    render() {
+        return (<div className="toolbar">
+            <a href="javascript:;" className="toolbar-item toolbar-item-weixin">
+                    <span className="toolbar-layer2">
+                        <img src="images/limao.jpg" width="130" height="130"/>
+                    </span>
+            </a>
+            <a href="javascript:;" className="toolbar-item toolbar-item-feedback"></a>
+            <a href="javascript:;" className="toolbar-item toolbar-item-app">
+                    <span className="toolbar-code-layer">
+                        <div id="urlcode"></div>
+                    </span>
+            </a>
+            <a href="javascript:scroll(0,0)" id="top" className="toolbar-item toolbar-item-top"></a>
+        </div>)
+    }
+}
 class BackTop extends React.Component {
 	render() {
 		return (<a href="javascript:scroll(0,0)" id="back-to-top" style=
