@@ -61,7 +61,7 @@ class AboutUs extends React.Component {
 
 
 		return (<div>
-			<MyInfoNavbar title="七只狸猫" action=""/>
+			<MyInfoNavbar title="七只狸猫·快讯" action=""/>
             <div className="timeHistory">
             <TimeAxis data={data}/>
             </div>

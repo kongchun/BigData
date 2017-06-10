@@ -9,12 +9,16 @@ class PcWebSite extends React.Component {
         Weixin.getUrl();
         Weixin.weixinReady();
         return (<div>
-            <MyInfoNavbar title="七只狸猫·端午快讯 PC版" action=""/>
+            <MyInfoNavbar title="七只狸猫·快讯 PC版" action=""/>
             <div className="fedBackInfo">
-                <h4>www.limaodata.com</h4>
                 <div className="fedBackInfo-group">
-                    <p>1.手机收藏电脑访问</p>
-                    <p>2.便捷的浏览方式</p>
+                    <p>1.PC端访问地址 www.limaodata.com</p>
+                    <p>2.微信免注册直接登录</p>
+                    <p>3.稍后阅读数据可以在PC端【我的】一栏中获取阅读</p>
+                </div>
+                <div className="fedBackInfo-group">
+                    <p>快速预览</p>
+                    <p><img src="images/pc_view.png" width="85%" /></p>
                 </div>
 
             </div>

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var read = require('../server/read.js');
+var service = require('../server/service.js');
 
 /* GET users listing. */
 router.get('/articles', function(req, res) {
@@ -55,6 +56,26 @@ router.get('/articles/ids/:ids', function(req, res) {
 	})
 });
 
+router.get('/articles/keyWords', function(req, res) {
+    var wordStr = req.query.words;
+	var words = [];
+    var limit = 1;
+    if(!!wordStr){
+        words = wordStr.split(",");
+        console.log(words.length);
+        console.log(words);
+        limit = parseInt(req.query.limit);
+    }else{
+        res.send([]);
+    }
+
+	read.articlesByWords(words, limit).then(function(data) {
+		res.send(data);
+	}).catch(function(e) {
+		res.send([]);
+	})
+});
+
 router.post('/articles/setKeyWordsCount', function(req, res) {
 	var id = parseInt(req.param('id'));
 	var arr = req.body.arr;
@@ -82,15 +103,15 @@ router.get('/hotdots', function(req, res) {
 	})
 });
 router.get('/user', function(req, res) {
-	var openid = req.query.openid;
-	console.log(openid);
-	read.getUserData(openid).then(function(data){
+	var unionid = req.query.unionid;
+	read.getUserData(unionid).then(function(data){
 		if(data && data.length > 0){
 			res.send(data);
 		}else{
 			var timestamp = Date.parse(new Date()).toString();
 			var newUser = {
 				"openid":timestamp,
+				"unionid":timestamp,
 				"nickname" : '',
 				"type" : 0,
 				"collect" : [],
@@ -106,7 +127,7 @@ router.get('/user', function(req, res) {
 			read.setUserData(newUser).then(function(data){
 				res.cookie("userinfo", JSON.stringify(newUser))
 				read.recordLog({
-					"openid":newUser.openid,
+					"unionid":newUser.unionid,
 					"action":0,
 					'time':new Date()
 				})
@@ -119,7 +140,7 @@ router.get('/user', function(req, res) {
 });
 //收藏文章
 router.post('/articles/setArticleCollect', function(req, res) {
-	var openId = req.body.openId;
+	var unionid = req.body.unionid;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
 	var collectDate = req.body.collectDate;
@@ -127,9 +148,9 @@ router.post('/articles/setArticleCollect', function(req, res) {
 	var thumbnail = req.body.thumbnail;
 	var articleSmartSummary = req.body.articleSmartSummary;
 	var tags = req.body.tags;
-	read.setArticleCollect(openId,name,articleId,collectDate,articleTitle,thumbnail,articleSmartSummary,tags).then(function(data){
+	read.setArticleCollect(unionid,name,articleId,collectDate,articleTitle,thumbnail,articleSmartSummary,tags).then(function(data){
 		read.recordLog({
-			"openid":openId,
+			"unionid":unionid,
 			"action":2,
 			"artid":articleId,
 			"title":articleTitle,
@@ -143,12 +164,13 @@ router.post('/articles/setArticleCollect', function(req, res) {
 //取消收藏
 router.post('/articles/cancelArticleCollect', function(req, res) {
 	var openId = req.body.openId;
+	var unionid = req.body.unionid;
 	var name = req.body.name;
 	var articleId = req.body.articleId;
 	var thumbnail = req.body.thumbnail;
-	read.cancelArticleCollect(openId,name,articleId,thumbnail).then(function(data){
+	read.cancelArticleCollect(unionid,name,articleId,thumbnail).then(function(data){
 		read.recordLog({
-			"openid":openId,
+			"unionid":unionid,
 			"action":3,
 			"artid":articleId,
 			"time":new Date()
@@ -158,4 +180,13 @@ router.post('/articles/cancelArticleCollect', function(req, res) {
 		res.send([]);
 	})
 });
+router.get('/msg', function(req, res) {
+	var msg = req.query.msg;
+	service.getSegment(msg).then(function(data) {
+        res.send(data);
+    }).catch(function(e) {
+        res.send([]);
+    })
+});
+
 module.exports = router;

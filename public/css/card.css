@@ -39,7 +39,8 @@
   position: relative;
   margin: 0 auto;
   background: white;
-  border-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+  border-top-left-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 1px 0 #CCCCCC;
 }
@@ -48,8 +49,9 @@
   display: table;
   clear: both;
 }
-.cd-timeline-content h2 {
+.cd-timeline-content h5 {
   color: #303e49;
+  font-size: 16px;
 }
 .cd-timeline-content p,
 .cd-timeline-content .cd-read-more,
@@ -221,10 +223,12 @@ a.cd-read-more:hover {
 .to-get-quick-more {
   font-size: 12px;
   color: #666666;
+  padding: 6px;
 }
 .close-get-quick-more {
   font-size: 11px;
   color: #666666;
+  padding: 6px;
 }
 .quick-pic-view img {
   width: 100%;
@@ -271,6 +275,42 @@ a.cd-read-more:hover {
 .cd-btn-read {
   background: #d4d4d4 !important;
 }
+.cd-content-head {
+  font-weight: bold;
+}
 .cd-content-read {
   color: #d4d4d4 !important;
+}
+.cd-content-toolbar {
+  border-top: 1px solid #D4D4D4;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  color: #000000;
+  width: 100%;
+  border-bottom-left-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+}
+.cd-content-toolbar a {
+  color: #000000;
+  font-size: 14px;
+}
+.cd-content-toolbar span {
+  background-color: #FFFFFF;
+  display: inline-block;
+  width: 50%;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 14px;
+  margin: 5px auto;
+}
+.cd-content-toolbar-font {
+  font-size: 14px;
+  color: #000000;
+}
+.cd-content-toolbar span:first-child {
+  border-right: 1px solid #D4D4D4;
+}
+.cd-content-toolbar span:last-child {
+  border-right: 0px;
 }

@@ -56,6 +56,7 @@ var ArticleSource = {
                 var url = "/api/articles/setArticleCollect";
                 $.post(url,{
                     openId:param.openId,
+                    unionid:param.unionid,
                     name:param.name,
                     articleId:param.articleId,
                     collectDate:param.collectDate,
@@ -76,6 +77,7 @@ var ArticleSource = {
                 var url = "/api/articles/cancelArticleCollect";
                 $.post(url,{
                     openId:param.openId,
+                    unionid:param.unionid,
                     name:param.name,
                     articleId:param.articleId,
                     thumbnail:param.thumbnail
@@ -89,7 +91,7 @@ var ArticleSource = {
     getArticleByUser(param){
         return new Promise(function(resolve,reject){
             if(param){
-                var url = "/api/articles/getArticleByUser?openId="+param.openId+"&articleId="+param.articleId;
+                var url = "/api/articles/getArticleByUser?unionid="+param.unionid+"&articleId="+param.articleId;
                 $.get(url).done(resolve).fail(reject);
             }else{
                 console.log("获取用户信息失败");

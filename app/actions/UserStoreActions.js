@@ -17,8 +17,9 @@ class UserStoreActions {
 		}
 		if(!userinfo){
 			userinfo.openid = "";
+			userinfo.unionid = "";
 		}
-		return UserSource.getUserSource(userinfo.openid).then((data) => this.onSuccess(data[0]));
+		return UserSource.getUserSource(userinfo.unionid).then((data) => this.onSuccess(data[0]));
 	}
 	getUserById() {
 		let user = document.cookie;
@@ -29,9 +30,9 @@ class UserStoreActions {
 			userinfo = JSON.parse(unescape(values[0]));
 		}
 		if(!userinfo){
-			userinfo.openid = "";
+			userinfo.unionid = "";
 		}
-		return UserSource.getUserSource(userinfo.openid).then(function(data){return data});
+		return UserSource.getUserSource(userinfo.unionid).then(function(data){return data});
 	}
 }
 

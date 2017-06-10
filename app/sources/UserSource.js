@@ -1,9 +1,9 @@
 var UserSource = {
     //获得用户信息
-    getUserSource:function(openid){
+    getUserSource:function(unionid){
         return new Promise(function(resolve,reject){
             var url = "/api/user";
-            $.get(url,{'openid':openid}).done(resolve).fail(reject);
+            $.get(url,{'unionid':unionid}).done(resolve).fail(reject);
         })
     }
 }

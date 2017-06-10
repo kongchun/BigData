@@ -43,9 +43,10 @@ class App extends React.Component {
 }
 
 class BackTop extends React.Component {
+	//glyphicon glyphicon-chevron-up
 	render() {
 		return (<a href="javascript:scroll(0,0)" id="back-to-top" style=
-			{{display: "inline"}}><i className="glyphicon glyphicon-chevron-up"></i></a>)
+			{{display: "inline"}}><i className="miconfont micon-less"></i></a>)
 	}
 }
 export default App;

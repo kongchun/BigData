@@ -28,6 +28,14 @@ class App extends React.Component {
 	}
 }
 class ToolBar extends React.Component {
+	/**
+	 <a href="javascript:;" className="toolbar-item toolbar-item-feedback"></a>
+	 <a href="javascript:;" className="toolbar-item toolbar-item-app">
+	 <span className="toolbar-code-layer">
+	 <div id="urlcode"></div>
+	 </span>
+	 </a>
+	 */
     render() {
         return (<div className="toolbar">
             <a href="javascript:;" className="toolbar-item toolbar-item-weixin">
@@ -35,12 +43,8 @@ class ToolBar extends React.Component {
                         <img src="images/limao.jpg" width="130" height="130"/>
                     </span>
             </a>
-            <a href="javascript:;" className="toolbar-item toolbar-item-feedback"></a>
-            <a href="javascript:;" className="toolbar-item toolbar-item-app">
-                    <span className="toolbar-code-layer">
-                        <div id="urlcode"></div>
-                    </span>
-            </a>
+
+
             <a href="javascript:scroll(0,0)" id="top" className="toolbar-item toolbar-item-top"></a>
         </div>)
     }

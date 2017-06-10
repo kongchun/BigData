@@ -4,7 +4,8 @@ exports.articlesByPage = function(page, limit) {
 	var start = (page - 1) * limit;
 	return db.open("articles").then(function(collection) {
 		return collection.find({
-			"delete": null
+			"delete": null,
+            "similar": {$ne:null,$exists:true}
 		}).sort({
 			createDate: -1
 		}).skip(start).limit(limit).toArray();
@@ -24,6 +25,33 @@ exports.articlesByPage = function(page, limit) {
 		console.error(error)
 		throw error;
 	})
+}
+
+exports.articlesByHits = function(page, limit) {
+    var start = (page - 1) * limit;
+    return db.open("articles").then(function(collection) {
+        return collection.find({
+            "delete": null,
+            "similar": {$ne:null,$exists:true}
+        }).sort({
+            hits : -1,
+            createDate: -1
+        }).skip(start).limit(limit).toArray();
+    }).then(function(data) {
+        return db.collection.find().count().then(function(count) {
+            db.close();
+            return ({
+                limit,
+                count,
+                page,
+                data
+            });
+        })
+    }).catch(function(error) {
+        db.close();
+        console.error(error)
+        throw error;
+    })
 }
 
 exports.article = function(id) {
@@ -89,6 +117,30 @@ exports.articlesByIds = function(ids) {
 				"$in": arr
 			}
 		}).toArray();
+	}).then(function(data) {
+		db.close();
+		return (data);
+	}).catch(function() {
+		db.close();
+		console.error(error)
+		throw error;
+	})
+}
+
+exports.articlesByWords = function(words,limit) {
+	db.close();
+	var arr = [];
+    for(var i=0;i<words.length;i++){
+        arr[i] = eval('/'+words[i]+'/');
+    }
+	return db.open("articles").then(function(collection) {
+		return collection.find({
+			"tags": {
+				$in: arr
+			}
+		}).sort({
+            createDate: -1
+        }).skip(0).limit(limit).toArray();
 	}).then(function(data) {
 		db.close();
 		return (data);
@@ -180,10 +232,10 @@ exports.setUserData = function(userinfo) {
 	})
 }
 
-exports.getUserData = function(openid) {
+exports.getUserData = function(unionid) {
 	db.close();
 	return db.open("users").then(function(collection) {
-		return collection.find({"openid":openid}).toArray();
+		return collection.find({"unionid":{$in:[unionid],$exists:true}}).toArray();
 	}).then(function(data) {
 		db.close();
 		return data;
@@ -197,8 +249,8 @@ exports.getUserData = function(openid) {
 exports.userData = function(userinfo) {
 	db.close();
 	return db.open("users").then(function(collection) {
-		console.log("user:" + userinfo.openid)
-		return collection.find({"openid":userinfo.openid}).toArray();
+		console.log("user:" + userinfo.unionid)
+		return collection.find({"unionid":{$in:[userinfo.unionid],$exists:true}}).toArray();
 	}).then(function(data) {
 		if(data.length < 1){
 			userinfo['collect'] = [];
@@ -220,11 +272,11 @@ exports.userData = function(userinfo) {
 }
 
 //收藏
-exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTitle,thumbnail,smartSummary,tags){
+exports.setArticleCollect = function(unionid,name,articleId,collectDate,articleTitle,thumbnail,smartSummary,tags){
 	db.close();
 	return db.open('users').then(function(collection){
 		return collection.findOne({
-			'openid':openId
+			'unionid':{$in:[unionid],$exists:true}
 		});
 	}).then(function(data){
 		if(data){
@@ -247,7 +299,7 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 				data.collect.push(collect);
 				var newCollect = data.collect;
 				return db.collection.updateOne({
-					'openid':openId,
+					'unionid':{$in:[unionid],$exists:true},
 				},{
 					$set:{
 						'collect':newCollect
@@ -270,11 +322,11 @@ exports.setArticleCollect = function(openId,name,articleId,collectDate,articleTi
 	})
 }
 //取消收藏
-exports.cancelArticleCollect = function(openId,name,articleId,thumbnail){
+exports.cancelArticleCollect = function(unionid,name,articleId,thumbnail){
 	db.close();
 	return db.open("users").then(function(collection){
 		return collection.findOne({
-			'openid':openId
+			'unionid':{$in:[unionid],$exists:true}
 		});
 	}).then(function(data){
 		var hasCollect = false;
@@ -291,7 +343,7 @@ exports.cancelArticleCollect = function(openId,name,articleId,thumbnail){
 		}
 		var newCollect = data.collect;
 		return db.collection.updateOne({
-			'openid':openId
+			'unionid':{$in:[unionid],$exists:true}
 		},{
 			$set:{
 				'collect':newCollect

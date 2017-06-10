@@ -24,6 +24,10 @@ class MyInfo extends React.Component {
         $("html,body").animate({scrollTop: 0}, 10);
     }
 
+    componentWillUnmount() {
+        UserStore.unlisten(this.onChange);
+    }
+
     onChange(state) {
         this.setState(state);
     }
@@ -66,7 +70,7 @@ class MyInfo extends React.Component {
                         </li>
                         <li>
                             <Link to={'/pcWebSite'} className="container-list">
-                                <span className="myInfo-label">七只狸猫·端午快讯 PC版</span><i className="icon-lmangle-right"></i>
+                                <span className="myInfo-label">七只狸猫·快讯 PC版</span><i className="icon-lmangle-right"></i>
                             </Link>
                         </li>
                         <li>

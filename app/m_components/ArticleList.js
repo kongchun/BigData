@@ -166,8 +166,9 @@ class ArticleList extends React.Component {
             return "a天前";
         }
         function markTag(tags){
+            var i =0;
             return tags.map((tag) => (
-                <span className="article-tag">{tag}</span>
+                <span key={i++} className="article-tag">{tag}</span>
             ))
         }
         let articles = this.state.data.data;

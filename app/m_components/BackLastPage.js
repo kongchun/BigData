@@ -20,7 +20,7 @@ class BackLastPage extends React.Component {
             return null;
         }
         return (<div id="lastPageButton" style={{display:'none'}}><a href="javascript:history.back(-1);" id="back-to-lastpage" style=
-            {{display: "inline"}}><i className="glyphicon glyphicon-chevron-left"></i></a></div>)
+            {{display: "inline"}}><i className="miconfont micon-back"></i></a></div>)
     }
 }
 export default BackLastPage;

@@ -9,10 +9,14 @@ class ArticleCollect extends React.Component {
 		super(props);
 		this.state = {collected: false};
 		this.currentUser = null;
+		this.showFlag = props.showFlag;
 	}
 	componentDidMount(){
 		var _this = this;
 		var articleId =  getArticelId(window.location.href);
+        if('1'==this.showFlag){
+            articleId = this.props.articleId;
+        }
 		UserActions.getUserById().then(function(data){
 			var currentUser = data[0];
 			_this.currentUser = currentUser
@@ -52,6 +56,7 @@ class ArticleCollect extends React.Component {
 		if(!isCollectedFlag){
 			var collectMsg = {
 				openId:currentUser.openid,
+				unionid:currentUser.unionid,
 				name:currentUser.nickname,
 				articleId:articleId,
 				collectDate:new Date().toLocaleString(),
@@ -66,6 +71,7 @@ class ArticleCollect extends React.Component {
 			//取消收藏
 			var cancelCollectMsg = {
 				openId:currentUser.openid,
+				unionid:currentUser.unionid,
 				name:currentUser.nickname,
 				articleId:articleId,
 				thumbnail:currentUser.headimgurl
@@ -76,13 +82,30 @@ class ArticleCollect extends React.Component {
     }
 	render(){
 		var collect = this.state.collected;
-		var text = collect ? "取消收藏":'收藏';
-		var clazzName = collect ? "glyphicon glyphicon-star":"glyphicon glyphicon-star-empty";
-		return (
-			<span className="article-collect">
+        if('1'==this.showFlag) {
+            var text = collect ? "已收藏":'稍后阅读';
+            var clazzName = collect ? "miconfont micon-favoritesfilling cd-content-toolbar-font":"miconfont micon-favorite cd-content-toolbar-font";
+            return (
+                <span className={clazzName} onClick={this.onHandleCollectClick.bind(this)}>&nbsp;{text}</span>
+            );
+        }else if('2'==this.showFlag) {
+            var text = collect ? "已收藏":'收藏';
+            var clazzName = collect ? "miconfont micon-favoritesfilling cd-article-collect":"miconfont micon-favorite cd-article-collect";
+            return (
+                <div onClick={this.onHandleCollectClick.bind(this)}>
+                    <span className={clazzName}></span>
+                    <span >&nbsp;{text}</span>
+                </div>
+            );
+        }else{
+            var clazzName = collect ? "glyphicon glyphicon-star":"glyphicon glyphicon-star-empty";
+            var text = collect ? "取消收藏":'收藏';
+            return (
+				<span className="article-collect">
 					<span className="article-collect-label" onClick={this.onHandleCollectClick.bind(this)}>{text}</span>
 			</span>
-		);
+			);
+        }
     }
 }
 

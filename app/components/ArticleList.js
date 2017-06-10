@@ -9,6 +9,7 @@ import Pages from './Pages';
 import SideColumn from './SideColumn';
 import Weixin from './Weixin';
 
+
 class ArticleList extends React.Component {
     constructor(props) {
         super(props);
@@ -201,8 +202,10 @@ class ArticleList extends React.Component {
         let articles = this.state.data.data;
         let artclelist = articles.map(function(article) {
             let title_class = "title_link";
+            var hasread = false;
             if(cookie_art.has(article.id)){
                 title_class = "title_link read";
+                hasread = true;
             }
             if(!!!article.tags) article.tags=[];
             if(!!!article.smartSummary) article.smartSummary='';
@@ -214,6 +217,9 @@ class ArticleList extends React.Component {
             if(article.smartSummary.length<=that.maxShowLength){
                 iconClass= "glyphicon glyphicon-chevron-down open-close-icon hide";
                 textClass= "col-xs-12 pc-card-info";
+            }
+            if(hasread){
+                textClass += " read";
             }
             if(tagsLen>0){
                 if(tagsLen>4){

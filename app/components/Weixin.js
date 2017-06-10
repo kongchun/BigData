@@ -71,7 +71,7 @@ class Weixin {
         });
     }
     updateUrlCode(){
-        if(!!$("#urlcode")){
+        if(!!document.getElementById("urlcode")){
             var hrefText = window.location.href;
             $("#urlcode").html("");
             new QRCode('urlcode', {

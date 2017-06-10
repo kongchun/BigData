@@ -7,6 +7,7 @@ import {
     } from 'react-router';
 import ArticleSimpleStore from '../stores/ArticleSimpleStore';
 import ArticleListActions from '../actions/ArticleListActions';
+import ArticleCollect from './ArticleCollect';
 import Weixin from './Weixin';
 class QuickRead extends React.Component {
     constructor(props) {
@@ -239,10 +240,11 @@ class QuickRead extends React.Component {
                 moreDotClassName = "quick-more-hide";
                 moreContentClassName = "quick-more-hide";
                 closeClassName = "quick-more-hide";
-            }
+            }//<Link to={'/article/' + article.id} className={title_class}>阅读全文</Link>
+            let cdContentHeadClass = 'cd-content-head ' + content_read_class;
             return (<div className="cd-timeline-block">
                         <div className="cd-timeline-content">
-                            <h5 style={{'font-weight':'bold'}} className={content_read_class}>{article.title}</h5>
+                            <p className={cdContentHeadClass}>{article.title}</p>
                             <p className={tagsPClassName}>
                                 <icon className="glyphicon glyphicon-tags cd-tag-icon"></icon>
                                 {markTag(currentTags)}
@@ -259,11 +261,15 @@ class QuickRead extends React.Component {
                                     <span className={closeClassName}>&nbsp;收缩</span>
                                 </span>
                             </p>
-                            <Link to={'/article/' + article.id} className={title_class}>阅读全文</Link>
+
                             <icon className="glyphicon glyphicon-eye-open cd-view-icon" style={{display:'none'}}></icon>
                             <span className="cd-view-count" style={{display:'none'}}>{article.hits}</span>
                             <icon className="glyphicon glyphicon-time cd-view-icon"></icon>
                             <span className="cd-view-time">{readTime(article.createDate)}</span>
+                        </div>
+                        <div className="cd-content-toolbar">
+                            <ArticleCollect showFlag='1' articleId={article.id} articleTitle={article.title} articleSmartSummary={article.smartSummary} tags={article.tags} articleThumbnail={article.thumbnail}/>
+                            <Link to={'/article/' + article.id} ><span className="miconfont micon-text cd-content-toolbar-font">&nbsp;阅读全文</span></Link>
                         </div>
                     </div>)
         });

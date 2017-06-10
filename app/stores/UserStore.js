@@ -6,6 +6,7 @@ class UserStore {
         this.bindActions(UserStoreActions);
         this.data = {
             openid: "",
+            unionid: "",
             sex: 1,
             languag: 'zh_CN',
             city: '苏州',

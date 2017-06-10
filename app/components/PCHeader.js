@@ -55,7 +55,7 @@ class PCHeader extends React.Component {
             var turl = window.location.href.split('?_k')[0].split("/#/");
             var url = turl[0];
             if(turl.length>0){
-                url += '?react='+ turl[1].replace("/",'*');
+                url = 'http://www.limaodata.com?react='+ turl[1].replace("/",'*');
             }
             var obj = new WxLogin({
                 id:"wx_login_panel",
@@ -111,15 +111,16 @@ class PCHeader extends React.Component {
                 </div>
             </div>
         }
-
         return (<div>
             <header className="web-pc-header">
                 <div className="row">
-                    <div className="web-pc-logo owText">
-                        <a href="#">七只狸猫·端午快讯</a>
+                    <div className="web-pc-logo owText" title="七只狸猫·快讯 每天十分钟阅读人工智能资讯">
+                        <a href="#">
+                            <img className="logo_cat" data-progress-text="100%" data-progress="99" src="images/logo_banner.png" height="82" />
+                        </a>
                     </div>
-                    <div className="web-pc-header-desc">
-                        <p>每天十分钟阅读人工智能科技资讯</p>
+                    <div className="web-pc-header-desc hide">
+                        <p>每天十分钟阅读人工智能资讯</p>
                     </div>
                 </div>
             </header>
@@ -131,7 +132,7 @@ class PCHeader extends React.Component {
                                 <a href="#">快阅</a>
                             </li>
                             <li>
-                                <a href="javascript:;" id="myCollection">我的</a>
+                                <a href="javascript:;" id="myCollection">稍后阅读</a>
                             </li>
                             <li style={{'float': 'right','marginRight':'-240px'}} id="loginModel">
                                 <span className="wx_login_btn wx_btn24"></span>
@@ -144,7 +145,7 @@ class PCHeader extends React.Component {
                     </div>
                 </div>
             </div>
-            {model('myModal','友情提示','请先进行微信登陆','pc-to-wx')}
+            {model('myModal','友情提示','稍后阅读是您在登录后对阅读内容进行收藏的列表，您在微信中收藏的内容可以在此处继续阅读。请先登录微信账号！','pc-to-wx')}
             {weixinLogin()}
         </div>);
     }

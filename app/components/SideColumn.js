@@ -23,8 +23,8 @@ class SideColumn extends React.Component {
                         </div>
                         <div className="sports-content-center-right">
                             <div>
-                                "每天十分钟阅读人工智能科技资讯-用科技视角看世界，扫描左侧二维码关注我"
-                                <div className="author-lishu" >By.狸叔</div>
+                                "我们致力于用人工智能科技帮你每天获取最有价值的人工智能资讯"
+                                <div className="author-lishu" ></div>
                             </div>
                         </div>
 

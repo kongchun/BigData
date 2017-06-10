@@ -6,16 +6,26 @@
   border: 0px solid blue;
   margin: 0 12px;
   /*background:#FFFFFF;*/
-  padding: 0.5em 0;
+  padding: 0.1em 0;
   font-size: 2rem;
   font-family: "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
   font-weight: bold;
   width: 100%;
 }
 .web-pc-logo {
-  margin-left: 15px;
+  /*width: 530px;*/
+  margin-left: 25px;
   float: left;
 }
+.web-pc-logo .logo_cat {
+  transition: all 2s ease-in-out;
+}
+/*.web-pc-logo:hover .logo_cat{
+    -webkit-transform: translateX(-5px);
+    -moz-transform: translateX(-5px);
+    -o-transform: translateX(-5px);
+    -ms-transform: translateX(-5px);
+}*/
 .owText {
   text-align: center;
   -webkit-text-stroke: 2px #F4645F;
@@ -32,7 +42,7 @@
   position: relative;
   height: 15px;
   color: #666666;
-  line-height: 42px;
+  line-height: 132px;
   margin-left: 15px;
   float: left;
   font-weight: 500;
@@ -140,10 +150,11 @@
   top: 32%;
   left: 93%;
   cursor: pointer;
+  color: #CCCCCC;
 }
 .pc-body .pc-card-info {
   width: 93%;
-  color: #999BA9;
+  color: #000000;
   cursor: pointer;
 }
 /* right box */
@@ -161,6 +172,9 @@
 }
 .pc-right-box .sports-content-center {
   margin-top: -70px;
+}
+.pc-right-box .sports-content-center-right {
+  margin-top: 0;
 }
 .pc-right-box .sports-content-center-right div {
   margin-left: 0px;
@@ -182,6 +196,10 @@
 }
 .pc-sponsors li:hover {
   border-bottom: 1px solid #363639;
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  -ms-transform: scale(1.3);
 }
 .pc-sponsors li img {
   width: 90px;
@@ -205,6 +223,7 @@
 .cd-tag-icon {
   opacity: 0.7;
   font-size: 1rem;
+  color: #666666;
 }
 .cd-view-time {
   margin: 0 0.25em;
@@ -447,4 +466,47 @@
   -ms-transition: all 1s;
   -o-transition: all 1s;
   -webkit-transition: all 1s;
+}
+.pc-article-card {
+  color: #000000;
+}
+.article-more-tag {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #828a92;
+  padding: 0px 2px;
+  display: inline-block;
+}
+.pull-right {
+  border: 1px solid #d6d6d6;
+  border-radius: 0.25em;
+  text-align: center;
+  width: 100px;
+  padding: 3px 5px;
+  bottom: 32px;
+  right: 40px;
+  position: absolute;
+}
+.pull-right .article-collect-label:hover {
+  border-bottom: 1px solid #666666;
+}
+.pull-right:hover {
+  border: 1px solid #cccccc;
+}
+.modal-weixin-buttom {
+  cursor: pointer;
+}
+.modal-wx-panel {
+  width: 230px;
+  margin-top: 10%;
+}
+.modal-wx-footer {
+  padding: 5px;
+  border-top: 1px solid #e5e5e5;
+}
+.modal-center {
+  padding: 15px 45px;
 }

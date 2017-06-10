@@ -48,6 +48,7 @@ class ArticleCollect extends React.Component {
 
             }else{
                 $('#myModal').modal('show');
+				return false;
             }
         }
 		//收藏文章
@@ -62,6 +63,7 @@ class ArticleCollect extends React.Component {
 		if(!isCollectedFlag){
 			var collectMsg = {
 				openId:currentUser.openid,
+				unionid:currentUser.unionid,
 				name:currentUser.nickname,
 				articleId:articleId,
 				collectDate:new Date().toLocaleString(),
@@ -77,6 +79,7 @@ class ArticleCollect extends React.Component {
 			//取消收藏
 			var cancelCollectMsg = {
 				openId:currentUser.openid,
+				unionid:currentUser.unionid,
 				name:currentUser.nickname,
 				articleId:articleId,
 				thumbnail:currentUser.headimgurl

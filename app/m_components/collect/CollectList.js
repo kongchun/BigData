@@ -22,6 +22,9 @@ class CollectList extends React.Component {
 		UserStore.listen(this.onChange);
 		UserStoreActions.getUser();
 	}
+	componentWillUnmount() {
+		UserStore.unlisten(this.onChange);
+	}
 
 	render(){
 		var height = (document.documentElement.clientHeight-50) + "px";
