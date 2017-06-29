@@ -10,7 +10,7 @@ class Copyright extends React.Component {
 	        <div className="container">
 	            <div className="row">
 	                <div className="col-sm-12">
-	                    <span>Copyright © <a href="http://www.limaodata.com/">七只狸猫·荒野猎人</a></span> |
+	                    <span>Copyright © <a href="http://www.limaodata.com/">七只狸猫·荒野猎人团队</a></span> |
 	                    <span><a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备14030752号</a></span> 
 	                </div>
 	            </div>

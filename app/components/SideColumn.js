@@ -12,20 +12,16 @@ class SideColumn extends React.Component {
         return (<div className="col-xs-3 pc-right-box">
             <aside className="col-xs-12 sidebar">
                 <div className="widget">
-                    <h4 className="title">
-                        关注我们
-                    </h4>
                 </div>
                 <div className="limao-ad-info">
                     <div className="sports-content-center">
-                        <div className="erweima sports-content-center-left">
-                            <img src="images/limao.jpg" width="100" height="100"/>
-                        </div>
                         <div className="sports-content-center-right">
-                            <div>
-                                "我们致力于用人工智能科技帮你每天获取最有价值的人工智能资讯"
-                                <div className="author-lishu" ></div>
+                            <div className="pc-message-box">
+                                <span className="pc-dott pc-dott-left">"</span>
+                                <p className="pc-message">我们致力于用人工智能技术帮你每天获取最有价值的人工智能资讯</p>
+                                <span className="pc-dott pc-dott-right">"</span>
                             </div>
+                            <div className="author-team" >荒野猎人团队</div>
                         </div>
 
                     </div>

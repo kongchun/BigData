@@ -7,6 +7,7 @@ import TimeAxis from './TimeAxis';
 class AboutUs extends React.Component {
 
     componentDidMount(){
+        $("#lastPageButton").show();
         $(".footer-nav").hide();
         var deviceWidth = document.documentElement.clientWidth;
         var leftB = (deviceWidth-290)/2;
@@ -61,7 +62,10 @@ class AboutUs extends React.Component {
 
 
 		return (<div>
-			<MyInfoNavbar title="七只狸猫·快讯" action=""/>
+            <div className="aboutusStyle">
+                <img src="images/aboutus.jpg"/>
+                <span>荒野猎人团队</span>
+            </div>
             <div className="timeHistory">
             <TimeAxis data={data}/>
             </div>

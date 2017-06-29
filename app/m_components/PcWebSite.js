@@ -5,16 +5,22 @@ import {
 import MyInfoNavbar from './MyInfoNavbar';
 import Weixin from './Weixin';
 class PcWebSite extends React.Component {
+
+    componentDidMount(){
+        $("#lastPageButton").show();
+        $(".footer-nav").hide();
+    }
+
     render() {
         Weixin.getUrl();
-        Weixin.weixinReady();
+        //<MyInfoNavbar title="七只狸猫·快讯 PC版" action=""/>
         return (<div>
-            <MyInfoNavbar title="七只狸猫·快讯 PC版" action=""/>
+
             <div className="fedBackInfo">
                 <div className="fedBackInfo-group">
-                    <p>1.PC端访问地址 www.limaodata.com</p>
+                    <p>1.欢迎访问 www.limaodata.com</p>
                     <p>2.微信免注册直接登录</p>
-                    <p>3.稍后阅读数据可以在PC端【我的】一栏中获取阅读</p>
+                    <p>3.通过【稍后阅读】可以获取微信中稍后阅读数据</p>
                 </div>
                 <div className="fedBackInfo-group">
                     <p>快速预览</p>
@@ -23,6 +29,7 @@ class PcWebSite extends React.Component {
 
             </div>
         </div>)
+        Weixin.weixinReady();
     }
 }
 export default PcWebSite;

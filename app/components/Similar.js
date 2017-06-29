@@ -30,7 +30,7 @@ class Similar extends React.Component {
 	render() {
 		var articles = (this.state.data);
 		let artclelist = articles.map((article) => (
-			<Link to={'/article/' + article.id}>
+			<Link key={article.id} to={'/article/' + article.id}>
 				<div className="samilarItem">
 					<div className="item-icon"></div>
 					<div key={article.id} id={article.id} className="item">

@@ -98,7 +98,17 @@ var ArticleSource = {
                 reject([]);
             }
         })
-    }
+    },
+    getArticlesByHits: function(page, limit, time) {
+        return new Promise(function(resolve, reject) {
+            if (time == "") {
+                resolve([]);
+            } else {
+                var url = "/api/articles/byHits?page="+page+"&times="+time+"&limit="+limit;
+                $.get(url, {}).done(resolve).fail(reject);
+            }
+        })
+    },
 }
 
 export default ArticleSource;

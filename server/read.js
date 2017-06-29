@@ -5,7 +5,7 @@ exports.articlesByPage = function(page, limit) {
 	return db.open("articles").then(function(collection) {
 		return collection.find({
 			"delete": null,
-            "similar": {$ne:null,$exists:true}
+            "similar": {$ne:'',$exists:true}
 		}).sort({
 			createDate: -1
 		}).skip(start).limit(limit).toArray();
@@ -27,16 +27,27 @@ exports.articlesByPage = function(page, limit) {
 	})
 }
 
-exports.articlesByHits = function(page, limit) {
+exports.articlesByHits = function(page, limit, time) {
     var start = (page - 1) * limit;
     return db.open("articles").then(function(collection) {
-        return collection.find({
-            "delete": null,
-            "similar": {$ne:null,$exists:true}
-        }).sort({
-            hits : -1,
-            createDate: -1
-        }).skip(start).limit(limit).toArray();
+		if(!!time){
+			return collection.find({
+				"delete": null,
+				"similar": {$ne:'',$exists:true},
+				"createDate":{$gte:time}
+			}).sort({
+				hits : -1,
+				createDate: -1
+			}).skip(start).limit(limit).toArray();
+		}else{
+			return collection.find({
+				"delete": null,
+				"similar": {$ne:null,$exists:true}
+			}).sort({
+				hits : -1,
+				createDate: -1
+			}).skip(start).limit(limit).toArray();
+		}
     }).then(function(data) {
         return db.collection.find().count().then(function(count) {
             db.close();
@@ -134,17 +145,32 @@ exports.articlesByWords = function(words,limit) {
         arr[i] = eval('/'+words[i]+'/');
     }
 	return db.open("articles").then(function(collection) {
-		return collection.find({
+		return collection.find({$or:[{
 			"tags": {
 				$in: arr
-			}
+			}},{"title": {
+				$in: arr
+			}}]
 		}).sort({
+			hits : -1,
             createDate: -1
         }).skip(0).limit(limit).toArray();
 	}).then(function(data) {
-		db.close();
-		return (data);
-	}).catch(function() {
+		return db.collection.find({$or:[{
+            "tags": {
+                $in: arr
+            }},{"title": {
+            $in: arr
+        }}]
+        }).count().then(function(count) {
+			db.close();
+			return ({
+				limit,
+				count,
+				data
+			});
+		})
+	}).catch(function(error) {
 		db.close();
 		console.error(error)
 		throw error;
@@ -360,6 +386,7 @@ exports.cancelArticleCollect = function(unionid,name,articleId,thumbnail){
 }
 
 exports.recordLog = function(action){
+	db.close();
 	return db.open("action_log").then(function(collection){
 		console.log("action" + action)
 		console.log("type" + typeof action)

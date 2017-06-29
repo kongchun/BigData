@@ -91,6 +91,18 @@ gulp.task('m_browserify', ['browserify-vendor'], function() {
 		.pipe(gulp.dest('public/js'));
 });
 
+gulp.task('sp_browserify', ['browserify-vendor'], function() {
+	return browserify('app/sp_components/Weekly.js')
+		.external(dependencies)
+		.transform(babelify, {
+			presets: ['es2015', 'react', 'stage-0']
+		})
+		.bundle()
+		.pipe(source('sp_bundle.js'))
+		//.pipe(gulpif(production, streamify(uglify({mangle: false}))))
+		.pipe(gulp.dest('public/js'));
+});
+
 gulp.task('styles', function() {
 	return gulp.src(['app/stylesheets/*.less','app/stylesheets/*.css'])
 		.pipe(plumber())
@@ -101,7 +113,7 @@ gulp.task('styles', function() {
 });
 
 
-gulp.task('build', ['styles', 'vendor', 'browserify','m_browserify']);
+gulp.task('build', ['styles', 'vendor', 'browserify','m_browserify','sp_browserify']);
 
 
 gulp.task('watch', ['build'], function() {

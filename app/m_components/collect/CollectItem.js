@@ -12,7 +12,7 @@ class CollectItem extends React.Component {
 					<div className="collect-time">{this.props.time}</div>
 				</div>
 				<div className="col-sm-4">
-					<div className="collect-thumbnail"><img className="img-responsive" src={this.props.thumbnail} alt="七只狸猫"/></div>
+					<div className="collect-thumbnail"><img className="img-responsive" max-height="200" src={this.props.thumbnail} alt="七只狸猫"/></div>
 				</div>
 			</div>
 		</div>

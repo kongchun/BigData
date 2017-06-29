@@ -5,6 +5,7 @@ import {
 
 import ArticleListStore from '../stores/ArticleListStore';
 import ArticleListActions from '../actions/ArticleListActions';
+import LogActions from '../actions/LogActions';
 import Pages from './Pages';
 import SideColumn from './SideColumn';
 import Weixin from './Weixin';
@@ -29,7 +30,6 @@ class ArticleList extends React.Component {
         $(".active").removeClass("active");
         $("#quickRead").addClass("active");
         ArticleListStore.listen(this.onChange);
-
         const page = this.props.params && this.props.params.page ? this.props.params.page : 1;
         ArticleListActions.getArticles(page, this.limit);
         var that =this;
@@ -112,6 +112,9 @@ class ArticleList extends React.Component {
                 pNode.html(attrHtml);
                 pNode.attr("data-p-text",currentHtml);
                 if($(this).parent().find(".glyphicon-chevron-down").length>0){
+                    var artid = pNode.attr("data-p-artid");
+                    var artTitle = pNode.attr("data-p-title");
+                    LogActions.quickReadLog(artid, artTitle);
                     $(this).parent().find(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
                 }else if($(this).parent().find(".glyphicon-chevron-up").length>0){
                     $(this).parent().find(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
@@ -188,8 +191,9 @@ class ArticleList extends React.Component {
             return "a天前";
         }
         function markTag(tags){
+            var i = 0;
             return tags.map((tag) => (
-                <span className="article-tag">{tag}</span>
+                <span key={i++} className="article-tag">{tag}</span>
             ))
         }
         let cookie;
@@ -232,14 +236,16 @@ class ArticleList extends React.Component {
             }else{
                 tagsPClassName = "glyphicon glyphicon-tags cd-tag-icon hide";
             }
+            /*
+             <div className="col-xs-3 pc-card-pic hide">
+             {that.getThumbnail(article)}
+             </div>
+            */
             return (
                 <article key={article.id} id={article.id} className='animated fadeIn'>
                     <li>
                         <div className="container pc-article-card">
                             <div className="row">
-                                <div className="col-xs-3 pc-card-pic hide">
-                                    {that.getThumbnail(article)}
-                                </div>
                                 <div className="col-xs-9">
                                     <div className="col-xs-12 pc-card-title">
                                         <h5 title={article.title}><a className={title_class} href={that.url+'#/article/'+article.id} target="_blank">{article.title}</a></h5>
@@ -253,7 +259,7 @@ class ArticleList extends React.Component {
                                         </p>
                                     </div>
                                     <div className={textClass}>
-                                        <p data-p-text={article.smartSummary}>
+                                        <p data-p-text={article.smartSummary} data-p-artid={article.id} data-p-title={article.title}>
                                             {subContent(article.smartSummary)}
                                         </p>
                                     </div>

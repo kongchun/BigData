@@ -154,6 +154,11 @@ class MyCollection extends React.Component {
                 </article>
             );
         });
+        if(!!!articles || articles.length==0){
+            artclelist = (<li className="pc-uncollect">
+                还没有收藏过文章
+            </li>);
+        }
 
         return (
             <div className="container pc-body">

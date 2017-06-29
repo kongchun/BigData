@@ -45,7 +45,7 @@ class Similar extends React.Component {
 				if(cookie_art.has(article.id)){
 					title_class = "col-xs-8 similar-articel-title read";
 				}
-				return <Link to={'/article/' + article.id}>
+				return <Link key={article.id} to={'/article/' + article.id}>
 					<div className="container samilarItem">
 						<div key={article.id} id={article.id}>
 							<span className={title_class}>{article.title}</span>

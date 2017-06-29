@@ -16,6 +16,15 @@ class App extends React.Component {
 				unpinned: "fadeOut"
 			}
 		});
+		$(".footer-nav").headroom({
+			tolerance: 2,
+			offset: 50,
+			classes: {
+				initial: "animated",
+				pinned: "fadeIn",
+				unpinned: "fadeOut"
+			}
+		});
 		if(isWeiXin()){
 			$(".header-nav").hide();
 			$(".content-wrap,.content-container").css("marginTop",0);

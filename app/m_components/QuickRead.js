@@ -7,6 +7,7 @@ import {
     } from 'react-router';
 import ArticleSimpleStore from '../stores/ArticleSimpleStore';
 import ArticleListActions from '../actions/ArticleListActions';
+import LogActions from '../actions/LogActions';
 import ArticleCollect from './ArticleCollect';
 import Weixin from './Weixin';
 class QuickRead extends React.Component {
@@ -48,6 +49,26 @@ class QuickRead extends React.Component {
             ArticleListActions.getArticles(page, this.limit);
             $("html,body").animate({scrollTop: 0}, 10);
         }
+
+
+        $("#cd-card-view").on('click','.quickcontent',function(){
+            var currentHtml = $(this).html();
+            var attrHtml = $(this).attr("data-p-text");
+
+            if(!!attrHtml){
+                if(currentHtml.length!=attrHtml.length){
+                    if(!attrHtml.endsWith('</span>')){
+                        var artid = $(this).attr("data-p-artid");
+                        var artTitle = $(this).attr("data-p-title");
+                        LogActions.quickReadLog(artid, artTitle);
+                        attrHtml += '<span class="close-get-quick-more">&nbsp;收缩</span>';
+                    }
+                    $(this).attr("data-p-text",currentHtml);
+                    $(this).html(attrHtml);
+                }
+            }
+        });
+
         $(window).scroll(function() {
             //当内容滚动到底部时加载新的内容 100当距离最底部100个像素时开始加载.
             if ($(this).scrollTop() + $(window).height() + 100 >= $(document).height() && $(this).scrollTop() > 100) {
@@ -64,7 +85,7 @@ class QuickRead extends React.Component {
                 }
             }
         });
-        this.bindGetMoreDetailEvent();
+        //this.bindGetMoreDetailEvent();
         Weixin.getUrl();
         Weixin.weixinReady()
     }
@@ -88,14 +109,29 @@ class QuickRead extends React.Component {
 
     bindGetMoreDetailEvent(){
         $("#cd-card-view").on('click','.to-get-quick-more',function(){
-            $(this).hide();
-            $($(this).parent().children()[0]).hide();
-            $($(this).parent().children()[2]).show();
+            var currentHtml = $(this).parent().html();
+            var attrHtml = $(this).parent().attr("data-p-text");
+
+            if(!!attrHtml){
+                if(currentHtml.length!=attrHtml.length){
+                    if(!attrHtml.endsWith('</span>')){
+                        attrHtml += '<span class="close-get-quick-more">&nbsp;收缩</span>';
+                    }
+                    $(this).parent().attr("data-p-text",currentHtml);
+                    $(this).parent().html(attrHtml);
+
+                }
+            }
         })
         $("#cd-card-view").on('click','.close-get-quick-more',function(){
-            $($(this).parent()).hide();
-            $($(this).parent().parent().children()[0]).show();
-            $($(this).parent().parent().children()[1]).show();
+            var currentHtml = $(this).parent().html();
+            var attrHtml = $(this).parent().attr("data-p-text");
+            if(!!attrHtml){
+                if(currentHtml.length!=attrHtml.length){
+                    $(this).parent().attr("data-p-text",currentHtml);
+                    $(this).parent().html(attrHtml);
+                }
+            }
         })
     }
 
@@ -126,10 +162,11 @@ class QuickRead extends React.Component {
         let that = this;
         function subContent(str) {
             var len = str.length;
+            var sdot = "";
             if(len>that.maxShowLength){
-                len = that.maxShowLength;
+                sdot = '...';
             }
-            return str.substr(0, that.maxShowLength);
+            return str.substr(0, that.maxShowLength)+sdot;
         }
         function subContent2(str) {
             var len = str.length;
@@ -191,8 +228,9 @@ class QuickRead extends React.Component {
             return "";
         }
         function markTag(tags){
+            var i=0;
             return tags.map((tag) => (
-                <span className="article-tag2">{tag}</span>
+                <span key={i++} className="article-tag2">{tag}</span>
             ))
         }
         let articles = this.state.data.data;
@@ -227,22 +265,14 @@ class QuickRead extends React.Component {
             }
             var strLen = article.smartSummary.length;
             let openClassName = "";
-            let moreDotClassName = "";
-            let moreContentClassName = "";
-            let closeClassName = "";
             if(strLen>that.maxShowLength){
                 openClassName = "to-get-quick-more "+content_read_class;
-                moreDotClassName = "";
-                moreContentClassName = "quick_more_content quick-more-hide "+content_read_class;
-                closeClassName = "close-get-quick-more "+content_read_class;
             }else{
                 openClassName = "quick-more-hide";
-                moreDotClassName = "quick-more-hide";
-                moreContentClassName = "quick-more-hide";
-                closeClassName = "quick-more-hide";
             }//<Link to={'/article/' + article.id} className={title_class}>阅读全文</Link>
             let cdContentHeadClass = 'cd-content-head ' + content_read_class;
-            return (<div className="cd-timeline-block">
+            let boxcontent = 'quickcontent ' +content_read_class;
+            return (<div key={article.id} className="cd-timeline-block">
                         <div className="cd-timeline-content">
                             <p className={cdContentHeadClass}>{article.title}</p>
                             <p className={tagsPClassName}>
@@ -252,16 +282,10 @@ class QuickRead extends React.Component {
                             <div className="quick-pic-view" style={{display:'none'}}>
                                 <img src={article.thumbnail} alt={article.title} />
                             </div>
-                            <p className={content_read_class}>
+                            <p className={boxcontent} data-p-text={article.smartSummary} data-p-artid={article.id} data-p-title={article.title}>
                                 {subContent(article.smartSummary)}
-                                <span className={moreDotClassName}>...</span>
                                 <span className={openClassName}>&nbsp;全部摘要</span>
-                                <span className={moreContentClassName}>
-                                    {subContent2(article.smartSummary)}
-                                    <span className={closeClassName}>&nbsp;收缩</span>
-                                </span>
                             </p>
-
                             <icon className="glyphicon glyphicon-eye-open cd-view-icon" style={{display:'none'}}></icon>
                             <span className="cd-view-count" style={{display:'none'}}>{article.hits}</span>
                             <icon className="glyphicon glyphicon-time cd-view-icon"></icon>

@@ -1343,6 +1343,8 @@ a:visited {
 }
 .article-operate-all .cd-article-collect {
   display: block;
+  font-size: 35px;
+  font-weight: bolder;
 }
 .article-operate-all span {
   display: inline-block;
@@ -1351,14 +1353,15 @@ a:visited {
   position: relative;
   width: 60px;
   height: 60px;
-  border-radius: 15px;
-  background: #999699;
-  color: #FFFFFF;
+  border-radius: 3em;
+  border: 1px solid #999699;
+  /*background:rgb(153,150,153,0.8);*/
+  color: #999699;
   left: 50% ;
   margin-left: -30px;
   margin-top: 30px;
   text-align: center;
-  line-height: 28px;
+  line-height: 58px;
 }
 .sports-content-center {
   display: -webkit-box;
@@ -1539,7 +1542,6 @@ a:visited {
 }
 .limao-ad-info .sports-content-center-right div {
   line-height: 22px;
-  text-align: left;
   margin-left: 15px;
 }
 .limao-ad-info .sports-content-center-right div.author-lishu {
@@ -1692,4 +1694,21 @@ a:visited {
   width: 30px;
   height: 30px;
   line-height: 30px;
+}
+.aboutusStyle {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid #FFFFFF;
+  background-color: #3A3C48;
+}
+.aboutusStyle img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.aboutusStyle span {
+  display: block;
+  padding-top: 5px;
+  color: #ffffff;
 }

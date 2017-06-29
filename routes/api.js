@@ -22,8 +22,10 @@ router.get('/article/:id', function(req, res) {
 		read.addArticleWithHits(data).then(function(){
 			if(req.cookies["userinfo"] && req.cookies["userinfo"] != ""){
 				let openid = JSON.parse(req.cookies["userinfo"]).openid;
+				let unionid = JSON.parse(req.cookies["userinfo"]).unionid;
 				read.recordLog({
 					"openid":openid,
+					"unionid":unionid,
 					"action":1,
 					"artid":id,
 					"time":new Date()
@@ -70,6 +72,17 @@ router.get('/articles/keyWords', function(req, res) {
     }
 
 	read.articlesByWords(words, limit).then(function(data) {
+		res.send(data);
+	}).catch(function(e) {
+		res.send([]);
+	})
+});
+
+router.get('/articles/byHits', function(req, res) {
+    var page = parseInt(req.param('page'));
+    var limit = parseInt(req.param('limit')) || 7;
+    var timeStr = parseInt(req.param('times'));
+	service.getArticlesByHits(page,limit,timeStr).then(function(data) {
 		res.send(data);
 	}).catch(function(e) {
 		res.send([]);
@@ -187,6 +200,44 @@ router.get('/msg', function(req, res) {
     }).catch(function(e) {
         res.send([]);
     })
+});
+router.post('/actionLog',function(req, res){
+    var action = req.body.action;
+    let openid = '';
+    let unionid = '';
+    if(req.cookies["userinfo"] && req.cookies["userinfo"] != ""){
+        openid = JSON.parse(req.cookies["userinfo"]).openid;
+        unionid = JSON.parse(req.cookies["userinfo"]).unionid;
+    }
+    var actionData = {
+        "openid":openid,
+        "unionid":unionid,
+        "action":action,
+        "time":new Date()
+    }
+    //0.登录微信信息/获取用户信息
+    //1.阅读文章
+    //2.收藏文章
+    //3.取消收藏文章
+    //4.查看文章快阅信息
+    //5.关键词搜索
+    if('6'==action){//链接推广
+        actionData.url = req.body.url;
+        actionData.from = req.body.from;
+        var from = req.body.from;
+        if(!!from) actionData.from = from;
+        var source = req.body.source;
+        if(!!source) actionData.source = source;
+    }else if('5' == action){//关键字搜索
+        actionData.search = req.body.search;
+        actionData.searchKey = req.body.searchKey;
+    }else if('1' == action || '4' == action){//阅读文章、阅读文章快阅
+        actionData.artid = req.body.artid;
+        var title = req.body.title;
+        if(!!title) actionData.title = title;
+    }
+    read.recordLog(actionData);
+    res.send('success');
 });
 
 module.exports = router;

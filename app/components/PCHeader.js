@@ -40,8 +40,10 @@ class PCHeader extends React.Component {
             }
         });
         $(".pc-nav li a").bind("click",function(){
-            $(".active").removeClass("active");
-            $(this).parent().addClass("active");
+            if(!needLogin){
+                $(".active").removeClass("active");
+                $(this).parent().addClass("active");
+            }
         });
         $("#pc-to-wx").bind("click",function(){
             $('#myModal').modal('hide');
@@ -96,6 +98,32 @@ class PCHeader extends React.Component {
             )
         }
 
+        /*
+
+         <div className="web-pc-navigation">
+         <div className="row1">
+         <div className="nav">
+         <ul className="pc-nav">
+         <li className="active" id="quickRead">
+         <a href="#">快阅</a>
+         </li>
+         <li>
+         <a href="javascript:;" id="myCollection">稍后阅读</a>
+         </li>
+         <li style={{'float': 'right','marginRight':'-240px'}} id="loginModel">
+         <span className="wx_login_btn wx_btn24"></span>
+         </li>
+         <li  id="userModel" className="wx_login_cotain" style={{'float': 'right','marginRight': '-240px'}}>
+         <img src={userinfo.headimgurl} className="wx_login_icon" />
+         <span className="wx_login_username" title={"您好,"+userinfo.nickname}>{userinfo.nickname}</span>
+         </li>
+         </ul>
+         </div>
+         </div>
+         </div>
+
+         */
+
         function weixinLogin(){
             return <div className="modal fade wxLoginModal" id="wxLoginModal" role="dialog"  aria-hidden="true">
                 <div className="modal-dialog">
@@ -111,22 +139,18 @@ class PCHeader extends React.Component {
                 </div>
             </div>
         }
-        return (<div>
+        return (<div className="container web-pc-container">
             <header className="web-pc-header">
                 <div className="row">
-                    <div className="web-pc-logo owText" title="七只狸猫·快讯 每天十分钟阅读人工智能资讯">
+                    <div className="web-pc-logo owText" title="七只狸猫·快讯 用人工智能方式阅读人工智能资讯">
                         <a href="#">
-                            <img className="logo_cat" data-progress-text="100%" data-progress="99" src="images/logo_banner.png" height="82" />
+                            <img className="logo_cat" data-progress-text="100%" data-progress="99" src="images/logo_banner3.png" width="270" height="40" />
                         </a>
                     </div>
                     <div className="web-pc-header-desc hide">
                         <p>每天十分钟阅读人工智能资讯</p>
                     </div>
-                </div>
-            </header>
-            <div className="web-pc-navigation">
-                <div className="row1">
-                    <div className="nav">
+                    <div className="web-banner-menu">
                         <ul className="pc-nav">
                             <li className="active" id="quickRead">
                                 <a href="#">快阅</a>
@@ -134,17 +158,17 @@ class PCHeader extends React.Component {
                             <li>
                                 <a href="javascript:;" id="myCollection">稍后阅读</a>
                             </li>
-                            <li style={{'float': 'right','marginRight':'-240px'}} id="loginModel">
-                                <span className="wx_login_btn wx_btn24"></span>
+                            <li style={{'float': 'right'}} id="loginModel">
+                                <span className="wx_login_btn wx_btn24" title="微信登录后即可使用稍后阅读"></span>
                             </li>
-                            <li  id="userModel" className="wx_login_cotain" style={{'float': 'right','marginRight': '-240px'}}>
+                            <li  id="userModel" className="wx_login_cotain" style={{'float': 'right'}}>
                                 <img src={userinfo.headimgurl} className="wx_login_icon" />
                                 <span className="wx_login_username" title={"您好,"+userinfo.nickname}>{userinfo.nickname}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </div>
+            </header>
             {model('myModal','友情提示','稍后阅读是您在登录后对阅读内容进行收藏的列表，您在微信中收藏的内容可以在此处继续阅读。请先登录微信账号！','pc-to-wx')}
             {weixinLogin()}
         </div>);

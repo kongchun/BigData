@@ -49,8 +49,7 @@ class CollectList extends React.Component {
 				height:height,
 				lineHeight:height,
 				textAlign:"center",
-				fontSize:"16px",
-				marginLeft:"-40px"
+				fontSize:"16px"
 			}
 			collectList = <div style={styles}>还没有收藏过文章</div>
 		}

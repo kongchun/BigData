@@ -94,7 +94,6 @@ class ArticleCollect extends React.Component {
             return (
                 <div onClick={this.onHandleCollectClick.bind(this)}>
                     <span className={clazzName}></span>
-                    <span >&nbsp;{text}</span>
                 </div>
             );
         }else{

@@ -18,18 +18,20 @@ class App extends React.Component {
 	}
 	render() {
 		return (
-			<div className="pc-container">
-				<PCHeader />
-        		{this.props.children}
-        		<Copyright />
-        		<ToolBar />
-     		</div>
+            <view>
+                <div className="web-pc-banner"></div>
+                <div className="pc-container">
+                    <PCHeader />
+                    {this.props.children}
+                    <Copyright />
+                    <ToolBar />
+                </div>
+            </view>
 		);
 	}
 }
 class ToolBar extends React.Component {
 	/**
-	 <a href="javascript:;" className="toolbar-item toolbar-item-feedback"></a>
 	 <a href="javascript:;" className="toolbar-item toolbar-item-app">
 	 <span className="toolbar-code-layer">
 	 <div id="urlcode"></div>
@@ -43,7 +45,11 @@ class ToolBar extends React.Component {
                         <img src="images/limao.jpg" width="130" height="130"/>
                     </span>
             </a>
-
+			<a href="javascript:;" className="toolbar-item toolbar-item-feedback">
+					<span className="toolbar-layer3">
+                        <img src="images/weixin/kf.jpg" width="130" height="130"/>
+                    </span>
+			</a>
 
             <a href="javascript:scroll(0,0)" id="top" className="toolbar-item toolbar-item-top"></a>
         </div>)
