@@ -195,7 +195,7 @@
 	width: 91%;
 	font-size:18px;
 	overflow:hidden;
-	height: 18px;
+	height: 20px;
 	text-overflow:ellipsis;
 	white-space: nowrap; 
 	cursor: pointer;
@@ -360,7 +360,7 @@
 	font-weight: 500;
 	width: 91%;
 	font-size:18px;
-	height: 18px;
+	height: 20px;
 	line-height: 28px;
 	cursor: pointer;
 }
