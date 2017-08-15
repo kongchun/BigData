@@ -164,6 +164,34 @@ function sendMsgByCode(word,res,FromUserName,ToUserName,CreateTime,MsgType){
         info += '\n领取密码：rw9a'
         reviewMsg(info,res,FromUserName,ToUserName,CreateTime,MsgType);//回复消息
         return true;
+    }else if(word=="Python资料"){
+        reviewMsg(info,res,FromUserName,ToUserName,CreateTime,MsgType);//回复消息
+        var info = '';
+        info += '资料链接：http://pan.baidu.com/s/1gfh7hIV';
+        info += '\n领取密码：g613'
+        return true;
+    }else if(word=="大数据全部资料"){
+        var info = '';
+        info += '神经网络、深度学习：\nhttp://pan.baidu.com/s/1kVNwuhx 密码：94hp';
+        info += '\n\n算法：\nhttp://pan.baidu.com/s/1c10ZJBq 密码：zxyb';
+        info += '\n\n机器学习：\nhttp://pan.baidu.com/s/1qYUDKtA 密码：4mvg';
+        info += '\n\n深度学习：\nhttp://pan.baidu.com/s/1i5uuojN 密码：kcxn';
+        info += '\n\nCNCC演讲：\nhttp://pan.baidu.com/s/1c1PwslM 密码：4qb0';
+        info += '\n\n编程教程：\nhttp://pan.baidu.com/s/1eSGfbCQ 密码：trzc';
+        info += '\n\n计算机视觉：\nhttp://pan.baidu.com/s/1nuGq5tv 密码：vk2q';
+        info += '\n\n论文合集：\nhttp://pan.baidu.com/s/1kVNwuiF 密码：kzdp';
+        info += '\n\n模型：\nhttp://pan.baidu.com/s/1dF5XD2D 密码：sp5l';
+        info += '\n\nTensorFlow教程：\nhttp://pan.baidu.com/s/1i5N06yD 密码：8xot';
+        info += '\n\n数据集：\nhttp://pan.baidu.com/s/1eSrI4IQ 密码：rco4';
+        info += '\n\n大规模名人人脸标注数据集CelebA：\nhttp://pan.baidu.com/s/1jIdxpRo 密码：13q0';
+        info += '\n\n斯坦福NLP课程：\nhttp://pan.baidu.com/s/1sl8rdxF 密码：k21y';
+        info += '\n\n推荐系统：\nhttp://pan.baidu.com/s/1nvog5uh 密码：pvgn';
+        info += '\n\n自然语言处理：\nhttp://pan.baidu.com/s/1slTpOXf 密码：ooc0';
+        info += '\n\n人工智能：\nhttp://pan.baidu.com/s/1pLAwX67 密码：cavg';
+        info += '\n\npython：\nhttp://pan.baidu.com/s/1gfh7hIV 密码：g613';
+        info += '\n\n请根据自身情况领取需要的部分';
+        reviewMsg(info,res,FromUserName,ToUserName,CreateTime,MsgType);//回复消息
+        return true;
     }
     return false;
 }
@@ -386,7 +414,7 @@ function weixinSendAll(content){
             form: JSON.stringify(form)
         },function(error,httpResponse,body){
             if(!error){
-                console.info('群发消息成功,内容:['+JSON.parse(body)+']');
+                console.info('群发消息成功,内容:['+JSON.stringify(body)+']');
                 return;
             }
             console.info('群发消息失败,内容:['+content+']');
@@ -455,4 +483,38 @@ exports.addVisitLog = function(url,req,res){
         .replace('&source='+sourceValue,'').replace('source='+sourceValue,'');
     res.redirect(newUrl);
     return true;
+}
+
+function sendTextByopenId(openId, text){
+    if(!!!openId){
+        openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A'];
+    }else{
+        openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A',openId];
+    }
+    var url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=';
+    util.getToken(aotuConfig, function(result){
+        if(result.err){
+            console.info(result.msg);
+            return;
+        }
+        var form= {
+                "touser":openId,
+                "msgtype": "text",
+                "text": { "content": text},
+                "send_ignore_reprint":0
+        };
+        var access_token = result.data.access_token;
+        request.post({
+            url: url + access_token,
+            form: JSON.stringify(form)
+        },function(error,httpResponse,body){
+            if(!error){
+                console.info('openId:'+openId);
+                console.info('发送消息成功,内容:['+JSON.stringify(body)+']');
+                return;
+            }
+            console.info('发送消息失败,内容:['+content+']');
+            return;
+        });
+    });
 }

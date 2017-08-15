@@ -1,4 +1,5 @@
 var db = require('./db.js');
+var db2 = require('./db2.js');
 
 exports.articlesByPage = function(page, limit) {
 	var start = (page - 1) * limit;
@@ -259,14 +260,14 @@ exports.setUserData = function(userinfo) {
 }
 
 exports.getUserData = function(unionid) {
-	db.close();
-	return db.open("users").then(function(collection) {
+	db2.close();
+	return db2.open("users").then(function(collection) {
 		return collection.find({"unionid":{$in:[unionid],$exists:true}}).toArray();
 	}).then(function(data) {
-		db.close();
+		db2.close();
 		return data;
 	}).catch(function(error) {
-		db.close();
+		db2.close();
 		console.error(error)
 		throw error;
 	})
