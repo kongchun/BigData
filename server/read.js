@@ -11,7 +11,7 @@ exports.articlesByPage = function(page, limit) {
 			createDate: -1
 		}).skip(start).limit(limit).toArray();
 	}).then(function(data) {
-		//console.log(data.length, "data");
+		console.log(data.length, "data");
 		return db.collection.find().count().then(function(count) {
 			db.close();
 			return ({

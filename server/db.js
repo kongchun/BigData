@@ -1,7 +1,7 @@
 var mongodb = require("mongodb");
 
 var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://10.82.0.1:27017/bigdata';
+var url = 'mongodb://123.207.217.97:27027/bigdata';
 class DB {
 	constructor() {
 		this.db = null;
@@ -16,7 +16,7 @@ class DB {
 			MongoClient.connect(url).then((db) => {
 				console.log("openDB")
 				this.db = db;
-				var collection = this.collection = db.collection(table);
+				var collection = this.collection = db.db("bigdata").collection(table);
 				resolve(this.collection);
 			}).catch(reject);
 		})

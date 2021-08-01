@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
-var babelify = require("babelify");
+const babel = require('gulp-babel');
 var source = require("vinyl-source-stream");
 var plumber = require('gulp-plumber');
 var autoprefixer = require('gulp-autoprefixer');
@@ -70,8 +70,8 @@ gulp.task('browserify-vendor', function() {
 gulp.task('browserify', ['browserify-vendor'], function() {
 	return browserify('app/main.js')
 		.external(dependencies)
-		.transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
+		.transform(babel, {
+			presets: ['@babel/preset-env']
 		})
 		.bundle()
 		.pipe(source('bundle.js'))
@@ -82,8 +82,8 @@ gulp.task('browserify', ['browserify-vendor'], function() {
 gulp.task('m_browserify', ['browserify-vendor'], function() {
 	return browserify('app/m_main.js')
 		.external(dependencies)
-		.transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
+		.transform(babel, {
+			presets: ['@babel/preset-env']
 		})
 		.bundle()
 		.pipe(source('m_bundle.js'))
@@ -94,8 +94,8 @@ gulp.task('m_browserify', ['browserify-vendor'], function() {
 gulp.task('sp_browserify', ['browserify-vendor'], function() {
 	return browserify('app/sp_components/Weekly.js')
 		.external(dependencies)
-		.transform(babelify, {
-			presets: ['es2015', 'react', 'stage-0']
+		.transform(babel, {
+			presets: ['@babel/preset-env']
 		})
 		.bundle()
 		.pipe(source('sp_bundle.js'))

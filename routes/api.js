@@ -11,6 +11,7 @@ router.get('/articles', function(req, res) {
 	read.articlesByPage(page, limit).then(function(data) {
 		res.send(data);
 	}).catch(function(e) {
+		console.log(e)
 		res.send([]);
 	})
 });

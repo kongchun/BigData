@@ -1,8 +1,7 @@
 var request =require('request');
 var read = require('./read.js');
-var config = require('../config/config');
-var util = require('../util/util');
-var aotuConfig = config.wx_config.aotu;
+//var config = require('../config/config');
+// var aotuConfig = config.wx_config.aotu;
 let Segment = require ('segment').Segment;
 var segment = new Segment();
 segment.useDefault();
@@ -393,34 +392,34 @@ function theWeek(){
 
 //微信群发文本消息
 function weixinSendAll(content){
-    var url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=';
-    util.getToken(aotuConfig, function(result){
-        if(result.err){
-            console.info(result.msg);
-            return;
-        }
-        var form= {
-            "filter":{
-                "is_to_all":true
-            },
-            "text":{
-                "content":content
-            },
-            "msgtype":"text"
-        };
-        var access_token = result.data.access_token;
-        request.post({
-            url: url + access_token,
-            form: JSON.stringify(form)
-        },function(error,httpResponse,body){
-            if(!error){
-                console.info('群发消息成功,内容:['+JSON.stringify(body)+']');
-                return;
-            }
-            console.info('群发消息失败,内容:['+content+']');
-            return;
-        });
-    });
+    // var url = 'https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=';
+    // util.getToken(aotuConfig, function(result){
+    //     if(result.err){
+    //         console.info(result.msg);
+    //         return;
+    //     }
+    //     var form= {
+    //         "filter":{
+    //             "is_to_all":true
+    //         },
+    //         "text":{
+    //             "content":content
+    //         },
+    //         "msgtype":"text"
+    //     };
+    //     var access_token = result.data.access_token;
+    //     request.post({
+    //         url: url + access_token,
+    //         form: JSON.stringify(form)
+    //     },function(error,httpResponse,body){
+    //         if(!error){
+    //             console.info('群发消息成功,内容:['+JSON.stringify(body)+']');
+    //             return;
+    //         }
+    //         console.info('群发消息失败,内容:['+content+']');
+    //         return;
+    //     });
+    // });
 }
 
 exports.getArticlesByHits = function(page,limit,time) {
@@ -486,35 +485,35 @@ exports.addVisitLog = function(url,req,res){
 }
 
 function sendTextByopenId(openId, text){
-    if(!!!openId){
-        openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A'];
-    }else{
-        openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A',openId];
-    }
-    var url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=';
-    util.getToken(aotuConfig, function(result){
-        if(result.err){
-            console.info(result.msg);
-            return;
-        }
-        var form= {
-                "touser":openId,
-                "msgtype": "text",
-                "text": { "content": text},
-                "send_ignore_reprint":0
-        };
-        var access_token = result.data.access_token;
-        request.post({
-            url: url + access_token,
-            form: JSON.stringify(form)
-        },function(error,httpResponse,body){
-            if(!error){
-                console.info('openId:'+openId);
-                console.info('发送消息成功,内容:['+JSON.stringify(body)+']');
-                return;
-            }
-            console.info('发送消息失败,内容:['+content+']');
-            return;
-        });
-    });
+    // if(!!!openId){
+    //     openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A'];
+    // }else{
+    //     openId = ['o9mrKv-IJQQEKejmhOPrEiqcDUwA','o9mrKv7eCr4FKv4kMIT7JMh72x1A',openId];
+    // }
+    // var url = 'https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=';
+    // util.getToken(aotuConfig, function(result){
+    //     if(result.err){
+    //         console.info(result.msg);
+    //         return;
+    //     }
+    //     var form= {
+    //             "touser":openId,
+    //             "msgtype": "text",
+    //             "text": { "content": text},
+    //             "send_ignore_reprint":0
+    //     };
+    //     var access_token = result.data.access_token;
+    //     request.post({
+    //         url: url + access_token,
+    //         form: JSON.stringify(form)
+    //     },function(error,httpResponse,body){
+    //         if(!error){
+    //             console.info('openId:'+openId);
+    //             console.info('发送消息成功,内容:['+JSON.stringify(body)+']');
+    //             return;
+    //         }
+    //         console.info('发送消息失败,内容:['+content+']');
+    //         return;
+    //     });
+    // });
 }
