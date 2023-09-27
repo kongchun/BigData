@@ -1,7 +1,7 @@
 var mongodb = require("mongodb");
 
 var MongoClient = mongodb.MongoClient;
-var url = 'mongodb://123.207.217.97:27027/bigdata';
+var url = 'mongodb://1.94.50.215:27027/bigdata';
 class DB {
 	constructor() {
 		this.db = null;
